@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/02/22 11:33:15 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/02/22 16:34:15 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,17 @@ OBJS = $(SRCS:.c=.o)
 
 LIBS = libft.a libmlx.dylib
 
+CFLAGS = #-Wall -Werror -Wextra
+
 all : $(NAME)
 
 %.o : %.c cub3d.h
-	gcc -c -Wall -Werror -Wextra $< -o $(<:.c=.o) -g
+	gcc -c $(CFLAGS) $< -o $(<:.c=.o) -g
 
 $(NAME) : $(OBJS) $(SRCS) 
 	cd libft && make bonus && cd ../mlx && make && cd ..
 	mv libft/libft.a . && mv mlx/libmlx.dylib .
-	gcc -Wall -Werror -Wextra -o cub3d $(LIBS) $(SRCS) -g
+	gcc $(CFLAGS) -o cub3d $(LIBS) $(SRCS) -g
 
 clean : 
 	rm -f $(OBJS)

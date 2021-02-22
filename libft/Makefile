@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/24 15:05:03 by lfourmau          #+#    #+#              #
-#    Updated: 2021/02/17 10:00:39 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/02/22 16:34:12 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ _CYAN = \033[96m
 
 %.o : %.c libft.h
 	@echo "${_GREEN}${_DIM} ✅ SUCCESS ✅  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ${_END}${_YELLOW}| $< |${_END}"
-	@${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -c $< -o $@ -g
 
 $(NAME) : ${OBJS}
 	@echo "${_GREEN} Action reussie pour  : ${_CYAN} $?"

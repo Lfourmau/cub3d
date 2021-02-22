@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/22 15:00:05 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:34:13 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,14 @@ int check_identifiers_textures(char *line)
 	return (1);
 }
 
-char 	**ft_realloc(char **map, char *line)
+char 	**ft_realloc(char **map, char *line, int n)
 {
-	char **tmp;
-	int i;
+	char	**tmp;
 
-	i = 0;
-	tmp = ft_calloc(number_of_split(map) + 1, sizeof(char*));
-	tmp = map;
-	while (map[i])
-	{
-		tmp[i] = map[i];
-		i++;
-	}
-	tmp[i] = ft_calloc(ft_strlen(line), 1);
-	tmp[i] = line;
-	tmp[i + 1] = 0;
-	//free(map);
+	tmp = ft_calloc(n + 2, sizeof(char*));
+	tmp[n] = line;
+	while (n--)
+		tmp[n] = map[n];
+	free(map);
 	return (tmp);
 }

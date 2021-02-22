@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/22 13:44:02 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:34:09 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	parse_colors(char *line, parse_struct *ps)
 	return (0);
 }
 
-
 int	full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv[1]
 {
 	char	*line;
@@ -99,7 +98,7 @@ int	full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv
 				return (1);
 		if (line[0] == ' ' || line[0] == '1')
 		{
-			parse_map(line, ms, j);
+			ms->map = ft_realloc(ms->map, line, j);
 			j++;
 		}
 //il faudra aussi fct pour verifier qu'on a toutes les infos

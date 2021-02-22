@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/22 13:54:50 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:34:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int     main(int argc, char **argv)
 		map_struct *ms;
 		ps = malloc(sizeof(parse_struct));
 		ms = malloc(sizeof(map_struct));
+		ms->map = NULL;
 		parsing_struct_init(ps);
 		full_parsing(argv[1], ps, ms);
 		printf("%d\n", ps->horiz_res);
@@ -38,7 +39,7 @@ int     main(int argc, char **argv)
 		printf("%d\n", ps->color_c);
 		while (ms->map[i])
 		{
-			printf("%s", ms->map[i]);
+			printf("ligne [%d] : %s", i, ms->map[i]);
 			i++;
 			printf("\n");
 		}

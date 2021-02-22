@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/22 13:23:46 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:01:35 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int 	check_full_numbers(char **splitresult, int i);
 void    parsing_struct_init(parse_struct *ps);
 int 	number_of_split(char **splitresult);
 int		check_identifiers_textures(char *line);
-char   **ft_realloc(char **map, char *line);
+char   **ft_realloc(char **map, char *line, int n);
 void    parse_map(char *line, map_struct *ms, int j);
 #endif
