@@ -6,7 +6,7 @@
 /*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/19 10:18:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:00:05 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	number_of_split(char **splitresult)
 	int i;
 
 	i = 0;
+	if (!splitresult)
+		return (0);
 	while (splitresult[i])
 		i++;
 	return (i);
@@ -54,4 +56,24 @@ int check_identifiers_textures(char *line)
 	if (line[0] == 'S' && line[1] == ' ')
 		return (0);
 	return (1);
+}
+
+char 	**ft_realloc(char **map, char *line)
+{
+	char **tmp;
+	int i;
+
+	i = 0;
+	tmp = ft_calloc(number_of_split(map) + 1, sizeof(char*));
+	tmp = map;
+	while (map[i])
+	{
+		tmp[i] = map[i];
+		i++;
+	}
+	tmp[i] = ft_calloc(ft_strlen(line), 1);
+	tmp[i] = line;
+	tmp[i + 1] = 0;
+	//free(map);
+	return (tmp);
 }

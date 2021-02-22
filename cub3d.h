@@ -6,7 +6,7 @@
 /*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/19 10:07:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:23:46 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ typedef struct parsing_struct
 	char	*WE;
 	char	*EA;
 	char	*S;
-}			parse_struct;
+}				parse_struct;
 
-int    	full_parsing(char *map, parse_struct *ps);
+typedef struct map_struct
+{
+	char **map;
+}			map_struct;
+
+int    	full_parsing(char *map, parse_struct *ps, map_struct *ms);
 int 	check_full_numbers(char **splitresult, int i);
 void    parsing_struct_init(parse_struct *ps);
 int 	number_of_split(char **splitresult);
-int check_identifiers_textures(char *line);
+int		check_identifiers_textures(char *line);
+char   **ft_realloc(char **map, char *line);
+void    parse_map(char *line, map_struct *ms, int j);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/19 08:44:43 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:54:50 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 int     main(int argc, char **argv)
 {
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
 	if (argc == 2)
 	{
 		parse_struct *ps;
+		map_struct *ms;
 		ps = malloc(sizeof(parse_struct));
+		ms = malloc(sizeof(map_struct));
 		parsing_struct_init(ps);
-		full_parsing(argv[1], ps);
+		full_parsing(argv[1], ps, ms);
 		printf("%d\n", ps->horiz_res);
 		printf("%d\n", ps->vertic_res);
 		printf("%s\n", ps->NO);
@@ -29,6 +36,12 @@ int     main(int argc, char **argv)
 		printf("%s\n", ps->S);
 		printf("%d\n", ps->color_f);
 		printf("%d\n", ps->color_c);
+		while (ms->map[i])
+		{
+			printf("%s", ms->map[i]);
+			i++;
+			printf("\n");
+		}
 	}
 	else
 		printf("Error\nNombre d'arguments incorrect\n");
