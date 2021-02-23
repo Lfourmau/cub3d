@@ -6,20 +6,13 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 10:19:07 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 12:57:16 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_splits(char **chain, int i)
-{
-	while (--i >= 0)
-		free(chain[i]);
-	free(chain);
-}
-
-int	parse_r(char *line, parse_struct *ps)
+int		parse_r(char *line, parse_struct *ps)
 {
 	char **split;
 	split = ft_split(line, ' ');
@@ -35,7 +28,7 @@ int	parse_r(char *line, parse_struct *ps)
 	return (0);
 }
 
-int	parse_textures(char *line, parse_struct *ps)
+int		parse_textures(char *line, parse_struct *ps)
 {
 	char **split;
 	split = ft_split(line, ' ');
@@ -59,7 +52,7 @@ int	parse_textures(char *line, parse_struct *ps)
 	return (0);
 }
 
-int	parse_colors(char *line, parse_struct *ps)
+int		parse_colors(char *line, parse_struct *ps)
 {
 	char **space_split;
 	char **comma_split;
@@ -84,7 +77,7 @@ int	parse_colors(char *line, parse_struct *ps)
 	return (0);
 }
 
-int	full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv[1]
+int		full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv[1]
 {
 	char	*line;
 	int fd;
@@ -114,5 +107,6 @@ int	full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv
 	}
 	//il faudra aussi fct pour verifier qu'on a toutes les infos
 	free(line);
+	display_spaces(ms->map);
 	return (0);
 }

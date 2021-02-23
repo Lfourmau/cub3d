@@ -6,13 +6,13 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 10:18:36 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:55:03 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_full_numbers(char **splitresult, int i)
+int		check_full_numbers(char **splitresult, int i)
 {
 	int j;
 
@@ -31,7 +31,7 @@ int	check_full_numbers(char **splitresult, int i)
 	return (0);
 }
 
-int	number_of_split(char **splitresult)
+int		number_of_split(char **splitresult)
 {
 	int i;
 
@@ -43,7 +43,7 @@ int	number_of_split(char **splitresult)
 	return (i);
 }
 
-int check_identifiers_textures(char *line)
+int		check_identifiers_textures(char *line)
 {
 	if (!ft_strncmp(line, "NO", 2))
 		return (0);
@@ -58,7 +58,7 @@ int check_identifiers_textures(char *line)
 	return (1);
 }
 
-char 	**map_nextline(char **map, char *line, int n)
+char	**map_nextline(char **map, char *line, int n)
 {
 	char	**tmp;
 

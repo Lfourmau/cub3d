@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 10:18:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 13:00:11 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-typedef struct parsing_struct
+typedef struct	parsing_struct
 {
 	int 	horiz_res;
 	int 	vertic_res;	
@@ -33,16 +33,18 @@ typedef struct parsing_struct
 	char	*S;
 }				parse_struct;
 
-typedef struct map_struct
+typedef struct	map_struct
 {
 	char **map;
-}			map_struct;
+}				map_struct;
 
-int    	full_parsing(char *map, parse_struct *ps, map_struct *ms);
-int 	check_full_numbers(char **splitresult, int i);
-void    parsing_struct_init(parse_struct *ps);
-int 	number_of_split(char **splitresult);
-int		check_identifiers_textures(char *line);
-char   **map_nextline(char **map, char *line, int n);
-void    parse_map(char *line, map_struct *ms, int j);
+int				full_parsing(char *map, parse_struct *ps, map_struct *ms);
+int				check_full_numbers(char **splitresult, int i);
+void			parsing_struct_init(parse_struct *ps);
+int				number_of_split(char **splitresult);
+int				check_identifiers_textures(char *line);
+char			**map_nextline(char **map, char *line, int n);
+void			parse_map(char *line, map_struct *ms, int j);
+void			free_splits(char **chain, int i);
+void			display_spaces(char **map);
 #endif
