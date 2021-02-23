@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 10:09:51 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:19:07 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv
 				return (1);
 		if (line[0] == ' ' || line[0] == '1')
 		{
-			ms->map = ft_realloc(ms->map, line, j);
+			ms->map = map_nextline(ms->map, line, j);
 			j++;
 		}
 		if (line[0] == 0)

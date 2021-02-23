@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 10:04:27 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:18:36 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int check_identifiers_textures(char *line)
 	return (1);
 }
 
-char 	**ft_realloc(char **map, char *line, int n)
+char 	**map_nextline(char **map, char *line, int n)
 {
 	char	**tmp;
 
