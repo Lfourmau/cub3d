@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 09:05:22 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 10:09:51 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,16 @@ int	parse_textures(char *line, parse_struct *ps)
 		free(split);
 	}
 	if (!ft_strncmp(split[0], "NO", 2))
-		ps->NO = split[1];
+		ps->NO = ft_strdup(split[1]);
 	if (!ft_strncmp(split[0], "SO", 2))
-		ps->SO = split[1];
+		ps->SO = ft_strdup(split[1]);
 	if (!ft_strncmp(split[0], "WE", 2))
-		ps->WE = split[1];
+		ps->WE = ft_strdup(split[1]);
 	if (!ft_strncmp(split[0], "EA", 2))
-		ps->EA = split[1];
+		ps->EA = ft_strdup(split[1]);
 	if (split[0][0] == 'S' && split[0][1] != 'O')
-		ps->S = split[1];
-	free(split);
-	//split a free plus tard pour ne pas perdre les infos de la struct
-	//ou memcpy/strlcpy pour pouvoir free directement
+		ps->S = ft_strdup(split[1]);
+	free_splits(split, number_of_split(split));
 	free(line);
 	return (0);
 }
@@ -111,6 +109,8 @@ int	full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv
 			ms->map = ft_realloc(ms->map, line, j);
 			j++;
 		}
+		if (line[0] == 0)
+			free(line);
 	}
 	//il faudra aussi fct pour verifier qu'on a toutes les infos
 	free(line);
