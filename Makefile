@@ -6,13 +6,13 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/02/23 12:55:15 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/02/24 14:11:26 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS = main.c parsing.c parsing_utils.c struct_manip.c free_funcs.c map_parsing_utils.c
+SRCS = main.c parsing.c parsing_utils.c struct_manip.c free_funcs.c map_parsing_utils.c close_map.c
 
 OBJS = $(SRCS:.c=.o)
 

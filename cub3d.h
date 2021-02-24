@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 13:00:11 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:11:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ char			**map_nextline(char **map, char *line, int n);
 void			parse_map(char *line, map_struct *ms, int j);
 void			free_splits(char **chain, int i);
 void			display_spaces(char **map);
+int	map_isclose(char **map);
 #endif

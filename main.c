@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 13:17:39 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:11:27 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int     main(int argc, char **argv)
 		ms->map = NULL;
 		parsing_struct_init(ps);
 		full_parsing(argv[1], ps, ms);
+		if (map_isclose(ms->map))
+			return (printf("map invalide\n"));
 		printf("\n\n\033[33m----------INFOS---------------\033[0m\n");
 		printf("\033[92mRes Horizontale\033[0m --> [%d]\n", ps->horiz_res);
 		printf("\033[92mRes Verticale\033[0m --> [%d]\n", ps->vertic_res);
