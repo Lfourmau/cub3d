@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/24 14:11:27 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 18:47:42 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,42 @@ int valid_middle_lines(char **map)
 	return (0);
 }
 
+int check_zeros(char **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0')
+			{
+				if (map[i - 1][j] == ' ')
+					return (1);
+				if (map[i][j - 1] == ' ')
+					return (1);
+				if (map[i + 1][j] == ' ')
+					return (1);
+				if (map[i][j + 1] == ' ')
+					return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	map_isclose(char **map)
 {
 	if (valid_extrem_lines(map))
 		return (1);
 	if (valid_middle_lines(map))
+		return (1);
+	if(check_zeros(map))
 		return (1);
 	return (0);
 }
