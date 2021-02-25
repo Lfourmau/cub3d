@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 08:40:10 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 11:26:58 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ int     main(int argc, char **argv)
 	}
 	else
 		printf("Error\nNombre d'arguments incorrect\n");
-	while (1)
-		;
+	// while (1)
+	// 	;
 }

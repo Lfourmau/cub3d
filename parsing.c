@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 12:57:16 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 12:50:44 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int		parse_colors(char *line, parse_struct *ps)
 	space_split = ft_split(line, ' ');
 	c = &space_split[0][0];
 	comma_split = ft_split(space_split[1], ',');
-	if (number_of_split(space_split) != 2 || number_of_split(comma_split) != 3 || check_full_numbers(comma_split, 0) == 1)
+	if (number_of_split(space_split) != 2 || number_of_split(comma_split) != 3 || check_full_numbers(comma_split, 0) == 1 || limit_colors(comma_split))
 	{
 		free(space_split);
 		free(comma_split);
-       return(printf("Error\nCouleurs du sol et du plafond mal renseignees\n")); 
+        return(printf("Error\nCouleurs du sol et du plafond mal renseignees\n")); 
 	}
 	if (*c == 'F')
 		ps->color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);

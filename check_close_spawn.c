@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_map.c                                        :+:      :+:    :+:   */
+/*   check_close_spawn.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 08:38:22 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 11:26:59 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ int check_spawns(char c, map_struct *ms)
 	return (0);
 }
 
+int isspawn(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
+}
+
 int check_zeros(map_struct *ms)
 {
 	int i;
@@ -84,7 +91,7 @@ int check_zeros(map_struct *ms)
 		j = 0;
 		while (ms->map[i][j])
 		{
-			if (ms->map[i][j] == '0')
+			if (ms->map[i][j] == '0' || ms->map[i][j] == '2' || isspawn(ms->map[i][j]))
 			{
 				if (ms->map[i - 1][j] == ' ')
 					return (1);
@@ -95,7 +102,7 @@ int check_zeros(map_struct *ms)
 				if (ms->map[i][j + 1] == ' ')
 					return (1);
 			}
-			else if (check_spawns(ms->map[i][j], ms))
+			if (check_spawns(ms->map[i][j], ms))
 				return (1);
 			j++;
 		}

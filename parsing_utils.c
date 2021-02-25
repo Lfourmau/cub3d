@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 07:28:09 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 12:43:18 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,18 @@ int		check_identifiers_textures(char *line)
 	if (line[0] == 'S' && line[1] == ' ')
 		return (0);
 	return (1);
+}
+
+int	limit_colors(char **colors)
+{
+	int i;
+
+	i  = 0;
+	while (colors[i])
+	{
+		if (ft_atoi(colors[i]) > 255)
+			return (1);
+		i++;
+	}
+	return (0);
 }

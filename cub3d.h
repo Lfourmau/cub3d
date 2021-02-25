@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 08:38:37 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 12:39:12 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void			parse_map(char *line, map_struct *ms, int j);
 void			free_splits(char **chain, int i);
 void			display_spaces(char **map);
 int				check_spawn_close(map_struct *ms);
+int				limit_colors(char **colors);
 #endif
