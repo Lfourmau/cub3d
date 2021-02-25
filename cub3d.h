@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/24 14:11:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 08:38:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ typedef struct	parsing_struct
 typedef struct	map_struct
 {
 	char **map;
+	char 	spawn;
+	int nb_spawns;
 }				map_struct;
 
 int				full_parsing(char *map, parse_struct *ps, map_struct *ms);
 int				check_full_numbers(char **splitresult, int i);
-void			parsing_struct_init(parse_struct *ps);
+void			parsing_struct_init(parse_struct *ps, map_struct *ms);
 int				number_of_split(char **splitresult);
 int				check_identifiers_textures(char *line);
 char			**map_nextline(char **map, char *line, int n);
 void			parse_map(char *line, map_struct *ms, int j);
 void			free_splits(char **chain, int i);
 void			display_spaces(char **map);
-int	map_isclose(char **map);
+int				check_spawn_close(map_struct *ms);
 #endif

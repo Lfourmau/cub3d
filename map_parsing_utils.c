@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:46:01 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/23 13:16:12 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 07:29:56 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*addspaces(char *str)
 
 int		max_len_map(char **map)
 {
-	int maxlen;
+	size_t maxlen;
 	int i;
 
 	maxlen = 0;
@@ -64,4 +64,16 @@ void	display_spaces(char **map)
 		}
 		i++;
 	}
+}
+
+char	**map_nextline(char **map, char *line, int n)
+{
+	char	**tmp;
+
+	tmp = ft_calloc(n + 2, sizeof(char*));
+	tmp[n] = line;
+	while (n--)
+		tmp[n] = map[n];
+	free(map);
+	return (tmp);
 }

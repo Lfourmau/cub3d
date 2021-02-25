@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/24 14:11:25 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 07:28:09 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,4 @@ int		check_identifiers_textures(char *line)
 	if (line[0] == 'S' && line[1] == ' ')
 		return (0);
 	return (1);
-}
-
-char	**map_nextline(char **map, char *line, int n)
-{
-	char	**tmp;
-
-	tmp = ft_calloc(n + 2, sizeof(char*));
-	tmp[n] = line;
-	while (n--)
-		tmp[n] = map[n];
-	free(map);
-	return (tmp);
 }
