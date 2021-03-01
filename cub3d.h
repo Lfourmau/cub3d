@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 12:39:12 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/01 16:26:04 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct	parsing_struct
 
 typedef struct	map_struct
 {
-	char **map;
+	char	**map;
 	char 	spawn;
-	int nb_spawns;
+	int		nb_spawns;
 }				map_struct;
 
 int				full_parsing(char *map, parse_struct *ps, map_struct *ms);
@@ -51,4 +51,6 @@ void			free_splits(char **chain, int i);
 void			display_spaces(char **map);
 int				check_spawn_close(map_struct *ms);
 int				limit_colors(char **colors);
+int				isspawn(char c);
+int				check_around(char c);
 #endif
