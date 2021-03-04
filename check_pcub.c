@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_funcs.c                                       :+:      :+:    :+:   */
+/*   check_pcub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/23 12:33:54 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/04 17:55:46 by loic             ###   ########lyon.fr   */
+/*   Created: 2021/03/03 17:10:56 by loic              #+#    #+#             */
+/*   Updated: 2021/03/03 17:16:29 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_splits(char **chain, int i)
+int     check_cub(char *str)
 {
-	while (--i >= 0)
-		free(chain[i]);
-	free(chain);
-}
+    int i;
 
-int		free_struct(parse_struct *ps, map_struct *ms)
-{
-	printf("Error\nIl manque une information");
-	free_splits(ms->map, number_of_split(ms->map));
-	free(ps->SO);
-	free(ps->NO);
-	free(ps->EA);
-	free(ps->S);
-	free(ps->WE);
-	return (1);
+    i = 0;
+    while (str[i])
+        i++;
+    i--;
+    if (str[i] == 'b')
+        i--;
+    else
+        return (1);
+    if (str[i] == 'u')
+        i--;
+    else
+        return (1);
+    if (str[i] == 'c')
+        i--;
+    else
+        return (1);
+    if (str[i] == '.')
+        i--;
+    else
+        return (1); 
+    return (0);
 }

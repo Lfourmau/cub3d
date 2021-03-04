@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/01 16:16:40 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 18:05:38 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int     main(int argc, char **argv)
 	j = 0;
 	if (argc == 2)
 	{
+		if (check_cub(argv[1]))
+			return (printf("Mauvais format de map\n"));
 		parse_struct *ps;
 		map_struct *ms;
 		ps = malloc(sizeof(parse_struct));
@@ -90,6 +92,6 @@ printf("\033[1;31m                 / ,\"'\"\\,'               `/  `-.|\" \n");
 	}
 	else
 		printf("Error\nNombre d'arguments incorrect\n");
-	// while (1)
-	// 	;
+	 //while (1)
+	 //	;
 }

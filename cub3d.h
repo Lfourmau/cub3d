@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/01 16:26:04 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 17:50:28 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,7 @@ int				check_spawn_close(map_struct *ms);
 int				limit_colors(char **colors);
 int				isspawn(char c);
 int				check_around(char c);
+int     		check_cub(char *str);
+int				check_struct(parse_struct *ps, map_struct *ms);
+int				free_struct(parse_struct *ps, map_struct *ms);
 #endif

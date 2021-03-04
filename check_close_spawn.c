@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/01 16:27:08 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 17:43:19 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int check_spawns(char c, map_struct *ms)
 	return (0);
 }
 
-int check_zeros(map_struct *ms)
+int check_leaks(map_struct *ms)
 {
 	int i;
 	int j;
@@ -110,7 +110,7 @@ int	check_spawn_close(map_struct *ms)
 		return (1);
 	if (valid_middle_lines(ms))
 		return (1);
-	if(check_zeros(ms))
+	if(check_leaks(ms))
 		return (1);
 	if (ms->nb_spawns == 0)
 		return (1);

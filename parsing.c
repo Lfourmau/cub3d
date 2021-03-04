@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 13:05:01 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 17:51:09 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		parse_r(char *line, parse_struct *ps)
 {
+	if (ps->horiz_res != 0 || ps->vertic_res != 0)
+		return (printf("Error\nDupplicata d'informations\n"));
 	char **split;
 	split = ft_split(line, ' ');
 	if (number_of_split(split) != 3 || (check_full_numbers(split, 1) == 1))
@@ -37,16 +39,18 @@ int		parse_textures(char *line, parse_struct *ps)
 		return(printf("Error\nTextures mal renseignees\n"));
 		free(split);
 	}
-	if (!ft_strncmp(split[0], "NO", 2))
+	if (!ft_strncmp(split[0], "NO", 2) && ps->NO == 0)
 		ps->NO = ft_strdup(split[1]);
-	if (!ft_strncmp(split[0], "SO", 2))
+	else if (!ft_strncmp(split[0], "SO", 2) && ps->SO == 0)
 		ps->SO = ft_strdup(split[1]);
-	if (!ft_strncmp(split[0], "WE", 2))
+	else if (!ft_strncmp(split[0], "WE", 2) && ps->WE == 0)
 		ps->WE = ft_strdup(split[1]);
-	if (!ft_strncmp(split[0], "EA", 2))
+	else if (!ft_strncmp(split[0], "EA", 2) && ps->EA == 0)
 		ps->EA = ft_strdup(split[1]);
-	if (split[0][0] == 'S' && split[0][1] != 'O')
+	else if (split[0][0] == 'S' && split[0][1] != 'O' && ps->S == 0)
 		ps->S = ft_strdup(split[1]);
+	else
+		return(printf("Error\nDupplicata d'infos\n")); 
 	free_splits(split, number_of_split(split));
 	free(line);
 	return (0);
@@ -67,10 +71,12 @@ int		parse_colors(char *line, parse_struct *ps)
 		free(comma_split);
         return(printf("Error\nCouleurs du sol et du plafond mal renseignees\n")); 
 	}
-	if (*c == 'F')
+	if (*c == 'F' && ps->color_f == 0)
 		ps->color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
-	if (*c == 'C')
+	else if (*c == 'C' && ps->color_c == 0)
 		ps->color_c = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
+	else
+		return(printf("Error\nDupplicata d'infos\n")); 
 	free_splits(comma_split, number_of_split(comma_split));
 	free_splits(space_split, number_of_split(space_split));
 	free(line);
@@ -108,5 +114,7 @@ int		full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera arg
 	//il faudra aussi fct pour verifier qu'on a toutes les infos
 	free(line);
 	display_spaces(ms->map);
+	if (check_struct(ps, ms))
+		return (free_struct(ps, ms));
 	return (0);
 }
