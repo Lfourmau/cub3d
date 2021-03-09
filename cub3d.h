@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/08 09:59:39 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 07:20:42 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ int				isspawn(char c);
 int				check_around(char c);
 int     		check_cub(char *str);
 int				check_struct(parse_struct *ps, map_struct *ms);
-int				free_struct(parse_struct *ps, map_struct *ms);
+int				free_struct(parse_struct *ps, map_struct *ms, char *line);
 #endif

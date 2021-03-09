@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:33:54 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/04 17:55:46 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 09:08:13 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_splits(char **chain, int i)
 	free(chain);
 }
 
-int		free_struct(parse_struct *ps, map_struct *ms)
+int		free_struct(parse_struct *ps, map_struct *ms, char *line)
 {
 	printf("Error\nIl manque une information");
 	free_splits(ms->map, number_of_split(ms->map));
@@ -28,5 +28,6 @@ int		free_struct(parse_struct *ps, map_struct *ms)
 	free(ps->EA);
 	free(ps->S);
 	free(ps->WE);
+	free(line);
 	return (1);
 }

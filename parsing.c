@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/08 12:49:09 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 07:20:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,10 @@ int		full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera arg
 				return (printf("Ligne vide dans la map\n"));
 		}
 	}
-	//il faudra aussi fct pour verifier qu'on a toutes les infos
+	if (check_struct(ps, ms))
+		return (free_struct(ps, ms, line));
 	free(line);
 	display_spaces(ms->map);
-	if (check_struct(ps, ms))
-		return (free_struct(ps, ms));
 	return (0);
 }
 
