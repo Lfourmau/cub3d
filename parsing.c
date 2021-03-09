@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/04 17:51:09 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 12:49:09 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int		parse_colors(char *line, parse_struct *ps)
 		free(comma_split);
         return(printf("Error\nCouleurs du sol et du plafond mal renseignees\n")); 
 	}
-	if (*c == 'F' && ps->color_f == 0)
+	if (*c == 'F' && ps->color_f == -1)
 		ps->color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
-	else if (*c == 'C' && ps->color_c == 0)
+	else if (*c == 'C' && ps->color_c == -1)
 		ps->color_c = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
 	else
 		return(printf("Error\nDupplicata d'infos\n")); 
@@ -94,22 +94,28 @@ int		full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera arg
 	line = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (line[0] == 'R')
+		if (line[0] == 'R' && line[1] == ' ')
 			if (parse_r(line, ps) > 0)
 				return (1);
 		if (check_identifiers_textures(line) == 0)
 			if (parse_textures(line, ps) > 0)
 				return (1);
-		if (line[0] == 'C' || line[0] == 'F')
+		if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ')
 			if (parse_colors(line, ps) > 0)
 				return (1);
 		if (line[0] == ' ' || line[0] == '1')
 		{
+			if (check_struct(ps, ms) == 1)
+				return (printf("Error\nManque une info avant la map\n"));
 			ms->map = map_nextline(ms->map, line, j);
 			j++;
 		}
 		if (line[0] == 0)
+		{
 			free(line);
+			if (ms->map != 0)
+				return (printf("Ligne vide dans la map\n"));
+		}
 	}
 	//il faudra aussi fct pour verifier qu'on a toutes les infos
 	free(line);
@@ -118,3 +124,4 @@ int		full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera arg
 		return (free_struct(ps, ms));
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/25 12:43:18 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:31:19 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int		number_of_split(char **splitresult)
 
 int		check_identifiers_textures(char *line)
 {
-	if (!ft_strncmp(line, "NO", 2))
+	if (!ft_strncmp(line, "NO", 2) && line[2] == ' ')
 		return (0);
-	if (!ft_strncmp(line, "SO", 2))
+	if (!ft_strncmp(line, "SO", 2) && line[2] == ' ')
 		return (0);
-	if (!ft_strncmp(line, "WE", 2))
+	if (!ft_strncmp(line, "WE", 2) && line[2] == ' ')
 		return (0);
-	if (!ft_strncmp(line, "EA", 2))
+	if (!ft_strncmp(line, "EA", 2) && line[2] == ' ')
 		return (0);
 	if (line[0] == 'S' && line[1] == ' ')
 		return (0);
