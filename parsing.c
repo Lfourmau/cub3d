@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/09 07:20:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 10:48:18 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int		parse_r(char *line, parse_struct *ps)
 {
 	if (ps->horiz_res != 0 || ps->vertic_res != 0)
-		return (printf("Error\nDupplicata d'informations\n"));
+		return (printf("Error\nToo much informations\n"));
 	char **split;
 	split = ft_split(line, ' ');
 	if (number_of_split(split) != 3 || (check_full_numbers(split, 1) == 1))
 	{
 		free(split);
-		return(printf("Error\nVeuillez entrer une resolution valide\n"));
+		return(printf("Error\nWrong resolution\n"));
 	}
 	ps->horiz_res = ft_atoi(split[1]);
 	ps->vertic_res = ft_atoi(split[2]);
@@ -36,7 +36,7 @@ int		parse_textures(char *line, parse_struct *ps)
 	split = ft_split(line, ' ');
 	if (number_of_split(split) != 2 || split[1][0] != '.')
 	{
-		return(printf("Error\nTextures mal renseignees\n"));
+		return(printf("Error\nWrong textures\n"));
 		free(split);
 	}
 	if (!ft_strncmp(split[0], "NO", 2) && ps->NO == 0)
@@ -50,7 +50,7 @@ int		parse_textures(char *line, parse_struct *ps)
 	else if (split[0][0] == 'S' && split[0][1] != 'O' && ps->S == 0)
 		ps->S = ft_strdup(split[1]);
 	else
-		return(printf("Error\nDupplicata d'infos\n")); 
+		return(printf("Error\nToo much informations\n")); 
 	free_splits(split, number_of_split(split));
 	free(line);
 	return (0);
@@ -69,57 +69,66 @@ int		parse_colors(char *line, parse_struct *ps)
 	{
 		free(space_split);
 		free(comma_split);
-        return(printf("Error\nCouleurs du sol et du plafond mal renseignees\n")); 
+        return(printf("Error\nWrong colors\n")); 
 	}
 	if (*c == 'F' && ps->color_f == -1)
 		ps->color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
 	else if (*c == 'C' && ps->color_c == -1)
 		ps->color_c = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
 	else
-		return(printf("Error\nDupplicata d'infos\n")); 
+		return(printf("Error\nToo much informations\n")); 
 	free_splits(comma_split, number_of_split(comma_split));
 	free_splits(space_split, number_of_split(space_split));
 	free(line);
 	return (0);
 }
 
+int full_parsing_body(char *line, parse_struct *ps, map_struct *ms, int *j)
+{
+	if (line[0] == 'R' && line[1] == ' ')
+		if (parse_r(line, ps) > 0)
+			return (1);
+	if (check_identifiers_textures(line) == 0)
+		if (parse_textures(line, ps) > 0)
+			return (1);
+	if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ')
+		if (parse_colors(line, ps) > 0)
+			return (1);
+	if (line[0] == ' ' || line[0] == '1')
+	{
+		if (check_struct(ps, ms) == 1)
+			return (printf("Error\nInformation mising before the map\n"));
+		ms->map = map_nextline(ms->map, line, *j);
+		*j += 1;
+	}
+	if (line[0] == 0)
+	{
+		free(line);
+		if (ms->map != 0)
+			return (printf("Empty lin ein the map\n")); 
+	}
+	return (0);
+}
+
 int		full_parsing(char *map, parse_struct *ps, map_struct *ms) //la map sera argv[1]
 {
 	char	*line;
-	int fd;
-	int j;
+	int		fd;
+	int 	j;
 	
-	fd = open(map, O_RDONLY);
 	j = 0;
+	fd = open(map, O_RDONLY);
 	line = NULL;
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(fd, &line) != 0)
 	{
-		if (line[0] == 'R' && line[1] == ' ')
-			if (parse_r(line, ps) > 0)
+		if (full_parsing_body(line, ps, ms, &j))
 				return (1);
-		if (check_identifiers_textures(line) == 0)
-			if (parse_textures(line, ps) > 0)
-				return (1);
-		if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ')
-			if (parse_colors(line, ps) > 0)
-				return (1);
-		if (line[0] == ' ' || line[0] == '1')
-		{
-			if (check_struct(ps, ms) == 1)
-				return (printf("Error\nManque une info avant la map\n"));
-			ms->map = map_nextline(ms->map, line, j);
-			j++;
-		}
-		if (line[0] == 0)
-		{
-			free(line);
-			if (ms->map != 0)
-				return (printf("Ligne vide dans la map\n"));
-		}
 	}
+	if (full_parsing_body(line, ps, ms, &j))
+			return (1);
 	if (check_struct(ps, ms))
 		return (free_struct(ps, ms, line));
-	free(line);
+	//free(line);
 	display_spaces(ms->map);
 	return (0);
 }
