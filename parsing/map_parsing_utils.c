@@ -6,11 +6,11 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:46:01 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/09 10:06:17 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:43 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 char	*addspaces(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/08 10:31:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:42 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int		check_full_numbers(char **splitresult, int i)
 {

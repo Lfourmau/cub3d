@@ -3,18 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+         #
+#    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/03/03 17:16:24 by loic             ###   ########lyon.fr    #
+#    Updated: 2021/03/10 08:39:17 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS = main.c parsing.c parsing_utils.c struct_manip.c free_funcs.c \
-		map_parsing_utils.c check_close_spawn.c check_close_spawn_utils.c \
-		check_pcub.c
+SRCS = 	main.c \
+		parsing/parsing.c \
+		parsing/parsing_utils.c \
+		parsing/struct_manip.c \
+		parsing/free_funcs.c \
+		parsing/map_parsing_utils.c \
+		parsing/check_close_spawn.c \
+		parsing/check_close_spawn_utils.c \
+		parsing/check_pcub.c \
 
 OBJS = $(SRCS:.c=.o)
 

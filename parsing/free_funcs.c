@@ -6,11 +6,11 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:33:54 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/09 09:08:13 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:44 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	free_splits(char **chain, int i)
 {

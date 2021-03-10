@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/09 10:47:29 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 11:05:51 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ void	ft_dracaufeu()
 int		parsing(char *arg, parse_struct *ps, map_struct *ms)
 {
 	if (check_cub(arg))
-			return (printf("bad map format\n"));
+			return (printf("Error\nbad map format\n"));
 	parsing_struct_init(ps, ms);
 	if (full_parsing(arg, ps, ms))
 			return (1);
 	if (check_spawn_close(ms))
-			return (printf("Invalid map\n"));
+			return (printf("Error\nInvalid map\n"));
 	return (0);
 }
 

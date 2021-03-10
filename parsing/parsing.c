@@ -6,11 +6,11 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/09 10:48:18 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 11:41:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int		parse_r(char *line, parse_struct *ps)
 {
@@ -85,28 +85,28 @@ int		parse_colors(char *line, parse_struct *ps)
 
 int full_parsing_body(char *line, parse_struct *ps, map_struct *ms, int *j)
 {
-	if (line[0] == 'R' && line[1] == ' ')
-		if (parse_r(line, ps) > 0)
-			return (1);
-	if (check_identifiers_textures(line) == 0)
-		if (parse_textures(line, ps) > 0)
-			return (1);
-	if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ')
-		if (parse_colors(line, ps) > 0)
-			return (1);
-	if (line[0] == ' ' || line[0] == '1')
+	if (line[0] == 'R' && line[1] == ' ' && parse_r(line, ps) == 0)
+			return (0);
+	else if (check_identifiers_textures(line) == 0 && parse_textures(line, ps) == 0)
+			return (0);
+	else if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ' && parse_colors(line, ps) == 0)
+			return (0);
+	else if (line[0] == ' ' || line[0] == '1')
 	{
 		if (check_struct(ps, ms) == 1)
 			return (printf("Error\nInformation mising before the map\n"));
 		ms->map = map_nextline(ms->map, line, *j);
 		*j += 1;
 	}
-	if (line[0] == 0)
+	else if (line[0] == 0)
 	{
 		free(line);
 		if (ms->map != 0)
-			return (printf("Empty lin ein the map\n")); 
+			return (printf("Empty line in the map\n"));
+		return (0);
 	}
+	else
+		return (printf("Look at the map file"));
 	return (0);
 }
 

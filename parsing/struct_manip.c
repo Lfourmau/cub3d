@@ -6,11 +6,11 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:38:42 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/08 12:34:35 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	parsing_struct_init(parse_struct *ps, map_struct *ms)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_close_spawn.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/03 17:43:19 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:46 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int valid_extrem_lines(map_struct *ms)
 {

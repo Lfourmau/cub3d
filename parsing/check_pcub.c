@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_pcub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 17:10:56 by loic              #+#    #+#             */
-/*   Updated: 2021/03/03 17:16:29 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:46 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int     check_cub(char *str)
 {

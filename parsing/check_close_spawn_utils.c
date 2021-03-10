@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_close_spawn_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 15:17:14 by loic              #+#    #+#             */
-/*   Updated: 2021/03/01 16:28:56 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 08:41:47 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int isspawn(char c)
 {
