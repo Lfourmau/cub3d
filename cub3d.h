@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/09 10:05:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:44:45 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,40 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-typedef struct	parsing_struct
-{
-	int 	horiz_res;
-	int 	vertic_res;	
-	int		color_f;
-	int		color_c;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*S;
-}				parse_struct;
+# define LEFTLOOK 123
+# define RIGHTLOOK 124
+# define WKEY 13
+# define AKEY 0
+# define SKEY 1
+# define DKEY 2
+# define ESC 53
 
-typedef struct	map_struct
+typedef struct  big_struct
 {
-	char	**map;
-	char 	spawn;
-	int		nb_spawns;
-}				map_struct;
+	struct	parsing_struct
+	{
+		int 	horiz_res;
+		int 	vertic_res;	
+		int		color_f;
+		int		color_c;
+		char	*NO;
+		char	*SO;
+		char	*WE;
+		char	*EA;
+		char	*S;
+	};
+
+	struct	map_struct
+	{
+		char	**map;
+		char 	spawn;
+		int		nb_spawns;
+		int		spawn_x;
+		int		spawn_y;
+		void	*mlx_ptr;
+		void	*win_ptr;
+	};
+}				big_struct;
 
 int				full_parsing(char *map, parse_struct *ps, map_struct *ms);
 int				check_full_numbers(char **splitresult, int i);
@@ -56,4 +71,7 @@ int				check_around(char c);
 int     		check_cub(char *str);
 int				check_struct(parse_struct *ps, map_struct *ms);
 int				free_struct(parse_struct *ps, map_struct *ms, char *line);
+
+int 			window_prog(parse_struct *ps, map_struct *ms);
+
 #endif

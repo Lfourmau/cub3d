@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/10 11:41:14 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 08:55:24 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int		parse_colors(char *line, parse_struct *ps)
 
 int full_parsing_body(char *line, parse_struct *ps, map_struct *ms, int *j)
 {
-	if (line[0] == 'R' && line[1] == ' ' && parse_r(line, ps) == 0)
-			return (0);
-	else if (check_identifiers_textures(line) == 0 && parse_textures(line, ps) == 0)
-			return (0);
-	else if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ' && parse_colors(line, ps) == 0)
-			return (0);
+	if (line[0] == 'R' && line[1] == ' ')
+			return (parse_r(line, ps));
+	else if (check_identifiers_textures(line) == 0)
+			return (parse_textures(line, ps));
+	else if ((line[0] == 'C' || line[0] == 'F') && line[1] == ' ')
+			return (parse_colors(line, ps));
 	else if (line[0] == ' ' || line[0] == '1')
 	{
 		if (check_struct(ps, ms) == 1)
@@ -106,7 +106,7 @@ int full_parsing_body(char *line, parse_struct *ps, map_struct *ms, int *j)
 		return (0);
 	}
 	else
-		return (printf("Look at the map file"));
+		return (printf("Error\nUnknown informations\n"));
 	return (0);
 }
 

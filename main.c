@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/10 11:05:51 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 10:44:57 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		parsing(char *arg, parse_struct *ps, map_struct *ms)
 	if (check_cub(arg))
 			return (printf("Error\nbad map format\n"));
 	parsing_struct_init(ps, ms);
-	if (full_parsing(arg, ps, ms))
+	if (full_parsing(arg, ps, ms) == 1)
 			return (1);
 	if (check_spawn_close(ms))
 			return (printf("Error\nInvalid map\n"));
@@ -81,25 +81,26 @@ int     main(int argc, char **argv)
 		// ms.map = NULL;
 		if (parsing(argv[1], &ps, &ms))
 			return (1);
-		printf("\n\n\033[33m----------INFOS---------------\033[0m\n");
-		printf("\033[92mRes Horizontale\033[0m --> [%d]\n", ps.horiz_res);
-		printf("\033[92mRes Verticale\033[0m --> [%d]\n", ps.vertic_res);
-		printf("\033[92mNO\033[0m --> [%s]\n", ps.NO);
-		printf("\033[92mSO\033[0m --> [%s]\n", ps.SO);
-		printf("\033[92mWE\033[0m --> [%s]\n", ps.WE);
-		printf("\033[92mEA\033[0m --> [%s]\n", ps.EA);
-		printf("\033[92mS\033[0m --> [%s]\n", ps.S);
-		printf("\033[92mColor floor\033[0m --> [%d]\n", ps.color_f);
-		printf("\033[92mColor ciel\033[0m --> [%d]\n", ps.color_c);
-		printf("\033[33m-----------MAP---------------\033[0m\n");
-		while (ms.map[i])
-		{
-			printf("\033[92mligne [%d] :\033[0m [%s]", i, ms.map[i]);
-			i++;
-			printf("\n");
-		}
+		window_prog(&ps, &ms);
+		// printf("\n\n\033[33m----------INFOS---------------\033[0m\n");
+		// printf("\033[92mRes Horizontale\033[0m --> [%d]\n", ps.horiz_res);
+		// printf("\033[92mRes Verticale\033[0m --> [%d]\n", ps.vertic_res);
+		// printf("\033[92mNO\033[0m --> [%s]\n", ps.NO);
+		// printf("\033[92mSO\033[0m --> [%s]\n", ps.SO);
+		// printf("\033[92mWE\033[0m --> [%s]\n", ps.WE);
+		// printf("\033[92mEA\033[0m --> [%s]\n", ps.EA);
+		// printf("\033[92mS\033[0m --> [%s]\n", ps.S);
+		// printf("\033[92mColor floor\033[0m --> [%d]\n", ps.color_f);
+		// printf("\033[92mColor ciel\033[0m --> [%d]\n", ps.color_c);
+		// printf("\033[33m-----------MAP---------------\033[0m\n");
+		// while (ms.map[i])
+		// {
+		// 	printf("[%s] \033[92m <--- ligne [%d]\033[0m", ms.map[i], i);
+		// 	i++;
+		// 	printf("\n");
+		// }
 
-		ft_dracaufeu();
+		// ft_dracaufeu();
 	}
 	else
 		printf("Error\nWrong arguments\n");

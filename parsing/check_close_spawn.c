@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/10 08:41:46 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 09:18:58 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ int valid_middle_lines(map_struct *ms)
 	return (0);
 }
 
-int check_spawns(char c, map_struct *ms)
+int check_spawns(char c, map_struct *ms, int i, int j)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (ms->nb_spawns == 0)
 		{
+			ms->spawn_x = j;
+			ms->spawn_y = i;
 			ms->spawn = c;
 			ms->nb_spawns += 1;
 		}
@@ -95,7 +97,7 @@ int check_leaks(map_struct *ms)
 				if (check_around(ms->map[i][j + 1]))
 					return (1);
 			}
-			if (check_spawns(ms->map[i][j], ms))
+			if (check_spawns(ms->map[i][j], ms, i, j))
 				return (1);
 			j++;
 		}
