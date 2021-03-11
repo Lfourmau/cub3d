@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/11 10:44:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:37:43 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	ft_dracaufeu()
 		printf("\033[1;31m                 / ,\"'\"\\,'               `/  `-.|\" \n");
 }
 
-int		parsing(char *arg, parse_struct *ps, map_struct *ms)
+int		parsing(char *arg, big_struct *bs)
 {
 	if (check_cub(arg))
 			return (printf("Error\nbad map format\n"));
-	parsing_struct_init(ps, ms);
-	if (full_parsing(arg, ps, ms) == 1)
+	parsing_struct_init(bs);
+	if (full_parsing(arg, bs) == 1)
 			return (1);
-	if (check_spawn_close(ms))
+	if (check_spawn_close(bs))
 			return (printf("Error\nInvalid map\n"));
 	return (0);
 }
@@ -70,35 +70,41 @@ int     main(int argc, char **argv)
 {
 	int i;
 	int j;
-	parse_struct ps;
-	map_struct ms;
+	big_struct bs;
+	bs.ps = malloc(sizeof(parse_struct));
+	bs.ms = malloc(sizeof(map_struct));
 
+	if (!bs.ps || !bs.ms)
+	{
+		free(bs.ps);
+		free(bs.ms);
+	}
 	i = 0;
 	j = 0;
 	if (argc == 2)
 	{
-		//check cub
-		// ms.map = NULL;
-		if (parsing(argv[1], &ps, &ms))
+		if (parsing(argv[1], &bs))
 			return (1);
-		window_prog(&ps, &ms);
+		window_prog(&bs);
 		// printf("\n\n\033[33m----------INFOS---------------\033[0m\n");
-		// printf("\033[92mRes Horizontale\033[0m --> [%d]\n", ps.horiz_res);
-		// printf("\033[92mRes Verticale\033[0m --> [%d]\n", ps.vertic_res);
-		// printf("\033[92mNO\033[0m --> [%s]\n", ps.NO);
-		// printf("\033[92mSO\033[0m --> [%s]\n", ps.SO);
-		// printf("\033[92mWE\033[0m --> [%s]\n", ps.WE);
-		// printf("\033[92mEA\033[0m --> [%s]\n", ps.EA);
-		// printf("\033[92mS\033[0m --> [%s]\n", ps.S);
-		// printf("\033[92mColor floor\033[0m --> [%d]\n", ps.color_f);
-		// printf("\033[92mColor ciel\033[0m --> [%d]\n", ps.color_c);
+		// printf("\033[92mRes Horizontale\033[0m --> [%d]\n", bs.ps->horiz_res);
+		// printf("\033[92mRes Verticale\033[0m --> [%d]\n", bs.ps->vertic_res);
+		// printf("\033[92mNO\033[0m --> [%s]\n", bs.ps->NO);
+		// printf("\033[92mSO\033[0m --> [%s]\n", bs.ps->SO);
+		// printf("\033[92mWE\033[0m --> [%s]\n", bs.ps->WE);
+		// printf("\033[92mEA\033[0m --> [%s]\n", bs.ps->EA);
+		// printf("\033[92mS\033[0m --> [%s]\n", bs.ps->S);
+		// printf("\033[92mColor floor\033[0m --> [%d]\n", bs.ps->color_f);
+		// printf("\033[92mColor ciel\033[0m --> [%d]\n", bs.ps->color_c);
 		// printf("\033[33m-----------MAP---------------\033[0m\n");
-		// while (ms.map[i])
+		// while (bs.ms->map[i])
 		// {
-		// 	printf("[%s] \033[92m <--- ligne [%d]\033[0m", ms.map[i], i);
+		// 	printf("[%s] \033[92m <--- ligne [%d]\033[0m", bs.ms->map[i], i);
 		// 	i++;
 		// 	printf("\n");
 		// }
+		// printf("\033[92mSpawn Player\033[0m --> [%c]\n", bs.ms->spawn);
+
 
 		// ft_dracaufeu();
 	}

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/11 10:44:45 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:28:23 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@
 # define DKEY 2
 # define ESC 53
 
-typedef struct  big_struct
-{
-	struct	parsing_struct
+
+typedef struct	parsing_struct
 	{
 		int 	horiz_res;
 		int 	vertic_res;	
@@ -41,9 +40,9 @@ typedef struct  big_struct
 		char	*WE;
 		char	*EA;
 		char	*S;
-	};
+	}			parse_struct;
 
-	struct	map_struct
+typedef struct	map_struct
 	{
 		char	**map;
 		char 	spawn;
@@ -52,26 +51,31 @@ typedef struct  big_struct
 		int		spawn_y;
 		void	*mlx_ptr;
 		void	*win_ptr;
-	};
+	}			map_struct;
+
+typedef struct  big_struct
+{
+	parse_struct	*ps;
+	map_struct		*ms;
 }				big_struct;
 
-int				full_parsing(char *map, parse_struct *ps, map_struct *ms);
+int				full_parsing(char *map, big_struct *bs);
 int				check_full_numbers(char **splitresult, int i);
-void			parsing_struct_init(parse_struct *ps, map_struct *ms);
+void			parsing_struct_init(big_struct *bs);
 int				number_of_split(char **splitresult);
 int				check_identifiers_textures(char *line);
 char			**map_nextline(char **map, char *line, int n);
-void			parse_map(char *line, map_struct *ms, int j);
+void			parse_map(char *line, big_struct *bs, int j);
 void			free_splits(char **chain, int i);
 void			display_spaces(char **map);
-int				check_spawn_close(map_struct *ms);
+int				check_spawn_close(big_struct *bs);
 int				limit_colors(char **colors);
 int				isspawn(char c);
 int				check_around(char c);
 int     		check_cub(char *str);
-int				check_struct(parse_struct *ps, map_struct *ms);
-int				free_struct(parse_struct *ps, map_struct *ms, char *line);
+int				check_struct(big_struct *bs);
+int				free_struct(big_struct *bs, char *line);
 
-int 			window_prog(parse_struct *ps, map_struct *ms);
+int 			window_prog(big_struct *bs);
 
 #endif
