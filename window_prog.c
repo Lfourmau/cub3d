@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/15 11:41:17 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 14:51:08 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	render_next_frame(big_struct *bs)
 	return (0);
 }
 
+
 int deal_key(int key, big_struct *bs)
 {
 	if (key == ESC)
@@ -66,26 +67,16 @@ int deal_key(int key, big_struct *bs)
 		return (printf("regarde a droite\n"));
 	if (key == WKEY)
 	{
-		while (1)
-		{
-			if (key == 03)
-				break;
-			render_next_frame(bs);
-			bs->ms->y--;
-		}
-		// return (printf("avance\n"));
+		render_next_frame(bs);
+		bs->ms->y--;
 	}
+		// return (printf("avance\n"));
 	if (key == SKEY)
 	{
-		while (1)
-		{
-			if (key == 03)
-				break;
-			render_next_frame(bs);
-			bs->ms->y++;
-		}
-		// return (printf("recule\n"));
+		render_next_frame(bs);
+		bs->ms->y++;
 	}
+		// return (printf("recule\n"));
 	if (key == AKEY)
 	{
 		render_next_frame(bs);
@@ -107,7 +98,7 @@ int window_prog(big_struct *bs)
 		return (1);
 	if (!(bs->ms->win_ptr = mlx_new_window (bs->ms->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d" )))
 		return (1);
-	mlx_key_hook(bs->ms->win_ptr, deal_key, bs);
+	mlx_hook(bs->ms->win_ptr, 2, 1L<<0, deal_key, bs);
 	//mlx_hook(bs->ms->win_ptr, 17, 0, close_window, bs);
 	mlx_loop_hook(bs->ms->mlx_ptr, render_next_frame, bs);
 	mlx_loop(bs->ms->mlx_ptr);
