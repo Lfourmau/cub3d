@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/11 13:28:23 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 10:58:09 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,15 @@ typedef struct	map_struct
 		int		spawn_x;
 		int		spawn_y;
 		void	*mlx_ptr;
+		void	*mlx_img;
 		void	*win_ptr;
+		void	*img_adress;
+		int		bits_per_pixel;
+   		int		line_length;
+   		int		endian;
+		int 	x;
+		int		y;
+		int		testup;
 	}			map_struct;
 
 typedef struct  big_struct
