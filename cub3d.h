@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/15 10:58:09 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 09:17:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,28 @@ typedef struct	map_struct
 		int		nb_spawns;
 		int		spawn_x;
 		int		spawn_y;
+	}			map_struct;
+
+typedef struct	window_struct
+	{
 		void	*mlx_ptr;
 		void	*mlx_img;
 		void	*win_ptr;
-		void	*img_adress;
+		void	*img_ptr;
 		int		bits_per_pixel;
    		int		line_length;
    		int		endian;
-		int 	x;
-		int		y;
-		int		testup;
-	}			map_struct;
+		int 	player_pos_x;
+		int		player_pos_y;
+		int		minimap_pos_x;
+		int		minimap_pos_y;
+	}			window_struct;
 
 typedef struct  big_struct
 {
 	parse_struct	*ps;
 	map_struct		*ms;
+	window_struct	*ws;
 }				big_struct;
 
 int				full_parsing(char *map, big_struct *bs);

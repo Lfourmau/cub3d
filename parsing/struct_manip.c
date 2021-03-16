@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:38:42 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/11 10:54:44 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 08:32:31 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	parsing_struct_init(big_struct *bs)
 	bs->ps->S = 0;
 	bs->ms->nb_spawns = 0;
 	bs->ms->map = NULL;
+	bs->ws->player_pos_x = 0;
+	bs->ws->player_pos_y = 0;
+	bs->ws->minimap_pos_x = 0;
+	bs->ws->minimap_pos_y = 0;
 }
 
 int		check_struct(big_struct *bs)

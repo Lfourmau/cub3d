@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/15 14:51:08 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 09:27:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	close_window(big_struct *bs)
 {
-		mlx_destroy_window(bs->ms->mlx_ptr, bs->ms->win_ptr);
+		mlx_destroy_window(bs->ws->mlx_ptr, bs->ws->win_ptr);
 		exit(1);
 		return (1);
 }
@@ -23,84 +23,99 @@ void            my_mlx_pixel_put(big_struct *bs, int x, int y, int color)
 {
     char    *dst;
 
-    dst = bs->ms->img_adress + (y * bs->ms->line_length + x * (bs->ms->bits_per_pixel / 8));
+    dst = bs->ws->img_ptr + (y * bs->ws->line_length + x * (bs->ws->bits_per_pixel / 8));
     *(unsigned int*)dst = color;
 }
 
-void		print_square(big_struct *bs)
+void print_square(big_struct *bs, int posx, int posy, int color)
 {
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (y < 15)
+	int x = 0;
+	int y = 0;
+	
+	while (y <= 15)
 	{
-		while (x < 15)
+		x = 0;
+		while (x <= 15)
 		{
-			my_mlx_pixel_put(bs, bs->ms->x + x, bs->ms->y + y, bs->ps->color_c);
+			my_mlx_pixel_put(bs, posx + x, posy + y, color);
 			x++;
 		}
 		y++;
-		x = 0;
 	}
 }
 
-int	render_next_frame(big_struct *bs)
+void	print_minimap(big_struct *bs)
 {
-	bs->ms->mlx_img = mlx_new_image(bs->ms->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res);
-	bs->ms->img_adress = mlx_get_data_addr(bs->ms->mlx_img, &bs->ms->bits_per_pixel, &bs->ms->line_length, &bs->ms->endian);
-	print_square(bs);
-	mlx_put_image_to_window(bs->ms->mlx_ptr, bs->ms->win_ptr, bs->ms->mlx_img, 0, 0);
-	mlx_destroy_image(bs->ms->mlx_ptr, bs->ms->mlx_img);
+	int i = 0;
+	int j;
+	while (bs->ms->map[i])
+	{
+		j = 0;
+		while (bs->ms->map[i][j])
+		{
+			if (bs->ms->map[i][j] == '1')
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16711680);
+			else if (bs->ms->map[i][j] == '2')
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 11806720);
+			else if (bs->ms->map[i][j] == '0')
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16777215);
+			j++;
+			bs->ws->minimap_pos_x += 15;
+		}
+		bs->ws->minimap_pos_x = 0;
+		bs->ws->minimap_pos_y += 15;
+		i++;
+	}
+	bs->ws->minimap_pos_x = 0;
+	bs->ws->minimap_pos_y = 0;
+}
+
+int		render_next_frame(big_struct *bs)
+{
+	bs->ws->mlx_img = mlx_new_image(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res);
+	bs->ws->img_ptr = mlx_get_data_addr(bs->ws->mlx_img, &bs->ws->bits_per_pixel, &bs->ws->line_length, &bs->ws->endian);
+	print_minimap(bs);
+	print_square(bs, bs->ws->player_pos_x, bs->ws->player_pos_y, 65280);
+	mlx_put_image_to_window(bs->ws->mlx_ptr, bs->ws->win_ptr, bs->ws->mlx_img, 0, 0);
+	mlx_destroy_image(bs->ws->mlx_ptr, bs->ws->mlx_img);
 	return (0);
 }
 
-
-int deal_key(int key, big_struct *bs)
+int	deal_key(int key, big_struct *bs)
 {
 	if (key == ESC)
 		close_window(bs);
-	if (key == LEFTLOOK)
-		return (printf("regarde a gauche\n"));
-	if (key == RIGHTLOOK)
-		return (printf("regarde a droite\n"));
 	if (key == WKEY)
 	{
 		render_next_frame(bs);
-		bs->ms->y--;
+		bs->ws->player_pos_y = bs->ws->player_pos_y - 4;
 	}
-		// return (printf("avance\n"));
 	if (key == SKEY)
 	{
 		render_next_frame(bs);
-		bs->ms->y++;
+		bs->ws->player_pos_y = bs->ws->player_pos_y + 4;
 	}
-		// return (printf("recule\n"));
 	if (key == AKEY)
 	{
 		render_next_frame(bs);
-		bs->ms->x--;
-		//return (printf("gauche\n"));
+		bs->ws->player_pos_x = bs->ws->player_pos_x - 4;
 	}
 	if (key == DKEY)
 	{
 		render_next_frame(bs);
-		bs->ms->x++;
-		// return (printf("droite\n"));
+		bs->ws->player_pos_x = bs->ws->player_pos_x + 4;
 	}
 	return (0);
 }
 
+
 int window_prog(big_struct *bs)
 {
-	if (!(bs->ms->mlx_ptr = mlx_init()))
-		return (1);
-	if (!(bs->ms->win_ptr = mlx_new_window (bs->ms->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d" )))
-		return (1);
-	mlx_hook(bs->ms->win_ptr, 2, 1L<<0, deal_key, bs);
-	//mlx_hook(bs->ms->win_ptr, 17, 0, close_window, bs);
-	mlx_loop_hook(bs->ms->mlx_ptr, render_next_frame, bs);
-	mlx_loop(bs->ms->mlx_ptr);
+	bs->ws->player_pos_x = bs->ms->spawn_x * 15;
+	bs->ws->player_pos_y = bs->ms->spawn_y * 15;
+	bs->ws->mlx_ptr = mlx_init();
+	bs->ws->win_ptr = mlx_new_window(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d");
+	mlx_hook(bs->ws->win_ptr, 2, 1L<<0, deal_key, bs);
+	mlx_loop(bs->ws->mlx_ptr);
 	return (0);
 }

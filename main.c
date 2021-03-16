@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/11 13:37:43 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 08:35:48 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int     main(int argc, char **argv)
 	big_struct bs;
 	bs.ps = malloc(sizeof(parse_struct));
 	bs.ms = malloc(sizeof(map_struct));
+	bs.ws = malloc(sizeof(window_struct));
 
 	if (!bs.ps || !bs.ms)
 	{
