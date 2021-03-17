@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/16 09:17:37 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:11:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	window_struct
 		int		player_pos_y;
 		int		minimap_pos_x;
 		int		minimap_pos_y;
+		int		multiplicator;
 	}			window_struct;
 
 typedef struct  big_struct
@@ -79,6 +80,7 @@ void			parsing_struct_init(big_struct *bs);
 int				number_of_split(char **splitresult);
 int				check_identifiers_textures(char *line);
 char			**map_nextline(char **map, char *line, int n);
+int				max_len_map(char **map);
 void			parse_map(char *line, big_struct *bs, int j);
 void			free_splits(char **chain, int i);
 void			display_spaces(char **map);

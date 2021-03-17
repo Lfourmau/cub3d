@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/16 09:27:37 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 13:53:51 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,23 @@ void            my_mlx_pixel_put(big_struct *bs, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
+void		multiplicator(big_struct *bs)
+{
+	if (bs->ps->vertic_res / number_of_split(bs->ms->map) > bs->ps->horiz_res / max_len_map(bs->ms->map))
+		bs->ws->multiplicator = bs->ps->horiz_res / max_len_map(bs->ms->map);
+	else
+		bs->ws->multiplicator = bs->ps->horiz_res / max_len_map(bs->ms->map);
+}
+
 void print_square(big_struct *bs, int posx, int posy, int color)
 {
 	int x = 0;
 	int y = 0;
 	
-	while (y <= 15)
+	while (y <= bs->ws->multiplicator)
 	{
 		x = 0;
-		while (x <= 15)
+		while (x <= bs->ws->multiplicator)
 		{
 			my_mlx_pixel_put(bs, posx + x, posy + y, color);
 			x++;
@@ -53,6 +61,8 @@ void	print_minimap(big_struct *bs)
 		j = 0;
 		while (bs->ms->map[i][j])
 		{
+			if (bs->ms->map[i][j] != '1' && bs->ms->map[i][j] != ' ')
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16777215);
 			if (bs->ms->map[i][j] == '1')
 				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16711680);
 			else if (bs->ms->map[i][j] == '2')
@@ -60,10 +70,10 @@ void	print_minimap(big_struct *bs)
 			else if (bs->ms->map[i][j] == '0')
 				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16777215);
 			j++;
-			bs->ws->minimap_pos_x += 15;
+			bs->ws->minimap_pos_x += bs->ws->multiplicator;
 		}
 		bs->ws->minimap_pos_x = 0;
-		bs->ws->minimap_pos_y += 15;
+		bs->ws->minimap_pos_y += bs->ws->multiplicator;
 		i++;
 	}
 	bs->ws->minimap_pos_x = 0;
@@ -87,23 +97,23 @@ int	deal_key(int key, big_struct *bs)
 		close_window(bs);
 	if (key == WKEY)
 	{
+		bs->ws->player_pos_y = bs->ws->player_pos_y - 6;
 		render_next_frame(bs);
-		bs->ws->player_pos_y = bs->ws->player_pos_y - 4;
 	}
 	if (key == SKEY)
 	{
+		bs->ws->player_pos_y = bs->ws->player_pos_y + 6;
 		render_next_frame(bs);
-		bs->ws->player_pos_y = bs->ws->player_pos_y + 4;
 	}
 	if (key == AKEY)
 	{
+		bs->ws->player_pos_x = bs->ws->player_pos_x - 6;
 		render_next_frame(bs);
-		bs->ws->player_pos_x = bs->ws->player_pos_x - 4;
 	}
 	if (key == DKEY)
 	{
+		bs->ws->player_pos_x = bs->ws->player_pos_x + 6;
 		render_next_frame(bs);
-		bs->ws->player_pos_x = bs->ws->player_pos_x + 4;
 	}
 	return (0);
 }
@@ -111,11 +121,13 @@ int	deal_key(int key, big_struct *bs)
 
 int window_prog(big_struct *bs)
 {
-	bs->ws->player_pos_x = bs->ms->spawn_x * 15;
-	bs->ws->player_pos_y = bs->ms->spawn_y * 15;
+	multiplicator(bs);
+	bs->ws->player_pos_x = bs->ms->spawn_x * bs->ws->multiplicator;
+	bs->ws->player_pos_y = bs->ms->spawn_y * bs->ws->multiplicator;
 	bs->ws->mlx_ptr = mlx_init();
 	bs->ws->win_ptr = mlx_new_window(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d");
 	mlx_hook(bs->ws->win_ptr, 2, 1L<<0, deal_key, bs);
+	mlx_loop_hook(bs->ws->mlx_ptr, render_next_frame, bs);
 	mlx_loop(bs->ws->mlx_ptr);
 	return (0);
 }
