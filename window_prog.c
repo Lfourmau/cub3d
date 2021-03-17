@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/16 13:53:51 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/17 08:44:08 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,33 @@ int		render_next_frame(big_struct *bs)
 	return (0);
 }
 
+
 int	deal_key(int key, big_struct *bs)
 {
 	if (key == ESC)
 		close_window(bs);
 	if (key == WKEY)
 	{
-		bs->ws->player_pos_y = bs->ws->player_pos_y - 6;
+		if (bs->ms->map[bs->ws->player_pos_y / bs->ws->multiplicator - 1][bs->ws->player_pos_x / bs->ws->multiplicator ] != '1')
+			bs->ws->player_pos_y = bs->ws->player_pos_y - bs->ws->multiplicator;
 		render_next_frame(bs);
 	}
 	if (key == SKEY)
 	{
-		bs->ws->player_pos_y = bs->ws->player_pos_y + 6;
+		if (bs->ms->map[bs->ws->player_pos_y / bs->ws->multiplicator + 1][bs->ws->player_pos_x / bs->ws->multiplicator] != '1')
+			bs->ws->player_pos_y = bs->ws->player_pos_y + bs->ws->multiplicator;
 		render_next_frame(bs);
 	}
 	if (key == AKEY)
 	{
-		bs->ws->player_pos_x = bs->ws->player_pos_x - 6;
+		if (bs->ms->map[bs->ws->player_pos_y / bs->ws->multiplicator][bs->ws->player_pos_x / bs->ws->multiplicator - 1] != '1')
+			bs->ws->player_pos_x = bs->ws->player_pos_x - bs->ws->multiplicator;
 		render_next_frame(bs);
 	}
 	if (key == DKEY)
 	{
-		bs->ws->player_pos_x = bs->ws->player_pos_x + 6;
+		if (bs->ms->map[bs->ws->player_pos_y / bs->ws->multiplicator][bs->ws->player_pos_x / bs->ws->multiplicator + 1] != '1')
+			bs->ws->player_pos_x = bs->ws->player_pos_x + bs->ws->multiplicator;
 		render_next_frame(bs);
 	}
 	return (0);
