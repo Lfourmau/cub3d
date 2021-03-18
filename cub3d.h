@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/16 13:11:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/18 12:42:50 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	window_struct
 		int		player_pos_y;
 		int		minimap_pos_x;
 		int		minimap_pos_y;
+		float	p_angle;
 		int		multiplicator;
 	}			window_struct;
 
@@ -93,5 +94,10 @@ int				check_struct(big_struct *bs);
 int				free_struct(big_struct *bs, char *line);
 
 int 			window_prog(big_struct *bs);
+void            my_mlx_pixel_put(big_struct *bs, int x, int y, int color);
+void 			print_square(big_struct *bs, int posx, int posy, int color);
+void			print_minimap(big_struct *bs);
+void			multiplicator(big_struct *bs);
+void			detect_spawn_dir(big_struct *bs);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/03/11 09:09:39 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/03/18 09:06:56 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRCS = 	main.c \
 		parsing/check_close_spawn.c \
 		parsing/check_close_spawn_utils.c \
 		parsing/check_pcub.c \
-		window_prog.c
+		window_prog.c \
+		print_minimap.c \
+		mathematics.c \
 
 OBJS = $(SRCS:.c=.o)
 
