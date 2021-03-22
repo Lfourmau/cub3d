@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/18 08:58:56 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 13:05:22 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,27 @@ void print_square(big_struct *bs, int posx, int posy, int color)
 	int x = 0;
 	int y = 0;
 	
-	while (y <= bs->ws->multiplicator)
+	while (y <= bs->ws->multiplicator -2)
 	{
 		x = 0;
-		while (x <= bs->ws->multiplicator)
+		while (x <= bs->ws->multiplicator -2)
+		{
+			my_mlx_pixel_put(bs, posx + x, posy + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void print_direction(big_struct *bs, int posx, int posy, int color)
+{
+	int x = 0;
+	int y = 0;
+	
+	while (y <= 3)
+	{
+		x = 0;
+		while (x <= 3)
 		{
 			my_mlx_pixel_put(bs, posx + x, posy + y, color);
 			x++;
@@ -47,13 +64,13 @@ void	print_minimap(big_struct *bs)
 		while (bs->ms->map[i][j])
 		{
 			if (bs->ms->map[i][j] != '1' && bs->ms->map[i][j] != ' ')
-				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16777215);
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 15327486);
 			if (bs->ms->map[i][j] == '1')
-				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16711680);
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 5405748);
 			else if (bs->ms->map[i][j] == '2')
-				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 11806720);
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 10446148);
 			else if (bs->ms->map[i][j] == '0')
-				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 16777215);
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 15327486);
 			j++;
 			bs->ws->minimap_pos_x += bs->ws->multiplicator;
 		}

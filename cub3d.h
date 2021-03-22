@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/18 12:42:50 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 14:50:57 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ typedef struct	window_struct
 		int		bits_per_pixel;
    		int		line_length;
    		int		endian;
-		int 	player_pos_x;
-		int		player_pos_y;
+		float 	player_pos_x;
+		float	player_pos_y;
 		int		minimap_pos_x;
+		float	hinter_x;
+		float	hinter_y;
 		int		minimap_pos_y;
 		float	p_angle;
 		int		multiplicator;
@@ -99,5 +101,11 @@ void 			print_square(big_struct *bs, int posx, int posy, int color);
 void			print_minimap(big_struct *bs);
 void			multiplicator(big_struct *bs);
 void			detect_spawn_dir(big_struct *bs);
-
+void 			print_direction(big_struct *bs, int posx, int posy, int color);
+void			wmoove(big_struct *bs);
+void			smoove(big_struct *bs);
+void 			amoove(big_struct *bs);
+void			dmoove(big_struct *bs);
+void			lookmoove(big_struct *bs, int key);
+int				render_next_frame(big_struct *bs);
 #endif

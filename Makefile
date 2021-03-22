@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/03/18 09:06:56 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/03/22 14:02:42 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = 	main.c \
 		window_prog.c \
 		print_minimap.c \
 		mathematics.c \
+		moove_funcs.c \
 
 OBJS = $(SRCS:.c=.o)
 
