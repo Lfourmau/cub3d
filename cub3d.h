@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/22 14:50:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 12:49:15 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct	window_struct
 		float 	player_pos_x;
 		float	player_pos_y;
 		int		minimap_pos_x;
-		float	hinter_x;
-		float	hinter_y;
+		int		hinter_x;
+		int		hinter_y;
 		int		minimap_pos_y;
 		float	p_angle;
 		int		multiplicator;

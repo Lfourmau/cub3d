@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/22 14:30:23 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 11:18:21 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int window_prog(big_struct *bs)
 {
 	multiplicator(bs);
 	detect_spawn_dir(bs);
-	// bs->ws->player_pos_x = bs->ms->spawn_x * bs->ws->multiplicator;
-	// bs->ws->player_pos_y = bs->ms->spawn_y * bs->ws->multiplicator;
+	bs->ws->player_pos_x = bs->ms->spawn_x;
+	bs->ws->player_pos_y = bs->ms->spawn_y;
 	bs->ws->mlx_ptr = mlx_init();
 	bs->ws->win_ptr = mlx_new_window(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d");
 	mlx_hook(bs->ws->win_ptr, 2, 1L<<0, deal_key, bs);
