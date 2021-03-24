@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/23 12:49:15 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 18:30:07 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,34 @@ typedef struct	window_struct
 		int		bits_per_pixel;
    		int		line_length;
    		int		endian;
-		float 	player_pos_x;
-		float	player_pos_y;
+		int		multiplicator;
 		int		minimap_pos_x;
-		int		hinter_x;
-		int		hinter_y;
 		int		minimap_pos_y;
 		float	p_angle;
-		int		multiplicator;
+		float 	player_pos_x;
+		float	player_pos_y;
 	}			window_struct;
+
+typedef struct ray_struct
+{
+		int		mapx;
+		int		mapy;
+		float	ynear;
+		float	xnear;
+		float deltax;
+		float deltay;
+		float 	xstep;
+		float 	ystep;
+		int		hit;
+		int side;
+}				ray_struct;
 
 typedef struct  big_struct
 {
 	parse_struct	*ps;
 	map_struct		*ms;
 	window_struct	*ws;
+	ray_struct 		*rs;
 }				big_struct;
 
 int				full_parsing(char *map, big_struct *bs);
@@ -108,4 +121,6 @@ void 			amoove(big_struct *bs);
 void			dmoove(big_struct *bs);
 void			lookmoove(big_struct *bs, int key);
 int				render_next_frame(big_struct *bs);
+
+void			raycasting(big_struct *bs);
 #endif

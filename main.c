@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/23 12:49:20 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 17:44:07 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int     main(int argc, char **argv)
 	bs.ps = malloc(sizeof(parse_struct));
 	bs.ms = malloc(sizeof(map_struct));
 	bs.ws = malloc(sizeof(window_struct));
+	bs.rs = malloc(sizeof(ray_struct));
 
 	if (!bs.ps || !bs.ms)
 	{

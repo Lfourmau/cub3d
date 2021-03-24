@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_prog.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/23 11:18:21 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 18:30:06 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	deal_key(int key, big_struct *bs)
 		amoove(bs);
 	if (key == DKEY)
 		dmoove(bs);
+	raycasting(bs);
+	render_next_frame(bs);
 	return (0);
 }
 
