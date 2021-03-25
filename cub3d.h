@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/24 18:30:07 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 10:52:17 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	window_struct
 		float	p_angle;
 		float 	player_pos_x;
 		float	player_pos_y;
+		int 	key_press;
 	}			window_struct;
 
 typedef struct ray_struct
@@ -74,12 +75,12 @@ typedef struct ray_struct
 		int		mapy;
 		float	ynear;
 		float	xnear;
-		float deltax;
-		float deltay;
+		float 	deltax;
+		float 	deltay;
 		float 	xstep;
 		float 	ystep;
 		int		hit;
-		int side;
+		int 	side;
 }				ray_struct;
 
 typedef struct  big_struct
