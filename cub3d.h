@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/25 10:52:17 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 13:01:07 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct ray_struct
 		float 	ystep;
 		int		hit;
 		int 	side;
+		float 	r_angle;
 }				ray_struct;
 
 typedef struct  big_struct
@@ -123,5 +124,5 @@ void			dmoove(big_struct *bs);
 void			lookmoove(big_struct *bs, int key);
 int				render_next_frame(big_struct *bs);
 
-void			raycasting(big_struct *bs);
+void			raycasting(big_struct *bs, float angle);
 #endif
