@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/03/25 11:17:01 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 13:13:06 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,15 @@ void	raycasting(big_struct *bs, float angle)
 	bs->rs->deltay =  sqrt(1 + (cos(angle) * cos(angle)) / (sin(angle) * sin(angle)));
 	check_step(bs, angle); //permet de se decaler en fonction de l'angle
 	check_hit(bs); //on check le next carré et verifie si c'est un mur ou non
+}
+
+void	raycasting_loop(big_struct *bs)
+{
+	bs->rs->r_angle = bs->ws->p_angle - 30 * 0.0174532925;
+	while (bs->rs->r_angle < bs->ws->p_angle + 30 * 0.0174532925)
+	{
+		print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
+		raycasting(bs, bs->rs->r_angle);
+		bs->rs->r_angle += 0.0174532925;
+	}
 }
