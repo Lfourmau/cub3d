@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/25 07:53:52 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 13:56:35 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void print_square(big_struct *bs, int posx, int posy, int color)
 	int x = 0;
 	int y = 0;
 	
-	while (y <= bs->ws->multiplicator - 2)
+	while (y <= bs->ws->multiplicator)
 	{
 		x = 0;
-		while (x <= bs->ws->multiplicator - 2)
+		while (x <= bs->ws->multiplicator)
 		{
 			my_mlx_pixel_put(bs, posx + x, posy + y, color);
 			x++;

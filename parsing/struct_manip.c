@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:38:42 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/16 08:32:31 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 13:40:40 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	parsing_struct_init(big_struct *bs)
 	bs->ws->player_pos_y = 0;
 	bs->ws->minimap_pos_x = 0;
 	bs->ws->minimap_pos_y = 0;
+	bs->rs->ynear = 0;
+	bs->rs->xnear = 0;
+	bs->rs->r_angle = 0;
+	bs->rs->rayshort = 0;
 }
 
 int		check_struct(big_struct *bs)

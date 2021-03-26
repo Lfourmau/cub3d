@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/03/26 11:28:14 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 15:03:54 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,15 @@ void	raycasting(big_struct *bs, float angle)
 
 void	raycasting_loop(big_struct *bs)
 {
+	int i = 0;
+	float ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
 	bs->rs->r_angle = bs->ws->p_angle - 30 * 0.0174532925;
-	while (bs->rs->r_angle < bs->ws->p_angle + 30 * 0.0174532925)
+	while (i < bs->ps->horiz_res)
 	{
 		print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 		raycasting(bs, bs->rs->r_angle);
-		print_column(bs, bs->ps->horiz_res / 2 * bs->rs->r_angle, bs->ps->vertic_res / bs->rs->rayshort);
-		bs->rs->r_angle += 0.0174532925;
+		print_column(bs, i++, bs->ps->vertic_res / bs->rs->rayshort);
+		bs->rs->r_angle += ratioangle;
 	}
 }
 
