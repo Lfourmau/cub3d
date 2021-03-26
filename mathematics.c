@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mathematics.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:03:19 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/24 18:30:05 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/26 10:04:09 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void		multiplicator(big_struct *bs)
 {
 	if (bs->ps->vertic_res / number_of_split(bs->ms->map) > bs->ps->horiz_res / max_len_map(bs->ms->map))
-		bs->ws->multiplicator = bs->ps->horiz_res / max_len_map(bs->ms->map);
+		bs->ws->multiplicator = (bs->ps->horiz_res / max_len_map(bs->ms->map)) / 2.5;
 	else
-		bs->ws->multiplicator = bs->ps->horiz_res / max_len_map(bs->ms->map);
+		bs->ws->multiplicator = (bs->ps->horiz_res / max_len_map(bs->ms->map)) / 2.5;
 }
 
 void	detect_spawn_dir(big_struct *bs)
