@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:12:12 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/26 13:06:24 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 16:47:20 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void	print_column(big_struct *bs, int x, int y)
 	while (i < bs->ps->horiz_res)
 	{
 		j = 0;
-		while (j < begin_wall)
+		while (j < begin_wall && j < bs->ps->vertic_res)
 		{
 			my_mlx_pixel_put(bs, x, j, bs->ps->color_c);
 			j++;
 		}
-		while (j < end_wall)
+		while (j < end_wall && j < bs->ps->vertic_res)
 		{
 			my_mlx_pixel_put(bs, x, j, 16731903);
 			j++;
 		}
-		while (j < bs->ps->vertic_res)
+		while (j < bs->ps->vertic_res && j < bs->ps->vertic_res)
 		{
 			my_mlx_pixel_put(bs, x, j, bs->ps->color_f);
 			j++;
