@@ -6,13 +6,13 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:12:12 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/27 16:47:20 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 17:24:15 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_column(big_struct *bs, int x, int y)
+void	print_column(big_struct *bs, int x, int y, int color)
 {
 	int i = 0;
 	int j;
@@ -29,7 +29,7 @@ void	print_column(big_struct *bs, int x, int y)
 		}
 		while (j < end_wall && j < bs->ps->vertic_res)
 		{
-			my_mlx_pixel_put(bs, x, j, 16731903);
+			my_mlx_pixel_put(bs, x, j, color);
 			j++;
 		}
 		while (j < bs->ps->vertic_res && j < bs->ps->vertic_res)

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/26 13:39:33 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 17:24:55 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,5 @@ void			lookmoove(big_struct *bs, int key);
 int				render_next_frame(big_struct *bs);
 
 void			raycasting_loop(big_struct *bs);
-void			print_column(big_struct *bs, int x, int y);
+void			print_column(big_struct *bs, int x, int y, int color);
 #endif
