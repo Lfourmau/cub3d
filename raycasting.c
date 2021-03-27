@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/03/26 15:03:54 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:05:23 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ void	check_hit(big_struct *bs)
 		//choix de la bonne direction pour le prochain carré
 		if (bs->rs->xnear < bs->rs->ynear)
 		{
+			bs->rs->rayshort = bs->rs->xnear;
 			bs->rs->xnear += bs->rs->deltax;
 			bs->rs->mapx += bs->rs->xstep;
 			bs->rs->side = 0;
 		}
 		else
 		{
+			bs->rs->rayshort = bs->rs->ynear;
 			bs->rs->ynear += bs->rs->deltay;
 			bs->rs->mapy += bs->rs->ystep;
 			bs->rs->side = 1;
@@ -60,10 +62,6 @@ void	check_hit(big_struct *bs)
 			print_square(bs, bs->rs->mapx * bs->ws->multiplicator, bs->rs->mapy * bs->ws->multiplicator, 16722254);
 		}
 	}
-	if (bs->rs->xnear < bs->rs->ynear)
-		bs->rs->rayshort = bs->rs->xnear;
-	else
-		bs->rs->rayshort = bs->rs->ynear;
 	bs->rs->hit = 0;
 }
 
@@ -80,14 +78,15 @@ void	raycasting(big_struct *bs, float angle)
 void	raycasting_loop(big_struct *bs)
 {
 	int i = 0;
-	float ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
-	bs->rs->r_angle = bs->ws->p_angle - 30 * 0.0174532925;
-	while (i < bs->ps->horiz_res)
+	float ratioangle = ((60 * 0.0174532925) / bs->ps->horiz_res);
+	bs->rs->r_angle = bs->ws->p_angle + 30 * ratioangle;
+	while (i++ < bs->ps->horiz_res)
 	{
-		print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 		raycasting(bs, bs->rs->r_angle);
-		print_column(bs, i++, bs->ps->vertic_res / bs->rs->rayshort);
-		bs->rs->r_angle += ratioangle;
+		print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort);
+		bs->rs->r_angle -= ratioangle;
+		print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
+		//ratioangle -= ratioangle;
 	}
 }
 
