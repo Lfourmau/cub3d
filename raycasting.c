@@ -6,13 +6,13 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/03/27 17:24:43 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 14:11:19 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	check_step(big_struct *bs, float angle)
+static void	check_step(big_struct *bs, float angle)
 {
 	if (angle > M_PI / 2 && angle < 3 * M_PI / 2)
 	{
@@ -36,7 +36,7 @@ void	check_step(big_struct *bs, float angle)
 	}
 }
 
-void	check_hit(big_struct *bs)
+static void	check_hit(big_struct *bs)
 {
 	while (bs->rs->hit == 0)
 	{
@@ -59,13 +59,13 @@ void	check_hit(big_struct *bs)
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1')
 		{
 			bs->rs->hit = 1;
-			print_square(bs, bs->rs->mapx * bs->ws->multiplicator, bs->rs->mapy * bs->ws->multiplicator, 16722254);
+			//print_square(bs, bs->rs->mapx * bs->ws->multiplicator, bs->rs->mapy * bs->ws->multiplicator, 16722254);
 		}
 	}
 	bs->rs->hit = 0;
 }
 
-void	raycasting(big_struct *bs, float angle)
+static void	raycasting(big_struct *bs, float angle)
 {
 	bs->rs->mapx = (int)bs->ws->player_pos_x;//pos est en float, on int pour avoir l'index
 	bs->rs->mapy = (int)bs->ws->player_pos_y;//pos est en float, on int pour avoir l'index
@@ -75,21 +75,49 @@ void	raycasting(big_struct *bs, float angle)
 	check_hit(bs); //on check le next carré et verifie si c'est un mur ou non
 }
 
+void	print_column(big_struct *bs, int x, int y, int color)
+{
+	int i = -1;
+	int j;
+	int begin_wall = bs->ps->vertic_res / 2 - y / 2;
+	int end_wall = bs->ps->vertic_res / 2 + y / 2;
+
+	while (++i < bs->ps->horiz_res)
+	{
+		j = -1;
+		while (++j < begin_wall && j < bs->ps->vertic_res)
+		{
+			my_mlx_pixel_put(bs, x, j, bs->ps->color_c);
+
+		}
+		j--;
+		while (++j < end_wall && j < bs->ps->vertic_res)
+		{
+			my_mlx_pixel_put(bs, x, j, color);
+			
+		}
+		j--;
+		while (++j < bs->ps->vertic_res && j < bs->ps->vertic_res)
+			my_mlx_pixel_put(bs, x, j, bs->ps->color_f);
+	}
+}
+
 void	raycasting_loop(big_struct *bs)
 {
-	int i = 0;
+	int i = -1;
 	float ratioangle = ((60 * 0.0174532925) / bs->ps->horiz_res);
+
 	bs->rs->r_angle = bs->ws->p_angle + 30 * ratioangle;
-	while (i++ < bs->ps->horiz_res)
+	while (++i < bs->ps->horiz_res)
 	{
+		bs->rs->rayshort *= cos(bs->rs->r_angle - bs->ws->p_angle);
 		raycasting(bs, bs->rs->r_angle);
 		if (bs->rs->side == 0)
 			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 16731903);
 		else
 			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 16731903 / 2);
 		bs->rs->r_angle -= ratioangle;
-		print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
-		//ratioangle -= ratioangle;
+		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 	}
 }
 

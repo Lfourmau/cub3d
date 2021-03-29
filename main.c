@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/24 17:44:07 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 08:26:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_dracaufeu()
 		printf("\033[1;31m                 / ,\"'\"\\,'               `/  `-.|\" \n");
 }
 
-int		parsing(char *arg, big_struct *bs)
+static int		parsing(char *arg, big_struct *bs)
 {
 	if (check_cub(arg))
 			return (printf("Error\nbad map format\n"));

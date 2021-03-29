@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/26 15:04:55 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 08:44:13 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	close_window(big_struct *bs)
 		return (1);
 }
 
-int		render_next_frame(big_struct *bs)
+ int		render_next_frame(big_struct *bs)
 {
 	bs->rs->r_angle = bs->ws->p_angle - 30 * 0.0174532925;
 	if (!bs->ws->img_ptr || bs->ws->key_press == 1) 
@@ -28,7 +28,7 @@ int		render_next_frame(big_struct *bs)
 		bs->ws->img_ptr = mlx_get_data_addr(bs->ws->mlx_img, &bs->ws->bits_per_pixel, &bs->ws->line_length, &bs->ws->endian);
 		raycasting_loop(bs);
 		print_minimap(bs);
-		print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
+		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 		print_direction(bs, bs->ws->player_pos_x * bs->ws->multiplicator, bs->ws->player_pos_y * bs->ws->multiplicator, 65280);
 		print_direction(bs, (bs->ws->player_pos_x + cos(bs->ws->p_angle)) * bs->ws->multiplicator, (bs->ws->player_pos_y - sin(bs->ws->p_angle)) * bs->ws->multiplicator, 16720777);
 		mlx_put_image_to_window(bs->ws->mlx_ptr, bs->ws->win_ptr, bs->ws->mlx_img, 0, 0);
@@ -37,20 +37,20 @@ int		render_next_frame(big_struct *bs)
 	return (0);
 }
 
-int	deal_key(int key, big_struct *bs)
+ static int	deal_key(int key, big_struct *bs)
 {
 	bs->ws->key_press = 0;
 	if (key == ESC)
 		close_window(bs);
-	if (key == LEFTLOOK || key == RIGHTLOOK)
+	else if (key == LEFTLOOK || key == RIGHTLOOK)
 		lookmoove(bs, key);
-	if (key == WKEY)
+	else if (key == WKEY)
 		wmoove(bs);
-	if (key == SKEY)
+	else if (key == SKEY)
 		smoove(bs);
-	if (key == AKEY)
+	else if (key == AKEY)
 		amoove(bs);
-	if (key == DKEY)
+	else if (key == DKEY)
 		dmoove(bs);
 	//raycasting(bs);
 	render_next_frame(bs);
