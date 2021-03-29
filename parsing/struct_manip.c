@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_manip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:38:42 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/29 09:49:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/29 21:05:02 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	parsing_struct_init(big_struct *bs)
 	bs->rs->xnear = 0;
 	bs->rs->r_angle = 0;
 	bs->rs->rayshort = 0;
+	bs->rs->fish = 1;
 }
 
 int		check_struct(big_struct *bs)
