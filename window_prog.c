@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/30 09:19:12 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 12:59:27 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int window_prog(big_struct *bs)
 	bs->ws->mlx_ptr = mlx_init();
 	bs->ws->win_ptr = mlx_new_window(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d");
 	mlx_hook(bs->ws->win_ptr, 2, 1L<<0, deal_key, bs);
-	mlx_loop_hook(bs->ws->mlx_ptr, render_next_frame, bs);
+	//mlx_loop_hook(bs->ws->mlx_ptr, render_next_frame, bs);
 	mlx_loop(bs->ws->mlx_ptr);
 	return (0);
 }

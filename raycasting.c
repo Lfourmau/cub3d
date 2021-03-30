@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/03/30 10:57:32 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 13:37:58 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,22 @@ static void	raycasting(big_struct *bs, float angle)
 void	raycasting_loop(big_struct *bs)
 {
 	int i = -1;
-	float ratioangle = ((30 * 0.0174532925) / bs->ps->horiz_res);
-	bs->rs->r_angle = bs->ws->p_angle + 15 * ratioangle;
-	while (++i < bs->ps->horiz_res)
+	float ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
+	bs->rs->r_angle = bs->ws->p_angle + 30 * 0.0174532925;
+	while (++i <= bs->ps->horiz_res)
 	{
 		raycasting(bs, bs->rs->r_angle);
 		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
 		if (bs->rs->side == 0)
-			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 16731903);
+			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 11053224);
 		else
-			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 16731903 / 2);
+			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 11053224 / 2);
 		bs->rs->r_angle -= ratioangle;
 		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
+		if (bs->rs->r_angle > 2 * M_PI)
+			bs->rs->r_angle -= 2 * M_PI;
+		if (bs->rs->r_angle < 0)
+			bs->rs->r_angle += 2 * M_PI;
 	}
 }
 
