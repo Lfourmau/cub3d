@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/03/29 21:05:00 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 10:52:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,12 @@ static void	raycasting(big_struct *bs, float angle)
 void	raycasting_loop(big_struct *bs)
 {
 	int i = -1;
-	float ratioangle = ((60 * 0.0174532925) / bs->ps->horiz_res);
-
+	float ratioangle = ((30 * 0.0174532925) / bs->ps->horiz_res);
 	bs->rs->r_angle = bs->ws->p_angle + 30 * ratioangle;
 	while (++i < bs->ps->horiz_res)
 	{
 		raycasting(bs, bs->rs->r_angle);
-		bs->rs->fish = bs->ws->p_angle - bs->rs->r_angle;
-		bs->rs->rayshort *= cos(bs->rs->fish);
+		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
 		if (bs->rs->side == 0)
 			print_column(bs, i, bs->ps->vertic_res / bs->rs->rayshort, 16731903);
 		else

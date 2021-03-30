@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/29 10:32:20 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 10:53:59 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct ray_struct
 		int 	side;
 		float 	r_angle;
 		float	rayshort;
-		float	fish;
 }				ray_struct;
 
 typedef struct  big_struct
