@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/03/29 09:50:11 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/04/05 10:38:12 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = 	main.c \
 		mathematics.c \
 		moove_funcs.c \
 		raycasting.c \
+		render_textures.c \
 
 OBJS = $(SRCS:.c=.o)
 
