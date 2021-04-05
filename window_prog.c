@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/30 12:59:27 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 07:18:05 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	close_window(big_struct *bs)
 {
 	if (!bs->ws->img_ptr || bs->ws->key_press == 1) 
 	{
+		bs->ws->key_press = 0;
 		bs->ws->mlx_img = mlx_new_image(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res);
 		bs->ws->img_ptr = mlx_get_data_addr(bs->ws->mlx_img, &bs->ws->bits_per_pixel, &bs->ws->line_length, &bs->ws->endian);
 		raycasting_loop(bs);
 		print_minimap(bs);
-		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 		print_direction(bs, bs->ws->player_pos_x * bs->ws->multiplicator, bs->ws->player_pos_y * bs->ws->multiplicator, 65280);
 		print_direction(bs, (bs->ws->player_pos_x + cos(bs->ws->p_angle)) * bs->ws->multiplicator, (bs->ws->player_pos_y - sin(bs->ws->p_angle)) * bs->ws->multiplicator, 16720777);
 		mlx_put_image_to_window(bs->ws->mlx_ptr, bs->ws->win_ptr, bs->ws->mlx_img, 0, 0);
@@ -38,7 +38,6 @@ int	close_window(big_struct *bs)
 
  static int	deal_key(int key, big_struct *bs)
 {
-	bs->ws->key_press = 0;
 	if (key == ESC)
 		close_window(bs);
 	else if (key == LEFTLOOK || key == RIGHTLOOK)
@@ -51,7 +50,6 @@ int	close_window(big_struct *bs)
 		amoove(bs);
 	else if (key == DKEY)
 		dmoove(bs);
-	//raycasting(bs);
 	render_next_frame(bs);
 	return (0);
 }
@@ -66,7 +64,7 @@ int window_prog(big_struct *bs)
 	bs->ws->mlx_ptr = mlx_init();
 	bs->ws->win_ptr = mlx_new_window(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d");
 	mlx_hook(bs->ws->win_ptr, 2, 1L<<0, deal_key, bs);
-	//mlx_loop_hook(bs->ws->mlx_ptr, render_next_frame, bs);
+	mlx_loop_hook(bs->ws->mlx_ptr, render_next_frame, bs);
 	mlx_loop(bs->ws->mlx_ptr);
 	return (0);
 }
