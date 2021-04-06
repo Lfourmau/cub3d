@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/06 13:07:30 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 14:53:03 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	print_column(big_struct *bs, int x, int y, int color)
 	int j;
 	int begin_wall = bs->ps->vertic_res / 2 - y / 2;
 	int end_wall = bs->ps->vertic_res / 2 + y / 2;
-
+	
 	j = -1;
 	while (++j < begin_wall && j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_c);
@@ -97,10 +97,11 @@ void	raycasting_loop(big_struct *bs)
 	int i = -1;
 	float ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
 	bs->rs->r_angle = bs->ws->p_angle + 30 * 0.0174532925;
-	xpm_init(bs);
+	//xpm_init(bs);
 	while (++i <= bs->ps->horiz_res)
 	{
 		raycasting(bs, bs->rs->r_angle);
+		//get_colors(bs);
 		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
 		//bs->ts->ratio = (bs->ps->vertic_res / bs->rs->rayshort) / 64;
 		if (bs->rs->side == 0)

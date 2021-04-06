@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:41:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/06 13:05:48 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 14:50:16 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	xpm_init(big_struct *bs)
 
 void	get_colors(big_struct *bs)
 {
-	bs->ts->n.r = bs->ts->n.buff[(int)((bs->rs->mapy * bs->ts->n.line_length) + (bs->rs->mapx * bs->ts->n.bits_per_pixel))];
-	bs->ts->n.g = bs->ts->n.buff[(int)((bs->rs->mapy * bs->ts->n.line_length) + (bs->rs->mapx * bs->ts->n.bits_per_pixel)) + 1];
-	bs->ts->n.b = bs->ts->n.buff[(int)((bs->rs->mapy * bs->ts->n.line_length) + (bs->rs->mapx * bs->ts->n.bits_per_pixel)) + 2];
+	bs->ts->n.r = bs->ts->n.buff[(int)(((bs->rs->mapy * bs->ts->horiz_ratio) * bs->ts->n.line_length) + (((bs->rs->mapx * bs->ts->horiz_ratio) * bs->ts->n.bits_per_pixel)))];
+	bs->ts->n.g = bs->ts->n.buff[(int)(((bs->rs->mapy * bs->ts->horiz_ratio) * bs->ts->n.line_length) + (((bs->rs->mapx * bs->ts->horiz_ratio) * bs->ts->n.bits_per_pixel))) * 4 + 1];
+	bs->ts->n.b = bs->ts->n.buff[(int)(((bs->rs->mapy * bs->ts->horiz_ratio) * bs->ts->n.line_length) + (((bs->rs->mapx * bs->ts->horiz_ratio) * bs->ts->n.bits_per_pixel))) * 8 + 2];
 	bs->ts->colorpixel = 65536 * bs->ts->n.r + 256 * bs->ts->n.g + bs->ts->n.b;
 }
 
