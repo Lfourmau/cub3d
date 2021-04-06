@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/05 14:40:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/06 12:56:18 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,42 +85,29 @@ typedef struct ray_struct
 		float	rayshort;
 }				ray_struct;
 
+typedef struct textures_params
+{
+	void 	*img;
+	char	*buff;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int 	line_length;
+	int		endian;
+	int		r;
+	int		g;
+	int		b;
+}				textures_params;
+
 typedef struct textures_struct
 {
-	void 	*w_text;
-	char	*w_addr;
-	int		w_width;
-	int		w_height;
-	int		w_bits_per_pixel;
-	int 	w_line_length;
-	int		w_endian;
-
-	void	*e_text;
-	char 	*e_addr;
-	int		e_width;
-	int		e_height;
-	int		e_bits_per_pixel;
-	int 	e_line_length;
-	int		e_endian;
-
-	void	*s_text;
-	char 	*s_addr;
-	int		s_width;
-	int		s_height;
-	int		s_bits_per_pixel;
-	int 	s_line_length;
-	int		s_endian;
-
-	void	*n_text;
-	char 	*n_addr;
-	int		n_width;
-	int		n_height;
-	int		n_bits_per_pixel;
-	int 	n_line_length;
-	int		n_endian;
-
+	textures_params	w;
+	textures_params	s;
+	textures_params	n;
+	textures_params	e;
 	float	ratio;
-
+	float	horiz_ratio;
+	int colorpixel;
 }				textures_struct;
 
 typedef struct  big_struct
@@ -166,5 +153,7 @@ int				render_next_frame(big_struct *bs);
 
 void			raycasting_loop(big_struct *bs);
 
+void			render_textures(big_struct *bs);
 void			xpm_init(big_struct *bs);
+void			get_colors(big_struct *bs);
 #endif
