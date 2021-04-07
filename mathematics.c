@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:03:19 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/30 09:03:41 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/07 16:47:01 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		multiplicator(big_struct *bs)
 void	detect_spawn_dir(big_struct *bs)
 {
 	if (bs->ms->spawn == 'S')
-		bs->ws->p_angle = 2 * M_PI;
+		bs->ws->p_angle = 3 * M_PI / 2;
 	else if (bs->ms->spawn == 'N')
 		bs->ws->p_angle = M_PI / 2;
 	else if (bs->ms->spawn == 'W')

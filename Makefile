@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/04/05 10:38:12 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/04/07 14:39:57 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,17 +32,17 @@ OBJS = $(SRCS:.c=.o)
 
 LIBS = libft.a libmlx.dylib
 
-CFLAGS = -Wall -Werror -Wextra -O3
+CFLAGS = -Wall -Wextra# -O3
 
 all : $(NAME)
 
 %.o : %.c cub3d.h
-	gcc -c $(CFLAGS) $< -o $(<:.c=.o)
+	gcc -c $(CFLAGS) $< -o $(<:.c=.o) -g
 
-$(NAME) : $(OBJS) $(SRCS) 
+$(NAME) : $(OBJS)
 	cd libft && make bonus && cd ../mlx && make && cd ..
 	mv libft/libft.a . && mv mlx/libmlx.dylib .
-	gcc $(CFLAGS) -o cub3d $(LIBS) $(SRCS)
+	gcc $(CFLAGS) -o cub3d $(LIBS) $(OBJS)
 
 clean : 
 	rm -f $(OBJS)
