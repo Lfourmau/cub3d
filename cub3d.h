@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/07 17:44:02 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 15:17:07 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct ray_struct
 		int 	begin_wall;
 		int 	end_wall;
 		int 	wall_onscreen_size;
+		float 	base_x;
+		float 	base_y;
 }				ray_struct;
 
 typedef struct textures_params

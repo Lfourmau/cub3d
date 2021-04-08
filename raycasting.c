@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/07 17:52:22 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 15:16:53 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	check_hit(big_struct *bs)
 	while (bs->rs->hit == 0)
 	{
 		//choix de la bonne direction pour le prochain carré
-		if (bs->rs->xnear <= bs->rs->ynear)
+		if (bs->rs->xnear < bs->rs->ynear)
 		{
 			bs->rs->rayshort = bs->rs->xnear;
 			bs->rs->xnear += bs->rs->deltax;
@@ -73,12 +73,19 @@ static void	check_hit(big_struct *bs)
 			bs->rs->mapy += bs->rs->ystep;
 			bs->rs->side = 1;
 		}
-		//touche un mur ou pas
+		//touche un mur o
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1')
 		{
 			bs->rs->hit = 1;
-			bs->rs->inter_y =  bs->ws->player_pos_y + bs->rs->xnear - (int)bs->rs->xnear;
-			bs->rs->inter_x =  bs->ws->player_pos_x + bs->rs->ynear - (int)bs->rs->ynear;
+			bs->rs->inter_x = bs->ws->player_pos_x + bs->rs->base_x * bs->rs->rayshort;
+			bs->rs->inter_y = bs->ws->player_pos_y + bs->rs->base_y * bs->rs->rayshort;
+			// bs->rs->inter_x = bs->rs->mapx;
+			// bs->rs->inter_y = bs->rs->mapy;
+			// printf("----\n%f\n", bs->rs->inter_x);
+			printf("%f\n", bs->rs->base_x);
+			printf("%f\n", bs->rs->base_y);
+			// printf("\nRAYSHORT%f\n", bs->rs->rayshort);
+			// printf("%f\n----\n", bs->rs->inter_y);
 		}
 	}
 	bs->rs->hit = 0;
@@ -86,35 +93,43 @@ static void	check_hit(big_struct *bs)
 
 static void	raycasting(big_struct *bs, float angle)
 {
-	bs->rs->mapx = bs->ws->player_pos_x;//pos est en float, on int pour avoir l'index
-	bs->rs->mapy = bs->ws->player_pos_y;//pos est en float, on int pour avoir l'index
+	bs->rs->mapx = (int)bs->ws->player_pos_x;//pos est en float, on int pour avoir l'index
+	bs->rs->mapy = (int)bs->ws->player_pos_y;//pos est en float, on int pour avoir l'index
 	bs->rs->deltax =  sqrt(1 + (sin(angle) * sin(angle)) / (cos(angle) * cos(angle)));
 	bs->rs->deltay =  sqrt(1 + (cos(angle) * cos(angle)) / (sin(angle) * sin(angle)));
+
 	check_step(bs, angle); //permet de se decaler en fonction de l'angle
 	check_hit(bs); //on check le next carré et verifie si c'est un mur ou non
 }
 
+
+
+void	rotate_vector(big_struct *bs)
+{	
+	bs->rs->base_x = 0 * cos(bs->rs->r_angle) - 1 * sin(bs->rs->r_angle);
+	bs->rs->base_y = 0 * sin(bs->rs->r_angle) + 1 * cos(bs->rs->r_angle); 
+}
+
+
 void	raycasting_loop(big_struct *bs)
 {
-	int i = -1;
-	float ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
+	int 	i = -1;
+	float 	ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
 	bs->rs->r_angle = bs->ws->p_angle + 30 * 0.0174532925;
 	xpm_init(bs);
-	while (++i <= bs->ps->horiz_res)
+	while (++i < bs->ps->horiz_res)
 	{
-		raycasting(bs, bs->rs->r_angle);
-		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
-		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->rayshort;
-		if (bs->rs->side == 0)
-			print_column(bs, i, bs->rs->wall_height, 11053224);
-		else
-			print_column(bs, i, bs->rs->wall_height, 11053224 / 2);
-		bs->rs->r_angle -= ratioangle;
-		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 		if (bs->rs->r_angle > 2 * M_PI)
 			bs->rs->r_angle -= 2 * M_PI;
 		if (bs->rs->r_angle < 0)
 			bs->rs->r_angle += 2 * M_PI;
+		rotate_vector(bs);
+		raycasting(bs, bs->rs->r_angle);
+		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
+		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->rayshort;
+		print_column(bs, i, bs->rs->wall_height, 11053224);
+		bs->rs->r_angle -= ratioangle;
+		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 	}
 }
 

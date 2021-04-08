@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:38:42 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/30 10:56:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 14:58:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	parsing_struct_init(big_struct *bs)
 	bs->rs->xnear = 0;
 	bs->rs->r_angle = 0;
 	bs->rs->rayshort = 0;
+	bs->rs->base_x = 0;
+	bs->rs->base_y = 1;
 }
 
 int		check_struct(big_struct *bs)

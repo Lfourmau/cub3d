@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:41:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/07 17:44:24 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/08 15:20:06 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	put_wall_texture(big_struct *bs, int x, int j)
 	if (bs->rs->side == 0)
 		texture_x = bs->ts->n.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
 	ratio = (float)bs->ts->n.height / bs->rs->wall_onscreen_size;
-
 	while (i < bs->rs->wall_onscreen_size)
 	{
 		color = bs->ts->n.buff[texture_x + (int)((float)(i) * ratio) * 64];
