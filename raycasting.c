@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/09 08:51:28 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 11:34:04 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	print_column(big_struct *bs, int x, int y, int color)
 		put_wall_north(bs, x, j);
 	else
 		put_wall_south(bs, x, j);
-	j = bs->rs->end_wall;
+	j = bs->rs->end_wall - 1;
 	while (++j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_f);
 }
