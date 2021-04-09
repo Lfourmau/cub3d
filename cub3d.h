@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/08 15:17:07 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 08:43:45 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,8 @@ void			raycasting_loop(big_struct *bs);
 
 void			render_textures(big_struct *bs);
 void			xpm_init(big_struct *bs);
-void	put_wall_texture(big_struct *bs, int x, int j);
+void			put_wall_north(big_struct *bs, int x, int j);
+void			put_wall_south(big_struct *bs, int x, int j);
+void			put_wall_west(big_struct *bs, int x, int j);
+void			put_wall_east(big_struct *bs, int x, int j);
 #endif

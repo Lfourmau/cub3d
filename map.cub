@@ -1,6 +1,6 @@
 R 900 900
-NO ./textures/mossy.xpm
-SO ./textures/greystone.xpm
+NO ./textures/greystone.xpm
+SO ./textures/mossy.xpm
 WE ./textures/colorstone.xpm
 EA ./textures/bluestone.xpm
 C 80,180,240

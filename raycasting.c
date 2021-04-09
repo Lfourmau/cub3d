@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/08 15:16:53 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 08:51:28 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ static void	print_column(big_struct *bs, int x, int y, int color)
 	j = -1;
 	while (++j < bs->rs->begin_wall && j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_c);
-	j--;
-	put_wall_texture(bs, x, j);
+	if (bs->rs->side == 1)
+		put_wall_north(bs, x, j);
+	else
+		put_wall_south(bs, x, j);
 	j = bs->rs->end_wall;
 	while (++j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_f);
@@ -77,15 +79,8 @@ static void	check_hit(big_struct *bs)
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1')
 		{
 			bs->rs->hit = 1;
-			bs->rs->inter_x = bs->ws->player_pos_x + bs->rs->base_x * bs->rs->rayshort;
-			bs->rs->inter_y = bs->ws->player_pos_y + bs->rs->base_y * bs->rs->rayshort;
-			// bs->rs->inter_x = bs->rs->mapx;
-			// bs->rs->inter_y = bs->rs->mapy;
-			// printf("----\n%f\n", bs->rs->inter_x);
-			printf("%f\n", bs->rs->base_x);
-			printf("%f\n", bs->rs->base_y);
-			// printf("\nRAYSHORT%f\n", bs->rs->rayshort);
-			// printf("%f\n----\n", bs->rs->inter_y);
+			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->rayshort;
+			bs->rs->inter_y = bs->ws->player_pos_x + bs->rs->base_y * bs->rs->rayshort;
 		}
 	}
 	bs->rs->hit = 0;
