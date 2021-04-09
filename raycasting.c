@@ -6,20 +6,20 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/09 11:34:04 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 14:19:32 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	print_column(big_struct *bs, int x, int y, int color)
+static void	print_column(big_struct *bs, int x, float y)
 {
 	int j;
-	color = 2;
 	bs->rs->begin_wall = bs->ps->vertic_res / 2 - y / 2;
 	bs->rs->end_wall = bs->ps->vertic_res / 2 + y / 2;
 	bs->rs->wall_onscreen_size = bs->rs->end_wall - bs->rs->begin_wall;
-
+	// if (bs->rs->begin_wall < 0)
+	// 	bs->rs->wall_onscreen_size = bs->rs->end_wall + bs->rs->begin_wall;
 	j = -1;
 	while (++j < bs->rs->begin_wall && j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_c);
@@ -114,17 +114,18 @@ void	raycasting_loop(big_struct *bs)
 	xpm_init(bs);
 	while (++i < bs->ps->horiz_res)
 	{
+		//rotate angle
 		if (bs->rs->r_angle > 2 * M_PI)
 			bs->rs->r_angle -= 2 * M_PI;
 		if (bs->rs->r_angle < 0)
 			bs->rs->r_angle += 2 * M_PI;
 		rotate_vector(bs);
 		raycasting(bs, bs->rs->r_angle);
+		//fish eye correction
 		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
 		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->rayshort;
-		print_column(bs, i, bs->rs->wall_height, 11053224);
+		print_column(bs, i, bs->rs->wall_height);
 		bs->rs->r_angle -= ratioangle;
-		//print_direction(bs, (bs->ws->player_pos_x + cos(bs->rs->r_angle)) * bs->ws->multiplicator, ((bs->ws->player_pos_y - sin(bs->rs->r_angle))) * bs->ws->multiplicator, 16720777);
 	}
 }
 

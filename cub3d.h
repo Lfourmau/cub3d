@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/09 08:43:45 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 13:48:47 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ typedef struct ray_struct
 		float 	inter_x;
 		float 	inter_y;
 		float 	wall_height;
-		int 	begin_wall;
-		int 	end_wall;
+		float 	begin_wall;
+		float 	end_wall;
 		int 	wall_onscreen_size;
 		float 	base_x;
 		float 	base_y;
@@ -96,7 +96,7 @@ typedef struct ray_struct
 typedef struct textures_params
 {
 	void 	*img;
-	int	*buff;
+	int		*buff;
 	int		width;
 	int		height;
 	int		bits_per_pixel;
@@ -114,9 +114,6 @@ typedef struct textures_struct
 	textures_params	s;
 	textures_params	n;
 	textures_params	e;
-	float	ratio;
-	float	horiz_ratio;
-	int colorpixel;
 }				textures_struct;
 
 typedef struct  big_struct

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:41:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/09 11:53:34 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/09 14:19:57 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	put_wall_north(big_struct *bs, int x, int j)
 	int		i;
 	int 	color;
 
-	i = 1;
+	i = 0;
+	if (bs->rs->begin_wall < 0)
+		i = 0 - bs->rs->begin_wall;
 	texture_x = bs->ts->n.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
 	if (bs->rs->side == 0)
 		texture_x = bs->ts->n.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
@@ -56,7 +58,9 @@ void	put_wall_south(big_struct *bs, int x, int j)
 	int		i;
 	int 	color;
 
-	i = 1;
+	i = 0;
+	if (bs->rs->begin_wall < 0)
+		i = 0 - bs->rs->begin_wall;
 	texture_x = bs->ts->s.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
 	if (bs->rs->side == 0)
 		texture_x = bs->ts->s.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
