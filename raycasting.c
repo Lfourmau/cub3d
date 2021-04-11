@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/11 10:58:52 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 13:09:01 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	raycasting_loop(big_struct *bs)
 		raycasting(bs, bs->rs->r_angle);
 		//fish eye correction
 		bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
+		//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
 		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
 		print_column(bs, i, bs->rs->wall_height);
 		//enleve ratio angle pour balayer tout l'ecran

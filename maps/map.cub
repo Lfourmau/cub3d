@@ -2,7 +2,7 @@ R 1200 1200
 NO ./textures/minecraft3.xpm
 SO ./textures/minecraft2.xpm
 WE ./textures/minecraftwood.xpm
-EA ./textures/minecrfatlib.xpm
+EA ./textures/wood.xpm
 C  56,206,224
 S ./path_to_the_sprite_texture
 F 113,67,32
