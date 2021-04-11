@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 10:59:23 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 11:48:42 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ typedef struct	window_struct
 		int 	key_press;
 	}			window_struct;
 
+typedef struct	keys_struct
+{
+	int		w;
+	int		a;
+	int		s;
+	int		d;
+	int		left;
+	int		right;
+	int		esc;
+}				keys_struct;
+
 typedef struct ray_struct
 {
 		int		mapx;
@@ -123,6 +134,7 @@ typedef struct  big_struct
 	window_struct	*ws;
 	ray_struct 		*rs;
 	textures_struct *ts;
+	keys_struct		*ks;
 }				big_struct;
 
 //PARSING FUNCS
@@ -161,11 +173,11 @@ void			detect_spawn_dir(big_struct *bs);
 void			rotate_vector(big_struct *bs);
 
 //MOOVE FUNCS
+void			updatecoord(big_struct *bs);
 void			wmoove(big_struct *bs);
 void			smoove(big_struct *bs);
-void 			amoove(big_struct *bs);
-void			dmoove(big_struct *bs);
-void			lookmoove(big_struct *bs, int key);
+void			sidemooves(big_struct *bs);
+void			lookmoove(big_struct *bs);
 
 //TREXTURES
 void			render_textures(big_struct *bs);
