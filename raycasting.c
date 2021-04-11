@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/11 13:09:01 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 13:19:16 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	check_hit(big_struct *bs)
 			bs->rs->side = 1;
 		}
 		//touche un mur o
-		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1')
+		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
 			bs->rs->hit = 1;
 			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->raydist;

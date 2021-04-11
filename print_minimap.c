@@ -6,7 +6,7 @@
 /*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 10:52:19 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 13:20:38 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	print_minimap(big_struct *bs)
 				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 10446148);
 			else if (bs->ms->map[i][j] == '0')
 				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 15327486);
+			else if (bs->ms->map[i][j] == '3')
+				print_square(bs, bs->ws->minimap_pos_x, bs->ws->minimap_pos_y, 15327486/2);
 			j++;
 			bs->ws->minimap_pos_x += bs->ws->multiplicator;
 		}

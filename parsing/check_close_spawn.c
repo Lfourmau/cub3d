@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_close_spawn.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/11 13:36:48 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 13:17:39 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int check_leaks(big_struct *bs)
 		j = 0;
 		while (bs->ms->map[i][j])
 		{
-			if (bs->ms->map[i][j] == '0' || bs->ms->map[i][j] == '2' || isspawn(bs->ms->map[i][j]))
+			if (bs->ms->map[i][j] == '0' || bs->ms->map[i][j] == '2' || bs->ms->map[i][j] == '3' || isspawn(bs->ms->map[i][j]))
 			{
 				if (check_around(bs->ms->map[i - 1][j]))
 					return (1);
