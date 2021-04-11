@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/09 13:48:47 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 10:59:23 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct ray_struct
 		int		hit;
 		int 	side;
 		float 	r_angle;
-		float	rayshort;
+		float	raydist;
 		float 	inter_x;
 		float 	inter_y;
 		float 	wall_height;
@@ -125,6 +125,7 @@ typedef struct  big_struct
 	textures_struct *ts;
 }				big_struct;
 
+//PARSING FUNCS
 int				full_parsing(char *map, big_struct *bs);
 int				check_full_numbers(char **splitresult, int i);
 void			parsing_struct_init(big_struct *bs);
@@ -143,26 +144,35 @@ int     		check_cub(char *str);
 int				check_struct(big_struct *bs);
 int				free_struct(big_struct *bs, char *line);
 
-int 			window_prog(big_struct *bs);
+//PRINT FUNCS
 void            my_mlx_pixel_put(big_struct *bs, int x, int y, int color);
 void 			print_square(big_struct *bs, int posx, int posy, int color);
 void			print_minimap(big_struct *bs);
+void 			print_minisquare(big_struct *bs, int posx, int posy, int color);
+
+//MLX FUNCS
+int 			window_prog(big_struct *bs);
+int				render_next_frame(big_struct *bs);
+void			raycasting_loop(big_struct *bs);
+
+//MATHS
 void			multiplicator(big_struct *bs);
 void			detect_spawn_dir(big_struct *bs);
-void 			print_direction(big_struct *bs, int posx, int posy, int color);
+void			rotate_vector(big_struct *bs);
+
+//MOOVE FUNCS
 void			wmoove(big_struct *bs);
 void			smoove(big_struct *bs);
 void 			amoove(big_struct *bs);
 void			dmoove(big_struct *bs);
 void			lookmoove(big_struct *bs, int key);
-int				render_next_frame(big_struct *bs);
 
-void			raycasting_loop(big_struct *bs);
-
+//TREXTURES
 void			render_textures(big_struct *bs);
 void			xpm_init(big_struct *bs);
 void			put_wall_north(big_struct *bs, int x, int j);
 void			put_wall_south(big_struct *bs, int x, int j);
 void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/09 14:19:32 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 10:58:52 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 static void	print_column(big_struct *bs, int x, float y)
 {
 	int j;
+
+	j = -1;
 	bs->rs->begin_wall = bs->ps->vertic_res / 2 - y / 2;
 	bs->rs->end_wall = bs->ps->vertic_res / 2 + y / 2;
 	bs->rs->wall_onscreen_size = bs->rs->end_wall - bs->rs->begin_wall;
-	// if (bs->rs->begin_wall < 0)
-	// 	bs->rs->wall_onscreen_size = bs->rs->end_wall + bs->rs->begin_wall;
-	j = -1;
+	//print ciel
 	while (++j < bs->rs->begin_wall && j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_c);
-	if (bs->rs->side == 1)
-		put_wall_north(bs, x, j);
-	else
+	//affichage de la texture selon l'orientation
+	if (bs->rs->side == 1 && bs->rs->r_angle > 0 && bs->rs->r_angle < M_PI)
 		put_wall_south(bs, x, j);
+	else if (bs->rs->side == 1 && bs->rs->r_angle > M_PI && bs->rs->r_angle < 2 * M_PI)
+		put_wall_north(bs, x, j);
+	else if (bs->rs->side == 0 && bs->rs->r_angle > M_PI / 2 && bs->rs->r_angle < 3 * M_PI / 2)
+		put_wall_east(bs, x, j);
+	else
+		put_wall_west(bs, x, j);
 	j = bs->rs->end_wall - 1;
+	//print sol
 	while (++j < bs->ps->vertic_res)
 		my_mlx_pixel_put(bs, x, j, bs->ps->color_f);
 }
@@ -63,14 +69,14 @@ static void	check_hit(big_struct *bs)
 		//choix de la bonne direction pour le prochain carré
 		if (bs->rs->xnear < bs->rs->ynear)
 		{
-			bs->rs->rayshort = bs->rs->xnear;
+			bs->rs->raydist = bs->rs->xnear;
 			bs->rs->xnear += bs->rs->deltax;
 			bs->rs->mapx += bs->rs->xstep;
 			bs->rs->side = 0;
 		}
 		else
 		{
-			bs->rs->rayshort = bs->rs->ynear;
+			bs->rs->raydist = bs->rs->ynear;
 			bs->rs->ynear += bs->rs->deltay;
 			bs->rs->mapy += bs->rs->ystep;
 			bs->rs->side = 1;
@@ -79,8 +85,8 @@ static void	check_hit(big_struct *bs)
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1')
 		{
 			bs->rs->hit = 1;
-			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->rayshort;
-			bs->rs->inter_y = bs->ws->player_pos_x + bs->rs->base_y * bs->rs->rayshort;
+			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->raydist;
+			bs->rs->inter_y = bs->ws->player_pos_x + bs->rs->base_y * bs->rs->raydist;
 		}
 	}
 	bs->rs->hit = 0;
@@ -92,24 +98,16 @@ static void	raycasting(big_struct *bs, float angle)
 	bs->rs->mapy = (int)bs->ws->player_pos_y;//pos est en float, on int pour avoir l'index
 	bs->rs->deltax =  sqrt(1 + (sin(angle) * sin(angle)) / (cos(angle) * cos(angle)));
 	bs->rs->deltay =  sqrt(1 + (cos(angle) * cos(angle)) / (sin(angle) * sin(angle)));
-
 	check_step(bs, angle); //permet de se decaler en fonction de l'angle
 	check_hit(bs); //on check le next carré et verifie si c'est un mur ou non
 }
 
-
-
-void	rotate_vector(big_struct *bs)
-{	
-	bs->rs->base_x = 0 * cos(bs->rs->r_angle) - 1 * sin(bs->rs->r_angle);
-	bs->rs->base_y = 0 * sin(bs->rs->r_angle) + 1 * cos(bs->rs->r_angle); 
-}
-
-
 void	raycasting_loop(big_struct *bs)
 {
 	int 	i = -1;
+	//Adapte la res hoirz a la FOV (60)
 	float 	ratioangle = (60 * 0.0174532925) / bs->ps->horiz_res;
+	//Le premier rayon est tiré a 30degres a gauche du joueur
 	bs->rs->r_angle = bs->ws->p_angle + 30 * 0.0174532925;
 	xpm_init(bs);
 	while (++i < bs->ps->horiz_res)
@@ -119,12 +117,14 @@ void	raycasting_loop(big_struct *bs)
 			bs->rs->r_angle -= 2 * M_PI;
 		if (bs->rs->r_angle < 0)
 			bs->rs->r_angle += 2 * M_PI;
+		//Rotate vector pour trouver les bonnes intersections et afficher les textures
 		rotate_vector(bs);
 		raycasting(bs, bs->rs->r_angle);
 		//fish eye correction
-		bs->rs->rayshort *= cos(bs->ws->p_angle - bs->rs->r_angle);
-		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->rayshort;
+		bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
+		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
 		print_column(bs, i, bs->rs->wall_height);
+		//enleve ratio angle pour balayer tout l'ecran
 		bs->rs->r_angle -= ratioangle;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:41:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/09 14:19:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 10:55:01 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void	put_wall_north(big_struct *bs, int x, int j)
 	i = 0;
 	if (bs->rs->begin_wall < 0)
 		i = 0 - bs->rs->begin_wall;
+	//trouver le x de la texture pour afficher la bonne colonne
 	texture_x = bs->ts->n.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
 	if (bs->rs->side == 0)
 		texture_x = bs->ts->n.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
+	//ratio pour que la haurteur corresponde a celle du mur
 	ratio = (float)bs->ts->n.height / bs->rs->wall_onscreen_size;
 	while (i < bs->rs->wall_onscreen_size && j < bs->ps->vertic_res)
 	{
@@ -74,44 +76,49 @@ void	put_wall_south(big_struct *bs, int x, int j)
 	}
 }
 
-// void	put_wall_west(big_struct *bs, int x, int j)
-// {
-// 	int		texture_x;
-// 	float	ratio;
-// 	int		i;
-// 	int 	color;
+void	put_wall_west(big_struct *bs, int x, int j)
+{
+	int		texture_x;
+	float	ratio;
+	int		i;
+	int 	color;
 
-// 	i = 1;
-// 	texture_x = bs->ts->w.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
-// 	if (bs->rs->side == 0)
-// 		texture_x = bs->ts->w.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
-// 	ratio = (float)bs->ts->w.height / bs->rs->wall_onscreen_size;
-// 	while (i < bs->rs->wall_onscreen_size && j < bs->ps->vertic_res)
-// 	{
-// 		color = bs->ts->w.buff[texture_x + (int)((float)(i) * ratio) * 64];
-// 		my_mlx_pixel_put(bs, x, j, color);
-// 		j++;
-// 		i++;
-// 	}
-// }
+	i = 0;
+	if (bs->rs->begin_wall < 0)
+		i = 0 - bs->rs->begin_wall;
+	texture_x = bs->ts->w.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
+	if (bs->rs->side == 0)
+		texture_x = bs->ts->w.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
+	ratio = (float)bs->ts->w.height / bs->rs->wall_onscreen_size;
+	while (i < bs->rs->wall_onscreen_size && j < bs->ps->vertic_res)
+	{
+		color = bs->ts->w.buff[texture_x + (int)((float)(i) * ratio) * 64];
+		my_mlx_pixel_put(bs, x, j, color);
+		j++;
+		i++;
+	}
+}
 
-// void	put_wall_east(big_struct *bs, int x, int j)
-// {
-// 	int		texture_x;
-// 	float	ratio;
-// 	int		i;
-// 	int 	color;
+void	put_wall_east(big_struct *bs, int x, int j)
+{
+	int		texture_x;
+	float	ratio;
+	int		i;
+	int 	color;
 
-// 	i = 1;
-// 	texture_x = bs->ts->e.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
-// 	if (bs->rs->side == 0)
-// 		texture_x = bs->ts->e.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
-// 	ratio = (float)bs->ts->e.height / bs->rs->wall_onscreen_size;
-// 	while (i < bs->rs->wall_onscreen_size && j < bs->ps->vertic_res)
-// 	{
-// 		color = bs->ts->e.buff[texture_x + (int)((float)(i) * ratio) * 64];
-// 		my_mlx_pixel_put(bs, x, j, color);
-// 		j++;
-// 		i++;
-// 	}
-// }
+	i = 0;
+	if (bs->rs->begin_wall < 0)
+		i = 0 - bs->rs->begin_wall;
+	texture_x = bs->ts->e.width * (bs->rs->inter_y - (int)bs->rs->inter_y);
+	if (bs->rs->side == 0)
+		texture_x = bs->ts->e.width * (bs->rs->inter_x - (int)bs->rs->inter_x);
+	ratio = (float)bs->ts->e.height / bs->rs->wall_onscreen_size;
+	while (i < bs->rs->wall_onscreen_size && j < bs->ps->vertic_res)
+	{
+		color = bs->ts->e.buff[texture_x + (int)((float)(i) * ratio) * 64];
+		my_mlx_pixel_put(bs, x, j, color);
+		j++;
+		i++;
+	}
+}
+

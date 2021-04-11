@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/07 14:52:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/11 10:52:19 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void print_square(big_struct *bs, int posx, int posy, int color)
 	}
 }
 
-void print_direction(big_struct *bs, int posx, int posy, int color)
+void print_minisquare(big_struct *bs, int posx, int posy, int color)
 {
 	int x = 0;
 	int y = 0;
@@ -80,4 +80,6 @@ void	print_minimap(big_struct *bs)
 	}
 	bs->ws->minimap_pos_x = 0;
 	bs->ws->minimap_pos_y = 0;
+	print_minisquare(bs, bs->ws->player_pos_x * bs->ws->multiplicator, bs->ws->player_pos_y * bs->ws->multiplicator, 65280);
+	print_minisquare(bs, (bs->ws->player_pos_x + cos(bs->ws->p_angle)) * bs->ws->multiplicator, (bs->ws->player_pos_y - sin(bs->ws->p_angle)) * bs->ws->multiplicator, 16720777);
 }
