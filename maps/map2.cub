@@ -4,7 +4,7 @@ SO ./textures/tnt2.xpm
 WE ./textures/tnt1.xpm
 EA ./textures/minecraft1.xpm
 C  56,206,224
-S ./path_to_the_sprite_texture
+S ./textures/barrel_sprite.xpm
 F 113,67,32
 
 

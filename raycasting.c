@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/11 13:19:16 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 14:48:45 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	print_column(big_struct *bs, int x, float y)
 		put_wall_east(bs, x, j);
 	else
 		put_wall_west(bs, x, j);
+	bs->ss->begin_sprite = bs->ps->vertic_res / 2 - bs->ts->sp.height / 2;
 	j = bs->rs->end_wall - 1;
 	//print sol
 	while (++j < bs->ps->vertic_res)
@@ -64,6 +65,7 @@ static void	check_step(big_struct *bs, float angle)
 
 static void	check_hit(big_struct *bs)
 {
+	bs->ss->sprite = 0;
 	while (bs->rs->hit == 0)
 	{
 		//choix de la bonne direction pour le prochain carré
@@ -81,8 +83,15 @@ static void	check_hit(big_struct *bs)
 			bs->rs->mapy += bs->rs->ystep;
 			bs->rs->side = 1;
 		}
-		//touche un mur o
-		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
+		//touche un mur
+		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '2')
+		{
+			bs->ss->raydist_sprite = bs->rs->raydist;
+			bs->ss->sprite = 1;
+			bs->ss->inter_x_sprite = bs->ws->player_pos_y + bs->rs->base_x * bs->ss->raydist_sprite;
+			bs->ss->inter_y_sprite = bs->ws->player_pos_x + bs->rs->base_y * bs->ss->raydist_sprite;
+		}
+		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
 			bs->rs->hit = 1;
 			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->raydist;
@@ -122,9 +131,12 @@ void	raycasting_loop(big_struct *bs)
 		raycasting(bs, bs->rs->r_angle);
 		//fish eye correction
 		bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
+		bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle);
 		//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
 		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
 		print_column(bs, i, bs->rs->wall_height);
+		if (bs->ss->sprite == 1)
+			put_sprite(bs, i, bs->ss->begin_sprite);
 		//enleve ratio angle pour balayer tout l'ecran
 		bs->rs->r_angle -= ratioangle;
 	}

@@ -4,7 +4,7 @@ SO ./textures/commandblock.xpm
 WE ./textures/crafttable.xpm
 EA ./textures/purplestone.xpm
 C  56,206,224
-S ./path_to_the_sprite_texture
+S ./textures/barrel_sprite.xpm
 F 113,67,32
 
 

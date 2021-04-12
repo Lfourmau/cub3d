@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 11:48:42 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 11:06:15 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,18 @@ typedef struct textures_struct
 	textures_params	s;
 	textures_params	n;
 	textures_params	e;
+	textures_params	sp;
 }				textures_struct;
+
+typedef struct sprites_struct
+{
+	float raydist_sprite;
+	float inter_x_sprite;
+	float inter_y_sprite;
+	int sprite;
+	float sprite_height;
+	int begin_sprite;
+}			sprites_struct;	
 
 typedef struct  big_struct
 {
@@ -135,6 +146,7 @@ typedef struct  big_struct
 	ray_struct 		*rs;
 	textures_struct *ts;
 	keys_struct		*ks;
+	sprites_struct	*ss;
 }				big_struct;
 
 //PARSING FUNCS
@@ -179,12 +191,13 @@ void			smoove(big_struct *bs);
 void			sidemooves(big_struct *bs);
 void			lookmoove(big_struct *bs);
 
-//TREXTURES
+//TEXTURES
 void			render_textures(big_struct *bs);
 void			xpm_init(big_struct *bs);
 void			put_wall_north(big_struct *bs, int x, int j);
 void			put_wall_south(big_struct *bs, int x, int j);
 void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
+void			put_sprite(big_struct *bs, int x, int j);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 11:33:26 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/12 10:32:59 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int     main(int argc, char **argv)
 	bs.rs = malloc(sizeof(ray_struct));
 	bs.ts = malloc(sizeof(textures_struct));
 	bs.ks = malloc(sizeof(keys_struct));
+	bs.ss = malloc(sizeof(keys_struct));
 	//bs.ts->textures_params = malloc(sizeof(textures_params));
 
 	if (!bs.ps || !bs.ms)
