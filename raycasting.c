@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/13 09:28:14 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:02:05 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	print_column(big_struct *bs, int x, float y)
 		put_wall_east(bs, x, j);
 	else
 		put_wall_west(bs, x, j);
-	bs->ss->begin_sprite = bs->ps->vertic_res / 2 - bs->ts->sp.height / 2;
 	j = bs->rs->end_wall - 1;
 	//print sol
 	while (++j < bs->ps->vertic_res)
@@ -90,6 +89,7 @@ static void	check_hit(big_struct *bs)
 			bs->ss->inter_x_sprite = bs->ws->player_pos_y + bs->rs->base_x * bs->ss->raydist_sprite;
 			bs->ss->inter_y_sprite = bs->ws->player_pos_x + bs->rs->base_y * bs->ss->raydist_sprite;
 			bs->ss->spritenum++;
+			sprite_infos(bs);
 		}
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{

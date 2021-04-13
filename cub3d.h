@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/13 09:14:23 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 13:01:17 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,6 @@ void			put_wall_south(big_struct *bs, int x, int j);
 void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
 void			put_sprite(big_struct *bs, int x, int j);
+void	sprite_infos(big_struct *bs);
 
 #endif
