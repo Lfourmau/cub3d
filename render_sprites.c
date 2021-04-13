@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/13 13:00:42 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:53:53 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	sprite_infos(big_struct *bs)
 {
+	float a;
+	float b;
+	float d;
+
 	bs->ss->sprite_height = bs->ps->vertic_res / bs->ss->raydist_sprite;
 	bs->ss->begin_sprite = bs->ps->vertic_res / 2 - bs->ss->sprite_height / 2;
 	bs->ss->end_sprite = bs->ps->vertic_res / 2 + bs->ss->sprite_height / 2;

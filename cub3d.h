@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/13 13:01:17 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 16:53:59 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define DKEY 2
 # define ESC 53
 
-
+//PARSING
 typedef struct	parsing_struct
 	{
 		int 	horiz_res;
@@ -51,6 +51,7 @@ typedef struct	map_struct
 		int		spawn_y;
 	}			map_struct;
 
+//WINDOW MLX
 typedef struct	window_struct
 	{
 		void	*mlx_ptr;
@@ -80,6 +81,7 @@ typedef struct	keys_struct
 	int		esc;
 }				keys_struct;
 
+//RAYCASTING
 typedef struct ray_struct
 {
 		int		mapx;
@@ -195,7 +197,7 @@ void			smoove(big_struct *bs);
 void			sidemooves(big_struct *bs);
 void			lookmoove(big_struct *bs);
 
-//TEXTURES
+//TEXTURES AND SPRITES
 void			render_textures(big_struct *bs);
 void			xpm_init(big_struct *bs);
 void			put_wall_north(big_struct *bs, int x, int j);
@@ -203,6 +205,6 @@ void			put_wall_south(big_struct *bs, int x, int j);
 void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
 void			put_sprite(big_struct *bs, int x, int j);
-void	sprite_infos(big_struct *bs);
+void			sprite_infos(big_struct *bs);
 
 #endif
