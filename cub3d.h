@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/12 11:06:15 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 09:14:23 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,12 +130,16 @@ typedef struct textures_struct
 
 typedef struct sprites_struct
 {
-	float raydist_sprite;
-	float inter_x_sprite;
-	float inter_y_sprite;
-	int sprite;
-	float sprite_height;
-	int begin_sprite;
+	float 	raydist_sprite;
+	float 	inter_x_sprite;
+	float 	inter_y_sprite;
+	int 	spritenum;
+	float 	sprite_height;
+	int 	begin_sprite;
+	int 	end_sprite;
+	int		sprite_onscreen_size;
+	float 	base_x_sprite;
+	float 	base_y_sprite;
 }			sprites_struct;	
 
 typedef struct  big_struct

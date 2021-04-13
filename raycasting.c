@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/12 14:48:45 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 09:28:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	check_step(big_struct *bs, float angle)
 
 static void	check_hit(big_struct *bs)
 {
-	bs->ss->sprite = 0;
+	bs->ss->spritenum = 0;
 	while (bs->rs->hit == 0)
 	{
 		//choix de la bonne direction pour le prochain carré
@@ -87,9 +87,9 @@ static void	check_hit(big_struct *bs)
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '2')
 		{
 			bs->ss->raydist_sprite = bs->rs->raydist;
-			bs->ss->sprite = 1;
 			bs->ss->inter_x_sprite = bs->ws->player_pos_y + bs->rs->base_x * bs->ss->raydist_sprite;
 			bs->ss->inter_y_sprite = bs->ws->player_pos_x + bs->rs->base_y * bs->ss->raydist_sprite;
+			bs->ss->spritenum++;
 		}
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
@@ -135,7 +135,7 @@ void	raycasting_loop(big_struct *bs)
 		//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
 		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
 		print_column(bs, i, bs->rs->wall_height);
-		if (bs->ss->sprite == 1)
+		if (bs->ss->spritenum > 0)
 			put_sprite(bs, i, bs->ss->begin_sprite);
 		//enleve ratio angle pour balayer tout l'ecran
 		bs->rs->r_angle -= ratioangle;

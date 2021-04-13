@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mathematics.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:03:19 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 09:11:01 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/13 09:27:40 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void	detect_spawn_dir(big_struct *bs)
 void	rotate_vector(big_struct *bs)
 {	
 	bs->rs->base_x = 0 * cos(bs->rs->r_angle) - 1 * sin(bs->rs->r_angle);
-	bs->rs->base_y = 0 * sin(bs->rs->r_angle) + 1 * cos(bs->rs->r_angle); 
+	bs->rs->base_y = 0 * sin(bs->rs->r_angle) + 1 * cos(bs->rs->r_angle);
 }
