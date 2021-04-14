@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/13 16:53:59 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 11:36:20 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,8 @@ typedef struct sprites_struct
 	int 	begin_sprite;
 	int 	end_sprite;
 	int		sprite_onscreen_size;
-	float 	base_x_sprite;
-	float 	base_y_sprite;
+	float	center_sprite_x;
+	float	center_sprite_y;
 }			sprites_struct;	
 
 typedef struct  big_struct

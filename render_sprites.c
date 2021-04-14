@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/13 16:53:53 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/14 13:37:55 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 void	sprite_infos(big_struct *bs)
 {
-	float a;
-	float b;
-	float d;
-
 	bs->ss->sprite_height = bs->ps->vertic_res / bs->ss->raydist_sprite;
 	bs->ss->begin_sprite = bs->ps->vertic_res / 2 - bs->ss->sprite_height / 2;
 	bs->ss->end_sprite = bs->ps->vertic_res / 2 + bs->ss->sprite_height / 2;
 	bs->ss->sprite_onscreen_size = bs->ss->end_sprite - bs->ss->begin_sprite;
+	bs->ss->center_sprite_x = bs->rs->mapx + 0.5;
+	bs->ss->center_sprite_y = bs->rs->mapy + 0.5;
+	
+	bs->ss->inter_x_sprite = (sqrt(pow(bs->rs->deltax, 2) - 1) * (bs->ss->center_sprite_x + bs->ws->player_pos_x) + (bs->ss->center_sprite_y - bs->ws->player_pos_y)) / (2 * sqrt(pow(bs->rs->deltax, 2) - 1));
+	bs->ss->inter_y_sprite = sqrt(pow(bs->rs->deltax, 2) - 1) * bs->ss->inter_x_sprite + bs->ws->player_pos_y - sqrt(pow(bs->rs->deltax, 2) - 1) * bs->ws->player_pos_x;
+	printf(" X -> %f\n", bs->ss->inter_x_sprite);
+	printf("Y -> %f\n", bs->ss->inter_y_sprite);
+	printf("DELTA Y -> %f\n", bs->rs->deltay);
+	printf("DELTA X -> %f\n", bs->rs->deltax);
 }
+
 
 void	put_sprite(big_struct *bs, int x, int j)
 {
@@ -32,7 +38,6 @@ void	put_sprite(big_struct *bs, int x, int j)
 	int 	color;
 
 	i = 0;
-	sprite_infos(bs);
 	texture_x = bs->ts->sp.width * (bs->ss->inter_y_sprite - (int)bs->ss->inter_y_sprite);
 	if (bs->rs->side == 0)
 		texture_x = bs->ts->sp.width * (bs->ss->inter_x_sprite - (int)bs->ss->inter_x_sprite);
