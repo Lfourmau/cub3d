@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/14 11:36:20 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 12:52:45 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,11 @@ typedef struct sprites_struct
 	int		sprite_onscreen_size;
 	float	center_sprite_x;
 	float	center_sprite_y;
+	float 	vecx;
+	float 	vecy;
+	float 	secondpoint_x;
+	float	secondpoint_y;
+
 }			sprites_struct;	
 
 typedef struct  big_struct
@@ -205,6 +210,6 @@ void			put_wall_south(big_struct *bs, int x, int j);
 void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
 void			put_sprite(big_struct *bs, int x, int j);
-void			sprite_infos(big_struct *bs);
+int				sprite_infos(big_struct *bs);
 
 #endif

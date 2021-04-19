@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/14 13:51:35 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/19 12:52:38 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,10 @@ static void	check_hit(big_struct *bs)
 		//touche un mur
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '2')
 		{
-			bs->ss->raydist_sprite = bs->rs->raydist;
-			sprite_infos(bs);
-			
+			if (sprite_infos(bs) != -1)
+				bs->ss->spritenum = 1;
 			// bs->ss->inter_x_sprite = bs->ws->player_pos_y + bs->rs->base_x * bs->ss->raydist_sprite;
 			// bs->ss->inter_y_sprite = bs->ws->player_pos_x + bs->rs->base_y * bs->ss->raydist_sprite;
-			bs->ss->spritenum++;
 		}
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
@@ -107,11 +105,7 @@ static void	raycasting(big_struct *bs, float angle)
 	bs->rs->mapx = (int)bs->ws->player_pos_x;//pos est en float, on int pour avoir l'index
 	bs->rs->mapy = (int)bs->ws->player_pos_y;//pos est en float, on int pour avoir l'index
 	bs->rs->deltax =  sqrt(1 + (sin(angle) * sin(angle)) / (cos(angle) * cos(angle)));
-	if (bs->rs->deltax == 1)
-		bs->rs->deltax += 0.01;
 	bs->rs->deltay =  sqrt(1 + (cos(angle) * cos(angle)) / (sin(angle) * sin(angle)));
-	if (bs->rs->deltay)
-		bs->rs->deltay += 0.01;
 	check_step(bs, angle); //permet de se decaler en fonction de l'angle
 	check_hit(bs); //on check le next carré et verifie si c'est un mur ou non
 }
@@ -136,7 +130,6 @@ void	raycasting_loop(big_struct *bs)
 		raycasting(bs, bs->rs->r_angle);
 		//fish eye correction
 		bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
-		bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle);
 		//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
 		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
 		print_column(bs, i, bs->rs->wall_height);
