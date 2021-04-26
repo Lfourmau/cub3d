@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/20 10:30:43 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/26 09:19:41 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,17 @@ static void	check_hit(big_struct *bs)
 		{
 			if (sprite_infos(bs) == 1)
 				break;
+			// if ((bs->ss->inter_x_sprite < bs->ss->mapx_sprite || bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1) || (bs->ss->inter_y_sprite < bs->ss->mapy_sprite || bs->ss->inter_y_sprite > bs->ss->mapy_sprite + 1))
+			// 	bs->ss->spritenum = 0;
+			if (bs->ss->inter_x_sprite < bs->ss->mapx_sprite)
+				bs->ss->inter_x_sprite = bs->ss->mapx_sprite;
+			if (bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1)
+				bs->ss->inter_x_sprite = bs->ss->mapx_sprite + 1;
+			if (bs->ss->inter_y_sprite < bs->ss->mapy_sprite)
+				bs->ss->inter_y_sprite = bs->ss->mapy_sprite;
+			if (bs->ss->inter_y_sprite > bs->ss->mapy_sprite + 1)
+				bs->ss->inter_y_sprite = bs->ss->mapy_sprite + 1;
 			bs->ss->spritenum = 1;
-			// bs->ss->inter_x_sprite = bs->ws->player_pos_y + bs->rs->base_x * bs->ss->raydist_sprite;
-			// bs->ss->inter_y_sprite = bs->ws->player_pos_x + bs->rs->base_y * bs->ss->raydist_sprite;
 		}
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
