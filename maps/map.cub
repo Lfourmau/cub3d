@@ -1,10 +1,10 @@
-R 1200 1200
+R 1080 1080
 NO ./textures/minecraft3.xpm
 SO ./textures/minecraft2.xpm
 WE ./textures/minecraftwood.xpm
 EA ./textures/wood.xpm
 C  56,206,224
-S ./textures/barrel_sprite.xpm
+S ./textures/pikapika.xpm
 F 113,67,32
 
 

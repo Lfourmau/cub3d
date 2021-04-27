@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/26 09:38:27 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 11:28:10 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ int	sprite_infos(big_struct *bs)
 {
 	bs->ss->center_sprite_x = bs->rs->mapx + 0.5;
 	bs->ss->center_sprite_y = bs->rs->mapy + 0.5;
+	bs->ss->secondpoint_x = bs->ss->center_sprite_x + cos(bs->ws->p_angle + (M_PI / 2));
+	bs->ss->secondpoint_y = bs->ss->center_sprite_y - sin(bs->ws->p_angle + (M_PI / 2));
+	
+	// bs->ss->secondpoint_x = 32;
+	// bs->ss->secondpoint_y = (bs->ss->secondpoint_x * (bs->ws->player_pos_x - bs->ss->center_sprite_x) + pow(bs->ss->center_sprite_x, 2) - bs->ws->player_pos_x * bs->ss->center_sprite_x + bs->ss->center_sprite_y - bs->ws->player_pos_y * bs->ss->center_sprite_y) / (bs->ss->center_sprite_y - bs->ws->player_pos_y);
 
-	bs->ss->secondpoint_x = bs->rs->mapx;
-	bs->ss->secondpoint_y = (bs->ss->secondpoint_x * (bs->ws->player_pos_x - bs->ss->center_sprite_x) + pow(bs->ss->center_sprite_x, 2) - bs->ws->player_pos_x * bs->ss->center_sprite_x + bs->ss->center_sprite_y - bs->ws->player_pos_y * bs->ss->center_sprite_y) / (bs->ss->center_sprite_y - bs->ws->player_pos_y);
 	if (intersections_sprite(bs) == 1)
 		return (1);
 	bs->ss->raydist_sprite = sqrt(pow(bs->ss->center_sprite_x - bs->ws->player_pos_x, 2) + pow(bs->ss->center_sprite_y - bs->ws->player_pos_y, 2));
@@ -65,6 +68,13 @@ int	sprite_infos(big_struct *bs)
 	return (0);
 }
 
+float   dist(float xa, float xb, float ya, float yb)
+{
+    float   res;
+    res = sqrtf(powf(xa - xb, 2) + powf(ya - yb, 2));
+    return (res);
+}
+
 void	put_sprite(big_struct *bs, int x, int j)
 {
 	int		texture_x;
@@ -73,15 +83,19 @@ void	put_sprite(big_struct *bs, int x, int j)
 	int 	color;
 
 	i = 0;
-	if (bs->ss->inter_y_sprite < 0 || bs->ss->inter_y_sprite > number_of_split(bs->ms->map))
-		bs->ss->inter_y_sprite = 1;
-	texture_x = bs->ts->sp.width * ((bs->ss->inter_y_sprite - (int)bs->ss->inter_y_sprite));
+	// if (bs->ss->inter_y_sprite < 0 || bs->ss->inter_y_sprite > number_of_split(bs->ms->map))
+	// 	bs->ss->inter_y_sprite = 1;
+	texture_x = (1 + dist(bs->ss->firstx, bs->ss->inter_x_sprite, bs->ss->firsty, bs->ss->inter_y_sprite)) * (bs->ts->sp.width / 2);
+	// texture_x = bs->ts->sp.width * (bs->ss->inter_y_sprite - (int)(bs->ss->inter_y_sprite));
 	ratio = (float)bs->ts->sp.height / bs->ss->sprite_onscreen_size;
 	while (i < bs->ss->sprite_onscreen_size && j < bs->ps->vertic_res)
 	{
-		color = bs->ts->sp.buff[texture_x + (int)((float)(i) * ratio) * bs->ts->sp.height];
-		//  if (color != 0)
-			my_mlx_pixel_put(bs, x, j, color);
+		if (texture_x <= 63)
+		{
+			color = bs->ts->sp.buff[texture_x + (int)((float)(i) * ratio) * bs->ts->sp.height];
+			if (color != 0)
+				my_mlx_pixel_put(bs, x, j, color);
+		}
 		j++;
 		i++;
 	}
