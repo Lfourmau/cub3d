@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/28 11:50:49 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 12:53:59 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	sprite_infos(big_struct *bs)
 	if (intersections_sprite(bs) == 1)
 		return (1);
 	bs->ss->raydist_sprite = sqrt(pow(bs->ss->center_sprite_x - bs->ws->player_pos_x, 2) + pow(bs->ss->center_sprite_y - bs->ws->player_pos_y, 2));
-	bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle) / 1.33;
+	//bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle) / 1.33;
 	bs->ss->sprite_height = bs->ps->vertic_res / bs->ss->raydist_sprite;
 	bs->ss->begin_sprite = bs->ps->vertic_res / 2 - bs->ss->sprite_height / 2;
 	bs->ss->end_sprite = bs->ps->vertic_res / 2 + bs->ss->sprite_height / 2;
@@ -88,9 +88,9 @@ void	put_sprite(big_struct *bs, int x, int j)
 	ratio = (float)bs->ts->sp.height / bs->ss->sprite_onscreen_size;
 	while (i < bs->ss->sprite_onscreen_size && j < bs->ps->vertic_res)
 	{
-		if (texture_x <= 63 && texture_x >= 0)
+		if (texture_x <= 62 && texture_x >= 0)
 		{
-			color = bs->ts->sp.buff[texture_x + (int)((float)(i) * ratio) * bs->ts->sp.height];
+			color = bs->ts->sp.buff[texture_x + (int)((float)(i) * ratio) * bs->ts->sp.width];
 			if (color != 0)
 				my_mlx_pixel_put(bs, x, j, color);
 		}
