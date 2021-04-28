@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/28 11:29:58 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 11:50:49 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	sprite_infos(big_struct *bs)
 	if (intersections_sprite(bs) == 1)
 		return (1);
 	bs->ss->raydist_sprite = sqrt(pow(bs->ss->center_sprite_x - bs->ws->player_pos_x, 2) + pow(bs->ss->center_sprite_y - bs->ws->player_pos_y, 2));
-	bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle) / 2;
+	bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle) / 1.33;
 	bs->ss->sprite_height = bs->ps->vertic_res / bs->ss->raydist_sprite;
 	bs->ss->begin_sprite = bs->ps->vertic_res / 2 - bs->ss->sprite_height / 2;
 	bs->ss->end_sprite = bs->ps->vertic_res / 2 + bs->ss->sprite_height / 2;

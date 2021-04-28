@@ -4,7 +4,7 @@ SO ./textures/minecraft2.xpm
 WE ./textures/minecraftwood.xpm
 EA ./textures/wood.xpm
 C  56,206,224
-S ./textures/pikapika.xpm
+S ./textures/barrel_sprite.xpm
 F 113,67,32
 
 
