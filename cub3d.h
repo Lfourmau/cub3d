@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/27 11:23:44 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:18:22 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,6 @@ typedef struct sprites_struct
 	float	secondpoint_y;
 	int		mapx_sprite;
 	int		mapy_sprite;
-	int		firstmapx;
-	int firstmapy;
-	float firstx;
-	float firsty;
 }			sprites_struct;	
 
 typedef struct  big_struct

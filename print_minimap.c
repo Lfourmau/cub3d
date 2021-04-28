@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_minimap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 13:20:38 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/04/27 14:06:22 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void            my_mlx_pixel_put(big_struct *bs, int x, int y, int color)
 {
     char    *dst;
-
-    dst = bs->ws->img_ptr + (y * bs->ws->line_length + x * (bs->ws->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
+	if (x < bs->ps->horiz_res && x > 0 && y < bs->ps->vertic_res && y > 0)
+	{
+    	dst = bs->ws->img_ptr + (y * bs->ws->line_length + x * (bs->ws->bits_per_pixel / 8));
+    	*(unsigned int*)dst = color;
+	}
 }
 
 void print_square(big_struct *bs, int posx, int posy, int color)

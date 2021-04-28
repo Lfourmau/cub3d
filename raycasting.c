@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/27 11:28:23 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/28 10:36:24 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static void	check_hit(big_struct *bs)
 			if (sprite_infos(bs) == 1)
 				break;
 			bs->ss->spritenum = 1;
-			// if ((bs->ss->inter_x_sprite < bs->ss->mapx_sprite || bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1) || (bs->ss->inter_y_sprite < bs->ss->mapy_sprite || bs->ss->inter_y_sprite > bs->ss->mapy_sprite + 1))
-			// 	bs->ss->spritenum = 0;
+			if ((bs->ss->inter_x_sprite < bs->ss->mapx_sprite || bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1) || (bs->ss->inter_y_sprite < bs->ss->mapy_sprite || bs->ss->inter_y_sprite > bs->ss->mapy_sprite + 1))
+				bs->ss->spritenum = 0;
 			if (bs->ss->inter_x_sprite < bs->ss->mapx_sprite)
 				bs->ss->inter_x_sprite = bs->ss->mapx_sprite;
 			if (bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1)
