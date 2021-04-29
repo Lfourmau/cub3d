@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/28 10:36:24 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/29 16:45:50 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	check_step(big_struct *bs, float angle)
 	}
 }
 
-static void	check_hit(big_struct *bs)
+static void	check_hit(big_struct *bs, int i)
 {
 	bs->ss->spritenum = 0;
 	while (bs->rs->hit == 0)
@@ -82,41 +82,38 @@ static void	check_hit(big_struct *bs)
 			bs->rs->mapy += bs->rs->ystep;
 			bs->rs->side = 1;
 		}
-		//touche un mur
+		//touche un sprite
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '2')
 		{
-			if (sprite_infos(bs) == 1)
-				break;
-			bs->ss->spritenum = 1;
-			if ((bs->ss->inter_x_sprite < bs->ss->mapx_sprite || bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1) || (bs->ss->inter_y_sprite < bs->ss->mapy_sprite || bs->ss->inter_y_sprite > bs->ss->mapy_sprite + 1))
-				bs->ss->spritenum = 0;
-			if (bs->ss->inter_x_sprite < bs->ss->mapx_sprite)
-				bs->ss->inter_x_sprite = bs->ss->mapx_sprite;
-			if (bs->ss->inter_x_sprite > bs->ss->mapx_sprite + 1)
-				bs->ss->inter_x_sprite = bs->ss->mapx_sprite + 1;
-			if (bs->ss->inter_y_sprite < bs->ss->mapy_sprite)
-				bs->ss->inter_y_sprite = bs->ss->mapy_sprite;
-			if (bs->ss->inter_y_sprite > bs->ss->mapy_sprite + 1)
-				bs->ss->inter_y_sprite = bs->ss->mapy_sprite + 1;
+			if (sprite_infos(bs) == 0)
+				bs->ss->spritenum = 1;
 		}
+		//touche un mur
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
 			bs->rs->hit = 1;
 			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->raydist;
 			bs->rs->inter_y = bs->ws->player_pos_x + bs->rs->base_y * bs->rs->raydist;
+			//fish eye correction
+			bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
+			//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
+			bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
+			print_column(bs, i, bs->rs->wall_height);
 		}
 	}
+	if (bs->ss->spritenum == 1)
+		put_sprite(bs, i, bs->ss->begin_sprite);
 	bs->rs->hit = 0;
 }
 
-static void	raycasting(big_struct *bs, float angle)
+static void	raycasting(big_struct *bs, float angle, int i)
 {
 	bs->rs->mapx = (int)bs->ws->player_pos_x;//pos est en float, on int pour avoir l'index
 	bs->rs->mapy = (int)bs->ws->player_pos_y;//pos est en float, on int pour avoir l'index
 	bs->rs->deltax =  sqrt(1 + (sin(angle) * sin(angle)) / (cos(angle) * cos(angle)));
 	bs->rs->deltay =  sqrt(1 + (cos(angle) * cos(angle)) / (sin(angle) * sin(angle)));
 	check_step(bs, angle); //permet de se decaler en fonction de l'angle
-	check_hit(bs); //on check le next carré et verifie si c'est un mur ou non
+	check_hit(bs, i); //on check le next carré et verifie si c'est un mur ou non
 }
 
 void	raycasting_loop(big_struct *bs)
@@ -136,14 +133,7 @@ void	raycasting_loop(big_struct *bs)
 			bs->rs->r_angle += 2 * M_PI;
 		//Rotate vector pour trouver les bonnes intersections et afficher les textures
 		rotate_vector(bs);
-		raycasting(bs, bs->rs->r_angle);
-		//fish eye correction
-		bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
-		//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
-		bs->rs->wall_height = bs->ps->vertic_res / bs->rs->raydist;
-		print_column(bs, i, bs->rs->wall_height);
-		if (bs->ss->spritenum > 0)
-			put_sprite(bs, i, bs->ss->begin_sprite);
+		raycasting(bs, bs->rs->r_angle, i);
 		//enleve ratio angle pour balayer tout l'ecran
 		bs->rs->r_angle -= ratioangle;
 	}

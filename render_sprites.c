@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/28 12:53:59 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/04/29 16:45:34 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	put_sprite(big_struct *bs, int x, int j)
 	float	ratio;
 	int		i;
 	int 	color;
-	float distance;
+	float	distance;
 
 	i = 0;
 	distance = dist(bs->ss->center_sprite_x, bs->ss->inter_x_sprite, bs->ss->center_sprite_y, bs->ss->inter_y_sprite);
