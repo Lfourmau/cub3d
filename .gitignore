@@ -1,0 +1,8 @@
+*.o
+*.a
+*.dylib
+cub3d
+*.swiftdoc
+*.swiftmodule
+.DS_Store
+.vscode
