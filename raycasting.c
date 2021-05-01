@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/04/29 16:45:50 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/01 10:26:09 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,15 @@ static void	check_hit(big_struct *bs, int i)
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '2')
 		{
 			if (sprite_infos(bs) == 0)
-				bs->ss->spritenum = 1;
+				//if (bs->ss->inter_sprite.x < bs->ss->mapx_sprite + 1 && bs->ss->inter_sprite.x > bs->ss->mapx_sprite && bs->ss->inter_sprite.y < bs->ss->mapy_sprite + 1 && bs->ss->inter_sprite.y > bs->ss->mapy_sprite)
+					bs->ss->spritenum = 1;
 		}
 		//touche un mur
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
 		{
 			bs->rs->hit = 1;
-			bs->rs->inter_x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->raydist;
-			bs->rs->inter_y = bs->ws->player_pos_x + bs->rs->base_y * bs->rs->raydist;
+			bs->rs->inter_wall.x = bs->ws->player_pos_y + bs->rs->base_x * bs->rs->raydist;
+			bs->rs->inter_wall.y = bs->ws->player_pos_x + bs->rs->base_y * bs->rs->raydist;
 			//fish eye correction
 			bs->rs->raydist *= cos(bs->ws->p_angle - bs->rs->r_angle);
 			//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas

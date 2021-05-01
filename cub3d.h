@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/29 16:45:27 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/01 09:25:10 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # define SKEY 1
 # define DKEY 2
 # define ESC 53
+
+typedef	struct s_point
+{
+	float 		x;
+	float 		y;
+}				t_point;
+
 
 //PARSING
 typedef struct	parsing_struct
@@ -96,8 +103,7 @@ typedef struct ray_struct
 		int 	side;
 		float 	r_angle;
 		float	raydist;
-		float 	inter_x;
-		float 	inter_y;
+		t_point inter_wall;
 		float 	wall_height;
 		float 	begin_wall;
 		float 	end_wall;
@@ -133,17 +139,12 @@ typedef struct textures_struct
 typedef struct sprites_struct
 {
 	float 	raydist_sprite;
-	float 	inter_x_sprite;
-	float 	inter_y_sprite;
+	t_point	inter_sprite;
 	int 	spritenum;
-	float 	sprite_height;
 	int 	begin_sprite;
-	int 	end_sprite;
 	int		sprite_onscreen_size;
-	float	center_sprite_x;
-	float	center_sprite_y;
-	float 	secondpoint_x;
-	float	secondpoint_y;
+	t_point	center_sprite;
+	t_point	secondpoint;
 	int		mapx_sprite;
 	int		mapy_sprite;
 }			sprites_struct;	
@@ -210,5 +211,7 @@ void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
 void			put_sprite(big_struct *bs, int x, int j);
 int				sprite_infos(big_struct *bs);
+float   dist(float xa, float xb, float ya, float yb);
+void	clear_spritestruct(big_struct *bs);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/04/13 14:54:59 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/05/01 09:28:03 by loic             ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = 	main.c \
 		raycasting.c \
 		render_textures.c \
 		render_sprites.c \
+		render_sprites_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
