@@ -1,0 +1,6 @@
+mlx getscreen sprite_onscreen_size
+collsiion sprites_struct--save
+check que les texturees existent
+fichier caché .cub
+norme
+ratio de largeur des textures
