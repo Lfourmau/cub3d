@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_sprites_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 09:24:29 by loic              #+#    #+#             */
-/*   Updated: 2021/05/01 09:44:00 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 10:45:40 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,11 @@ float   dist(float xa, float xb, float ya, float yb)
     return (res);
 }
 
-void	clear_spritestruct(big_struct *bs)
+void	put_all_sprites(big_struct *bs, int i, sprites_struct *spritestab)
 {
-	bs->ss->sprite_onscreen_size = 0;
-	bs->ss->raydist_sprite = 0;
-	bs->ss->secondpoint.x = 0;
-	bs->ss->secondpoint.y = 0;
-	bs->ss->mapx_sprite = 0;
-	bs->ss->mapy_sprite = 0;
-	bs->ss->center_sprite.x = 0;
-	bs->ss->center_sprite.y = 0;
-	bs->ss->begin_sprite = 0;
-	bs->ss->inter_sprite.x = 0;
-	bs->ss->inter_sprite.y = 0;
+	while (bs->ss->spritenum >= 0)
+	{
+		put_sprite(bs, i, spritestab[bs->ss->spritenum].begin_sprite, spritestab[bs->ss->spritenum]);
+		bs->ss->spritenum--;
+	}
 }

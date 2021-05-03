@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/03 06:59:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 10:49:28 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,9 @@ void			put_wall_north(big_struct *bs, int x, int j);
 void			put_wall_south(big_struct *bs, int x, int j);
 void			put_wall_west(big_struct *bs, int x, int j);
 void			put_wall_east(big_struct *bs, int x, int j);
-void			put_sprite(big_struct *bs, int x, int j);
-int				sprite_infos(big_struct *bs);
+void			put_sprite(big_struct *bs, int x, int j, sprites_struct sprite);
+void				sprite_infos(big_struct *bs, sprites_struct *spritestab);
 float   dist(float xa, float xb, float ya, float yb);
-void	clear_spritestruct(big_struct *bs);
+void	put_all_sprites(big_struct *bs, int i, sprites_struct *spritestab);
 
 #endif
