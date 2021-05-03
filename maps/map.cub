@@ -1,4 +1,4 @@
-R 1920 1080
+R 1080 1080
 NO ./textures/minecraft3.xpm
 SO ./textures/minecraft2.xpm
 WE ./textures/minecraftwood.xpm

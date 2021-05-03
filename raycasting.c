@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/05/01 10:26:09 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 08:38:07 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,10 @@ static void	check_hit(big_struct *bs, int i)
 		//touche un sprite
 		if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '2')
 		{
-			if (sprite_infos(bs) == 0)
+			if (!sprite_infos(bs))
 				//if (bs->ss->inter_sprite.x < bs->ss->mapx_sprite + 1 && bs->ss->inter_sprite.x > bs->ss->mapx_sprite && bs->ss->inter_sprite.y < bs->ss->mapy_sprite + 1 && bs->ss->inter_sprite.y > bs->ss->mapy_sprite)
-					bs->ss->spritenum = 1;
+					bs->ss->spritenum++;
+			printf("INTER X : %f -- INTER Y %f -- SP %d\n", bs->ss->inter_sprite.x, bs->ss->inter_sprite.y, bs->ss->spritenum);
 		}
 		//touche un mur
 		else if (bs->ms->map[bs->rs->mapy][bs->rs->mapx] && (bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '1' || bs->ms->map[bs->rs->mapy][bs->rs->mapx] == '3'))
@@ -102,7 +103,7 @@ static void	check_hit(big_struct *bs, int i)
 			print_column(bs, i, bs->rs->wall_height);
 		}
 	}
-	if (bs->ss->spritenum == 1)
+	if (bs->ss->spritenum > 0)
 		put_sprite(bs, i, bs->ss->begin_sprite);
 	bs->rs->hit = 0;
 }

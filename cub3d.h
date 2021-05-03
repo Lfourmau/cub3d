@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/01 09:25:10 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 06:59:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,13 @@ typedef struct textures_struct
 
 typedef struct sprites_struct
 {
-	float 	raydist_sprite;
 	t_point	inter_sprite;
+	t_point	center_sprite;
+	t_point	secondpoint;
+	float 	raydist_sprite;
 	int 	spritenum;
 	int 	begin_sprite;
 	int		sprite_onscreen_size;
-	t_point	center_sprite;
-	t_point	secondpoint;
 	int		mapx_sprite;
 	int		mapy_sprite;
 }			sprites_struct;	

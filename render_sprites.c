@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_sprites.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/01 10:23:24 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/05/03 09:27:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,53 @@ void	set_inter_sprite(big_struct *bs, float x, float y)
 	bs->ss->inter_sprite.y = y;
 }
 
-int	intersections_sprite(big_struct *bs)
-{
-	double slope_a;
-	double slope_b;
+// int	intersections_sprite(big_struct *bs)
+// {
+// 	double slope_a;
+// 	double slope_b;
 
-	slope_a = line_slope(bs->ws->player_pos_x, bs->ws->player_pos_y, bs->ws->player_pos_x + cos(bs->rs->r_angle), bs->ws->player_pos_y - sin(bs->rs->r_angle));
-	slope_b = line_slope(bs->ss->center_sprite.x, bs->ss->center_sprite.y, bs->ss->secondpoint.x, bs->ss->secondpoint.y);
-	if (slope_a == slope_b || (isnan(slope_a) && isnan(slope_b)))
-		return (1);
-	else if (isnan(slope_a) && !isnan(slope_b))
-		set_inter_sprite(bs, bs->ws->player_pos_x, (bs->ws->player_pos_x - bs->ss->center_sprite.x) * slope_b + bs->ss->center_sprite.y);
+// 	slope_a = line_slope(bs->ws->player_pos_x, bs->ws->player_pos_y, bs->ws->player_pos_x + cos(bs->rs->r_angle), bs->ws->player_pos_y - sin(bs->rs->r_angle));
+// 	slope_b = line_slope(bs->ss->center_sprite.x, bs->ss->center_sprite.y, bs->ss->secondpoint.x, bs->ss->secondpoint.y);
+// 	if (slope_a == slope_b || (isnan(slope_a) && isnan(slope_b)))
+// 		return (1);
+// 	else if (isnan(slope_a) && !isnan(slope_b))
+// 		set_inter_sprite(bs, bs->ws->player_pos_x, (bs->ws->player_pos_x - bs->ss->center_sprite.x) * slope_b + bs->ss->center_sprite.y);
+// 	else if (isnan(slope_b) && !isnan(slope_a))
+// 		set_inter_sprite(bs, bs->ss->center_sprite.x, (bs->ss->center_sprite.x - bs->ws->player_pos_x) * slope_a + bs->ws->player_pos_y);
+// 	else
+// 		set_inter_sprite(bs, (slope_a * bs->ws->player_pos_x - slope_b * bs->ss->center_sprite.x + bs->ss->center_sprite.y - bs->ws->player_pos_y) \
+// 	    / (slope_a - slope_b), slope_b * (bs->ss->inter_sprite.x - bs->ss->center_sprite.x) + bs->ss->center_sprite.y);
+// 	return (0);
+// }
+
+t_point	intersection_sprite(big_struct *bs, float a1x, float a1y, t_point b1, t_point b2)
+{
+	double	slope_a;
+	double	slope_b;
+	t_point	res;
+	t_point a2;
+
+	a2.x = bs->ws->player_pos_x + cos(bs->rs->r_angle);
+	a2.y = bs->ws->player_pos_y - sin(bs->rs->r_angle);
+	slope_a = line_slope(a1x, a1y, a2.x, a2.y);
+	slope_b = line_slope(b1.x, b1.y, b2.x, b2.y);
+	if (isnan(slope_a) && !isnan(slope_b))
+	{
+		res.x = a1x;
+		res.y = (a1x - b1.x) * slope_b + b1.y;
+	}
 	else if (isnan(slope_b) && !isnan(slope_a))
-		set_inter_sprite(bs, bs->ss->center_sprite.x, (bs->ss->center_sprite.x - bs->ws->player_pos_x) * slope_a + bs->ws->player_pos_y);
+	{
+		res.x = b1.x;
+		res.y = (b1.x - a1x) * slope_a + a1y;
+	}
 	else
-		set_inter_sprite(bs, (slope_a * bs->ws->player_pos_x - slope_b * bs->ss->center_sprite.x + bs->ss->center_sprite.y - bs->ws->player_pos_y) \
-	    / (slope_a - slope_b), slope_b * (bs->ss->inter_sprite.x - bs->ss->center_sprite.x) + bs->ss->center_sprite.y);
-	return (0);
+	{
+		res.x = (slope_a * a1x - slope_b * b1.x + b1.y - a1y) \
+		/ (slope_a - slope_b);
+		res.y = slope_b * (res.x - b1.x) + b1.y;
+	}
+	return (res);
 }
 
 int	sprite_infos(big_struct *bs)
@@ -51,8 +81,7 @@ int	sprite_infos(big_struct *bs)
 	bs->ss->center_sprite.y = bs->rs->mapy + 0.5;
 	bs->ss->secondpoint.x = bs->ss->center_sprite.x + cos(bs->ws->p_angle + (M_PI / 2));
 	bs->ss->secondpoint.y = bs->ss->center_sprite.y - sin(bs->ws->p_angle + (M_PI / 2));
-	if (intersections_sprite(bs) == 1)
-		return (1);
+	bs->ss->inter_sprite = intersection_sprite(bs, bs->ws->player_pos_x, bs->ws->player_pos_y, bs->ss->center_sprite, bs->ss->secondpoint);
 	bs->ss->raydist_sprite = sqrt(pow(bs->ss->center_sprite.x - bs->ws->player_pos_x, 2) + pow(bs->ss->center_sprite.y - bs->ws->player_pos_y, 2));
 	//bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle) / 1.33;
 	bs->ss->sprite_onscreen_size = bs->ps->vertic_res / bs->ss->raydist_sprite;
