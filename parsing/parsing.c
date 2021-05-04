@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 10:33:14 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:15:34 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	parse_r(char *line, t_big_struct *bs)
 {
 	char	**split;
 
-	if (bs->ps->horiz_res != 0 || bs->ps->vertic_res != 0)
+	if (bs->ps.horiz_res != 0 || bs->ps.vertic_res != 0)
 		return (printf("Error\nToo much informations\n"));
 	split = ft_split(line, ' ');
 	if (number_of_split(split) != 3 || (check_full_numbers(split, 1) == 1))
@@ -24,8 +24,8 @@ int	parse_r(char *line, t_big_struct *bs)
 		free(split);
 		return (printf("Error\nWrong resolution\n"));
 	}
-	bs->ps->horiz_res = ft_atoi(split[1]);
-	bs->ps->vertic_res = ft_atoi(split[2]);
+	bs->ps.horiz_res = ft_atoi(split[1]);
+	bs->ps.vertic_res = ft_atoi(split[2]);
 	free_splits(split, number_of_split(split));
 	free(line);
 	return (0);
@@ -41,16 +41,16 @@ int	parse_textures(char *line, t_big_struct *bs)
 		return (printf("Error\nWrong textures\n"));
 		free(split);
 	}
-	if (!ft_strncmp(split[0], "NO", 2) && bs->ps->NO == 0)
-		bs->ps->NO = ft_strdup(split[1]);
-	else if (!ft_strncmp(split[0], "SO", 2) && bs->ps->SO == 0)
-		bs->ps->SO = ft_strdup(split[1]);
-	else if (!ft_strncmp(split[0], "WE", 2) && bs->ps->WE == 0)
-		bs->ps->WE = ft_strdup(split[1]);
-	else if (!ft_strncmp(split[0], "EA", 2) && bs->ps->EA == 0)
-		bs->ps->EA = ft_strdup(split[1]);
-	else if (split[0][0] == 'S' && split[0][1] != 'O' && bs->ps->S == 0)
-		bs->ps->S = ft_strdup(split[1]);
+	if (!ft_strncmp(split[0], "NO", 2) && bs->ps.NO == 0)
+		bs->ps.NO = ft_strdup(split[1]);
+	else if (!ft_strncmp(split[0], "SO", 2) && bs->ps.SO == 0)
+		bs->ps.SO = ft_strdup(split[1]);
+	else if (!ft_strncmp(split[0], "WE", 2) && bs->ps.WE == 0)
+		bs->ps.WE = ft_strdup(split[1]);
+	else if (!ft_strncmp(split[0], "EA", 2) && bs->ps.EA == 0)
+		bs->ps.EA = ft_strdup(split[1]);
+	else if (split[0][0] == 'S' && split[0][1] != 'O' && bs->ps.S == 0)
+		bs->ps.S = ft_strdup(split[1]);
 	else
 		return (printf("Error\nToo much informations\n"));
 	free_splits(split, number_of_split(split));
@@ -73,10 +73,10 @@ int	parse_colors(char *line, t_big_struct *bs)
 		free(comma_split);
 		return (printf("Error\nWrong colors\n"));
 	}
-	if (*c == 'F' && bs->ps->color_f == -1)
-		bs->ps->color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
-	else if (*c == 'C' && bs->ps->color_c == -1)
-		bs->ps->color_c = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
+	if (*c == 'F' && bs->ps.color_f == -1)
+		bs->ps.color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
+	else if (*c == 'C' && bs->ps.color_c == -1)
+		bs->ps.color_c = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
 	else
 		return (printf("Error\nToo much informations\n"));
 	free_splits(comma_split, number_of_split(comma_split));
@@ -97,13 +97,13 @@ int	full_parsing_body(char *line, t_big_struct *bs, int *j)
 	{
 		if (check_struct(bs) == 1)
 			return (printf("Error\nInformation mising before the map\n"));
-		bs->ms->map = map_nextline(bs->ms->map, line, *j);
+		bs->ms.map = map_nextline(bs->ms.map, line, *j);
 		*j += 1;
 	}
 	else if (line[0] == 0)
 	{
 		free(line);
-		if (bs->ms->map != 0)
+		if (bs->ms.map != 0)
 			return (printf("Empty line in the map\n"));
 		return (0);
 	}
@@ -135,6 +135,6 @@ int	full_parsing(char *map, t_big_struct *bs)
 	if (check_struct(bs))
 		return (free_struct(bs, line));
 	//free(line);
-	display_spaces(bs->ms->map);
+	display_spaces(bs->ms.map);
 	return (0);
 }

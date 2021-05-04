@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:08:23 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:11:26 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,8 @@ static int		parsing(char *arg, t_big_struct *bs)
 
 int     main(int argc, char **argv)
 {
-	t_big_struct bs;
-	bs.ps = malloc(sizeof(t_parse_struct));
-	bs.ms = malloc(sizeof(t_map_struct));
-	bs.ws = malloc(sizeof(t_window_struct));
-	bs.rs = malloc(sizeof(t_ray_struct));
-	bs.ts = malloc(sizeof(t_textures_struct));
-	bs.ks = malloc(sizeof(t_keys_struct));
-	bs.ss = malloc(sizeof(t_sprites_struct));
+	t_big_struct	bs;
 
-	if (!bs.ps || !bs.ms)
-	{
-		free(bs.ps);
-		free(bs.ms);
-	}
 	if (argc == 2)
 	{
 		if (parsing(argv[1], &bs))

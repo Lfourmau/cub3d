@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 10:32:43 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:14:18 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ int	limit_colors(char **colors)
 
 int	texture_exist(t_big_struct *bs)
 {
-	if (open(bs->ps->NO, O_RDONLY) == -1)
+	if (open(bs->ps.NO, O_RDONLY) == -1)
 		return (1);
-	if (open(bs->ps->SO, O_RDONLY) == -1)
+	if (open(bs->ps.SO, O_RDONLY) == -1)
 		return (1);
-	if (open(bs->ps->EA, O_RDONLY) == -1)
+	if (open(bs->ps.EA, O_RDONLY) == -1)
 		return (1);
-	if (open(bs->ps->WE, O_RDONLY) == -1)
+	if (open(bs->ps.WE, O_RDONLY) == -1)
 		return (1);
-	if (open(bs->ps->S, O_RDONLY) == -1)
+	if (open(bs->ps.S, O_RDONLY) == -1)
 		return (1);
 	return (0);
 }

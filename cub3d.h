@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:08:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:11:19 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,13 +154,13 @@ typedef struct s_sprites_struct
 
 typedef struct s_big_struct
 {
-	t_parse_struct		*ps;
-	t_map_struct		*ms;
-	t_window_struct		*ws;
-	t_ray_struct		*rs;
-	t_textures_struct	*ts;
-	t_keys_struct		*ks;
-	t_sprites_struct	*ss;
+	t_parse_struct		ps;
+	t_map_struct		ms;
+	t_window_struct		ws;
+	t_ray_struct		rs;
+	t_textures_struct	ts;
+	t_keys_struct		ks;
+	t_sprites_struct	ss;
 }				t_big_struct;
 
 //PARSING FUNCS

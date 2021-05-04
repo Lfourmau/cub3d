@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 09:24:29 by loic              #+#    #+#             */
-/*   Updated: 2021/05/04 08:29:59 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:18:20 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ float	dist(float xa, float xb, float ya, float yb)
 
 void	put_all_sprites(t_big_struct *bs, int i, t_sprites_struct *spritestab)
 {
-	while (bs->ss->spritenum >= 0)
+	while (bs->ss.spritenum >= 0)
 	{
-		put_sprite(bs, i, spritestab[bs->ss->spritenum].begin_sprite, spritestab[bs->ss->spritenum]);
-		bs->ss->spritenum--;
+		put_sprite(bs, i, spritestab[bs->ss.spritenum].begin_sprite, spritestab[bs->ss.spritenum]);
+		bs->ss.spritenum--;
 	}
 }
