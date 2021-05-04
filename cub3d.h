@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:55:34 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 10:07:49 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ typedef struct s_intpoint
 //PARSING
 typedef struct s_parsing_struct
 {
-	int		horiz_res;
-	int		vertic_res;	
-	int		color_f;
-	int		color_c;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*S;
+	t_intpoint	screensize;
+	int			horiz_res;
+	int			vertic_res;	
+	int			color_f;
+	int			color_c;
+	char		*NO;
+	char		*SO;
+	char		*WE;
+	char		*EA;
+	char		*S;
 }			t_parse_struct;
 
 typedef struct s_map_struct
@@ -186,6 +187,7 @@ void			my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color);
 void			print_square(t_big_struct *bs, int posx, int posy, int color);
 void			print_minimap(t_big_struct *bs);
 void			print_minisquare(t_big_struct *bs, int posx, int posy, int color);
+void    		print_full_minimap(t_big_struct *bs);
 
 //MLX FUNCS
 int				window_prog(t_big_struct *bs);
@@ -214,7 +216,7 @@ void			put_wall_west(t_big_struct *bs, int x, int j);
 void			put_wall_east(t_big_struct *bs, int x, int j);
 void			sprite_infos(t_big_struct *bs, t_sprites_struct *spritestab);
 float			dist(float xa, float xb, float ya, float yb);
-void		print_column(t_big_struct *bs, int x, float y);
+void			print_column(t_big_struct *bs, int x, float y);
 void			put_all_sprites(t_big_struct *bs, int i, \
 t_sprites_struct *spritestab);
 void			put_sprite(t_big_struct *bs, int x, int j, \

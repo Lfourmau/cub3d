@@ -1,4 +1,3 @@
-mlx getscreen sprite_onscreen_size
 collsiion sprites_struct--save
 check que les texturees existent
 fichier caché .cub

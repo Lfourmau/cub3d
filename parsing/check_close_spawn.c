@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:35:37 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 09:56:29 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	valid_middle_lines(t_big_struct *bs)
 
 	i = 1;
 	nb_splits = number_of_split(bs->ms->map);
-	while (i < nb_splits - 1) //i - 1 car extremites deja check
+	while (i < nb_splits - 1)
 	{
 		j = 0;
 		while (ft_isspace(bs->ms->map[i][j]))

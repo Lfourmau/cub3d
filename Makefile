@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/05/04 08:53:19 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/05/04 10:08:53 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS = 	main.c \
 		parsing/check_pcub.c \
 		window_prog.c \
 		print_minimap.c \
+		print_minimap_utils.c \
 		mathematics.c \
 		moove_funcs.c \
 		raycasting.c \

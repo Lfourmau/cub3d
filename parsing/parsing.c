@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:02:00 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 10:03:48 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	full_parsing_body(char *line, t_big_struct *bs, int *j)
 	return (0);
 }
 
-int	full_parsing(char *map, t_big_struct *bs) //la map sera argv[1]
+int	full_parsing(char *map, t_big_struct *bs)
 {
 	char	*line;
 	int		fd;
