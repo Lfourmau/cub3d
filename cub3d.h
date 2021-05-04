@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 10:07:49 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:08:19 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ int				check_around(char c);
 int				check_cub(char *str);
 int				check_struct(t_big_struct *bs);
 int				free_struct(t_big_struct *bs, char *line);
+int				texture_exist(t_big_struct *bs);
 
 //PRINT FUNCS
 void			my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color);
@@ -221,5 +222,8 @@ void			put_all_sprites(t_big_struct *bs, int i, \
 t_sprites_struct *spritestab);
 void			put_sprite(t_big_struct *bs, int x, int j, \
 t_sprites_struct sprite);
+
+//BITMAP
+int			check_save(char *str);
 
 #endif

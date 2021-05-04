@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 07:56:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 11:08:23 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int		parsing(char *arg, t_big_struct *bs)
 	if (check_cub(arg))
 			return (printf("Error\nbad map format\n"));
 	parsing_struct_init(bs);
-	if (full_parsing(arg, bs) == 1)
+	if (full_parsing(arg, bs) > 0)
 			return (1);
 	if (check_spawn_close(bs))
 			return (printf("Error\nInvalid map\n"));
@@ -68,8 +68,6 @@ static int		parsing(char *arg, t_big_struct *bs)
 
 int     main(int argc, char **argv)
 {
-	int i;
-	int j;
 	t_big_struct bs;
 	bs.ps = malloc(sizeof(t_parse_struct));
 	bs.ms = malloc(sizeof(t_map_struct));
@@ -78,41 +76,22 @@ int     main(int argc, char **argv)
 	bs.ts = malloc(sizeof(t_textures_struct));
 	bs.ks = malloc(sizeof(t_keys_struct));
 	bs.ss = malloc(sizeof(t_sprites_struct));
-	//bs.ts->textures_params = malloc(sizeof(textures_params));
 
 	if (!bs.ps || !bs.ms)
 	{
 		free(bs.ps);
 		free(bs.ms);
 	}
-	i = 0;
-	j = 0;
 	if (argc == 2)
 	{
 		if (parsing(argv[1], &bs))
 			return (1);
 		window_prog(&bs);
-		// printf("\n\n\033[33m----------INFOS---------------\033[0m\n");
-		// printf("\033[92mRes Horizontale\033[0m --> [%d]\n", bs.ps->horiz_res);
-		// printf("\033[92mRes Verticale\033[0m --> [%d]\n", bs.ps->vertic_res);
-		// printf("\033[92mNO\033[0m --> [%s]\n", bs.ps->NO);
-		// printf("\033[92mSO\033[0m --> [%s]\n", bs.ps->SO);
-		// printf("\033[92mWE\033[0m --> [%s]\n", bs.ps->WE);
-		// printf("\033[92mEA\033[0m --> [%s]\n", bs.ps->EA);
-		// printf("\033[92mS\033[0m --> [%s]\n", bs.ps->S);
-		// printf("\033[92mColor floor\033[0m --> [%d]\n", bs.ps->color_f);
-		// printf("\033[92mColor ciel\033[0m --> [%d]\n", bs.ps->color_c);
-		// printf("\033[33m-----------MAP---------------\033[0m\n");
-		// while (bs.ms->map[i])
-		// {
-		// 	printf("[%s] \033[92m <--- ligne [%d]\033[0m", bs.ms->map[i], i);
-		// 	i++;
-		// 	printf("\n");
-		// }
-		// printf("\033[92mSpawn Player\033[0m --> [%c]\n", bs.ms->spawn);
-
-
-		// ft_dracaufeu();
+	}
+	else if (argc == 3)
+	{
+		if (check_save(argv[2]))
+			return (printf("Wrong save arg\n"));
 	}
 	else
 		printf("Error\nWrong arguments\n");

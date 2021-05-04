@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 10:03:48 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 10:33:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int	full_parsing(char *map, t_big_struct *bs)
 
 	j = 0;
 	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		return (printf("Map is missing\n"));
 	line = NULL;
 	while (get_next_line(fd, &line) != 0)
 	{
@@ -128,6 +130,8 @@ int	full_parsing(char *map, t_big_struct *bs)
 	}
 	if (full_parsing_body(line, bs, &j))
 		return (1);
+	if (texture_exist(bs))
+		return (printf("Texture file missing\n"));
 	if (check_struct(bs))
 		return (free_struct(bs, line));
 	//free(line);

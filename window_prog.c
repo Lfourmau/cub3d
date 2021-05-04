@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 10:17:34 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 10:27:31 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int	window_prog(t_big_struct *bs)
 	if (bs->ps->vertic_res > bs->ps->screensize.y)
 		bs->ps->vertic_res = bs->ps->screensize.y;
 	multiplicator(bs);
-	printf("%d\n", bs->ps->screensize.y);
-	printf("%d\n", bs->ps->screensize.x);
 	bs->ws->win_ptr = mlx_new_window(bs->ws->mlx_ptr, bs->ps->horiz_res, bs->ps->vertic_res, "Cub3d");
 	mlx_hook(bs->ws->win_ptr, 2, 1L << 0, key_press, bs);
 	mlx_hook(bs->ws->win_ptr, 3, 1L << 1, key_release, bs);
