@@ -6,19 +6,19 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/03 10:49:28 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:40:32 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "libft/libft.h"
-#include "mlx/mlx.h"
-#include <stdlib.h>
-#include <math.h>
-#include <stdio.h>
-#include <fcntl.h>
+# include "libft/libft.h"
+# include "mlx/mlx.h"
+# include <stdlib.h>
+# include <math.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 # define LEFTLOOK 123
 # define RIGHTLOOK 124
@@ -28,56 +28,59 @@
 # define DKEY 2
 # define ESC 53
 
-typedef	struct s_point
+typedef struct s_point
 {
-	float 		x;
-	float 		y;
+	float		x;
+	float		y;
 }				t_point;
+
+typedef struct s_intpoint
+{
+	int			x;
+	int			y;
+}				t_intpoint;
 
 
 //PARSING
-typedef struct	parsing_struct
-	{
-		int 	horiz_res;
-		int 	vertic_res;	
-		int		color_f;
-		int		color_c;
-		char	*NO;
-		char	*SO;
-		char	*WE;
-		char	*EA;
-		char	*S;
-	}			parse_struct;
+typedef struct s_parsing_struct
+{
+	int		horiz_res;
+	int		vertic_res;	
+	int		color_f;
+	int		color_c;
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	char	*S;
+}			t_parse_struct;
 
-typedef struct	map_struct
-	{
-		char	**map;
-		char 	spawn;
-		int		nb_spawns;
-		int		spawn_x;
-		int		spawn_y;
-	}			map_struct;
+typedef struct s_map_struct
+{
+	char		**map;
+	char		spawn;
+	int			nb_spawns;
+	t_intpoint	start_spawn;
+}			t_map_struct;
 
 //WINDOW MLX
-typedef struct	window_struct
-	{
-		void	*mlx_ptr;
-		void	*mlx_img;
-		void	*win_ptr;
-		void	*img_ptr;
-		int		bits_per_pixel;
-   		int		line_length;
-   		int		endian;
-		int		multiplicator;
-		int		minimap_pos_x;
-		int		minimap_pos_y;
-		float	p_angle;
-		float 	player_pos_x;
-		float	player_pos_y;
-		int 	key_press;
-	}			window_struct;
+typedef struct s_window_struct
+{
+	void		*mlx_ptr;
+	void		*mlx_img;
+	void		*win_ptr;
+	void		*img_ptr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			mltp;
+	t_intpoint	minimap_pos;
+	float		p_angle;
+	t_point		player_pos;
+	int			key_press;
+}				t_window_struct;
 
-typedef struct	keys_struct
+typedef struct s_keys_struct
 {
 	int		w;
 	int		a;
@@ -86,132 +89,133 @@ typedef struct	keys_struct
 	int		left;
 	int		right;
 	int		esc;
-}				keys_struct;
+}				t_keys_struct;
 
 //RAYCASTING
-typedef struct ray_struct
+typedef struct s_ray_struct
 {
-		int		mapx;
-		int		mapy;
-		float	ynear;
-		float	xnear;
-		float 	deltax;
-		float 	deltay;
-		float 	xstep;
-		float 	ystep;
-		int		hit;
-		int 	side;
-		float 	r_angle;
-		float	raydist;
-		t_point inter_wall;
-		float 	wall_height;
-		float 	begin_wall;
-		float 	end_wall;
-		int 	wall_onscreen_size;
-		float 	base_x;
-		float 	base_y;
-}				ray_struct;
+	t_intpoint	map_case;
+	float		ynear;
+	float		xnear;
+	float		deltax;
+	float		deltay;
+	float		xstep;
+	float		ystep;
+	int			hit;
+	int			side;
+	float		r_angle;
+	float		raydist;
+	t_point		inter_wall;
+	float		wall_height;
+	float		begin_wall;
+	float		end_wall;
+	int			wall_onscreen_size;
+	float		base_x;
+	float		base_y;
+}				t_ray_struct;
 
-typedef struct textures_params
+typedef struct s_textures_params
 {
-	void 	*img;
+	void	*img;
 	int		*buff;
 	int		width;
 	int		height;
 	int		bits_per_pixel;
-	int 	line_length;
+	int		line_length;
 	int		endian;
 	char	r;
 	char	g;
 	char	b;
-	char 	t;
-}				textures_params;
+	char	t;
+}				t_textures_params;
 
-typedef struct textures_struct
+typedef struct s_textures_struct
 {
-	textures_params	w;
-	textures_params	s;
-	textures_params	n;
-	textures_params	e;
-	textures_params	sp;
-}				textures_struct;
+	t_textures_params	w;
+	t_textures_params	s;
+	t_textures_params	n;
+	t_textures_params	e;
+	t_textures_params	sp;
+}				t_textures_struct;
 
-typedef struct sprites_struct
+typedef struct s_sprites_struct
 {
 	t_point	inter_sprite;
 	t_point	center_sprite;
 	t_point	secondpoint;
-	float 	raydist_sprite;
-	int 	spritenum;
-	int 	begin_sprite;
+	float	raydist_sprite;
+	int		spritenum;
+	int		begin_sprite;
 	int		sprite_onscreen_size;
 	int		mapx_sprite;
 	int		mapy_sprite;
-}			sprites_struct;	
+}			t_sprites_struct;	
 
-typedef struct  big_struct
+typedef struct s_big_struct
 {
-	parse_struct	*ps;
-	map_struct		*ms;
-	window_struct	*ws;
-	ray_struct 		*rs;
-	textures_struct *ts;
-	keys_struct		*ks;
-	sprites_struct	*ss;
-}				big_struct;
+	t_parse_struct		*ps;
+	t_map_struct		*ms;
+	t_window_struct		*ws;
+	t_ray_struct		*rs;
+	t_textures_struct	*ts;
+	t_keys_struct		*ks;
+	t_sprites_struct	*ss;
+}				t_big_struct;
 
 //PARSING FUNCS
-int				full_parsing(char *map, big_struct *bs);
+int				full_parsing(char *map, t_big_struct *bs);
 int				check_full_numbers(char **splitresult, int i);
-void			parsing_struct_init(big_struct *bs);
+void			parsing_struct_init(t_big_struct *bs);
 int				number_of_split(char **splitresult);
 int				check_identifiers_textures(char *line);
 char			**map_nextline(char **map, char *line, int n);
 int				max_len_map(char **map);
-void			parse_map(char *line, big_struct *bs, int j);
+void			parse_map(char *line, t_big_struct *bs, int j);
 void			free_splits(char **chain, int i);
 void			display_spaces(char **map);
-int				check_spawn_close(big_struct *bs);
+int				check_spawn_close(t_big_struct *bs);
 int				limit_colors(char **colors);
 int				isspawn(char c);
 int				check_around(char c);
-int     		check_cub(char *str);
-int				check_struct(big_struct *bs);
-int				free_struct(big_struct *bs, char *line);
+int				check_cub(char *str);
+int				check_struct(t_big_struct *bs);
+int				free_struct(t_big_struct *bs, char *line);
 
 //PRINT FUNCS
-void            my_mlx_pixel_put(big_struct *bs, int x, int y, int color);
-void 			print_square(big_struct *bs, int posx, int posy, int color);
-void			print_minimap(big_struct *bs);
-void 			print_minisquare(big_struct *bs, int posx, int posy, int color);
+void			my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color);
+void			print_square(t_big_struct *bs, int posx, int posy, int color);
+void			print_minimap(t_big_struct *bs);
+void			print_minisquare(t_big_struct *bs, int posx, int posy, int color);
 
 //MLX FUNCS
-int 			window_prog(big_struct *bs);
-int				render_next_frame(big_struct *bs);
-void			raycasting_loop(big_struct *bs);
+int				window_prog(t_big_struct *bs);
+int				render_next_frame(t_big_struct *bs);
+void			raycasting_loop(t_big_struct *bs);
 
 //MATHS
-void			multiplicator(big_struct *bs);
-void			detect_spawn_dir(big_struct *bs);
-void			rotate_vector(big_struct *bs);
+void			multiplicator(t_big_struct *bs);
+void			detect_spawn_dir(t_big_struct *bs);
+void			rotate_vector(t_big_struct *bs);
 
 //MOOVE FUNCS
-void			updatecoord(big_struct *bs);
-void			wmoove(big_struct *bs);
-void			smoove(big_struct *bs);
-void			sidemooves(big_struct *bs);
-void			lookmoove(big_struct *bs);
+void			updatecoord(t_big_struct *bs);
+void			wmoove(t_big_struct *bs);
+void			smoove(t_big_struct *bs);
+void			sidemooves(t_big_struct *bs);
+void			lookmoove(t_big_struct *bs);
 
 //TEXTURES AND SPRITES
-void			render_textures(big_struct *bs);
-void			xpm_init(big_struct *bs);
-void			put_wall_north(big_struct *bs, int x, int j);
-void			put_wall_south(big_struct *bs, int x, int j);
-void			put_wall_west(big_struct *bs, int x, int j);
-void			put_wall_east(big_struct *bs, int x, int j);
-void			put_sprite(big_struct *bs, int x, int j, sprites_struct sprite);
-void				sprite_infos(big_struct *bs, sprites_struct *spritestab);
-float   dist(float xa, float xb, float ya, float yb);
-void	put_all_sprites(big_struct *bs, int i, sprites_struct *spritestab);
+void			render_textures(t_big_struct *bs);
+void			xpm_init(t_big_struct *bs);
+void			put_wall_north(t_big_struct *bs, int x, int j);
+void			put_wall_south(t_big_struct *bs, int x, int j);
+void			put_wall_west(t_big_struct *bs, int x, int j);
+void			put_wall_east(t_big_struct *bs, int x, int j);
+void			sprite_infos(t_big_struct *bs, t_sprites_struct *spritestab);
+float			dist(float xa, float xb, float ya, float yb);
+void			put_all_sprites(t_big_struct *bs, int i, \
+t_sprites_struct *spritestab);
+void			put_sprite(t_big_struct *bs, int x, int j, \
+t_sprites_struct sprite);
 
 #endif

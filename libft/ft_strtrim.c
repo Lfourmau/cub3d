@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:23:19 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/11/27 10:55:48 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:11:16 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_same_char_strtrim(const char *set, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (set[i])
@@ -28,7 +28,7 @@ static int	ft_same_char_strtrim(const char *set, char c)
 
 static int	ft_check_str(char const *str, char const *set)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -41,10 +41,10 @@ static int	ft_check_str(char const *str, char const *set)
 	return (1);
 }
 
-char		*ft_strtrim(char const *str, char const *set)
+char	*ft_strtrim(char const *str, char const *set)
 {
-	char *start;
-	char *cpy;
+	char	*start;
+	char	*cpy;
 
 	if (str == 0)
 		return (0);

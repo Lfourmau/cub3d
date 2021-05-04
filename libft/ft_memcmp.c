@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:21:04 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/11/26 01:54:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:09:00 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 	unsigned char	*string2;
 
 	i = 0;
-	string1 = (unsigned char*)str1;
-	string2 = (unsigned char*)str2;
+	string1 = (unsigned char *)str1;
+	string2 = (unsigned char *)str2;
 	while (i < n)
 	{
 		if (*string1 != *string2)

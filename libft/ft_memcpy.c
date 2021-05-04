@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:20:28 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/11/26 01:57:29 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:09:04 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	if (dst == 0 && src == 0)
 		return (NULL);
 	dest = dst;
-	source = (char*)src;
+	source = (char *)src;
 	i = 0;
 	while (i < n)
 	{

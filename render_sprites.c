@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/03 10:49:16 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:42:20 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,87 +20,61 @@ double	line_slope(float a1, float a2, float b1, float b2)
 		return ((a2 - b2) / (a1 - b1));
 }
 
-void	set_inter_sprite(big_struct *bs, float x, float y)
-{
-	bs->ss->inter_sprite.x = x;
-	bs->ss->inter_sprite.y = y;
-}
-
-// int	intersections_sprite(big_struct *bs)
-// {
-// 	double slope_a;
-// 	double slope_b;
-
-// 	slope_a = line_slope(bs->ws->player_pos_x, bs->ws->player_pos_y, bs->ws->player_pos_x + cos(bs->rs->r_angle), bs->ws->player_pos_y - sin(bs->rs->r_angle));
-// 	slope_b = line_slope(bs->ss->center_sprite.x, bs->ss->center_sprite.y, bs->ss->secondpoint.x, bs->ss->secondpoint.y);
-// 	if (slope_a == slope_b || (isnan(slope_a) && isnan(slope_b)))
-// 		return (1);
-// 	else if (isnan(slope_a) && !isnan(slope_b))
-// 		set_inter_sprite(bs, bs->ws->player_pos_x, (bs->ws->player_pos_x - bs->ss->center_sprite.x) * slope_b + bs->ss->center_sprite.y);
-// 	else if (isnan(slope_b) && !isnan(slope_a))
-// 		set_inter_sprite(bs, bs->ss->center_sprite.x, (bs->ss->center_sprite.x - bs->ws->player_pos_x) * slope_a + bs->ws->player_pos_y);
-// 	else
-// 		set_inter_sprite(bs, (slope_a * bs->ws->player_pos_x - slope_b * bs->ss->center_sprite.x + bs->ss->center_sprite.y - bs->ws->player_pos_y) \
-// 	    / (slope_a - slope_b), slope_b * (bs->ss->inter_sprite.x - bs->ss->center_sprite.x) + bs->ss->center_sprite.y);
-// 	return (0);
-// }
-
-t_point	intersection_sprite(big_struct *bs, float a1x, float a1y, t_point b1, t_point b2)
+t_point	intersection_sprite(t_big_struct *bs, t_point a1, t_point b1, t_point b2)
 {
 	double	slope_a;
 	double	slope_b;
 	t_point	res;
-	t_point a2;
+	t_point	a2;
 
-	a2.x = bs->ws->player_pos_x + cos(bs->rs->r_angle);
-	a2.y = bs->ws->player_pos_y - sin(bs->rs->r_angle);
-	slope_a = line_slope(a1x, a1y, a2.x, a2.y);
+	a2.x = bs->ws->player_pos.x + cos(bs->rs->r_angle);
+	a2.y = bs->ws->player_pos.y - sin(bs->rs->r_angle);
+	slope_a = line_slope(a1.x, a1.y, a2.x, a2.y);
 	slope_b = line_slope(b1.x, b1.y, b2.x, b2.y);
 	if (isnan(slope_a) && !isnan(slope_b))
 	{
-		res.x = a1x;
-		res.y = (a1x - b1.x) * slope_b + b1.y;
+		res.x = a1.x;
+		res.y = (a1.x - b1.x) * slope_b + b1.y;
 	}
 	else if (isnan(slope_b) && !isnan(slope_a))
 	{
 		res.x = b1.x;
-		res.y = (b1.x - a1x) * slope_a + a1y;
+		res.y = (b1.x - a1.x) * slope_a + a1.y;
 	}
 	else
 	{
-		res.x = (slope_a * a1x - slope_b * b1.x + b1.y - a1y) \
+		res.x = (slope_a * a1.x - slope_b * b1.x + b1.y - a1.y) \
 		/ (slope_a - slope_b);
 		res.y = slope_b * (res.x - b1.x) + b1.y;
 	}
 	return (res);
 }
 
-void	sprite_infos(big_struct *bs, sprites_struct *spritestab)
+void	sprite_infos(t_big_struct *bs, t_sprites_struct *spritestab)
 {
-	spritestab->center_sprite.x = bs->rs->mapx + 0.5;
-	spritestab->center_sprite.y = bs->rs->mapy + 0.5;
+	spritestab->center_sprite.x = bs->rs->map_case.x + 0.5;
+	spritestab->center_sprite.y = bs->rs->map_case.y + 0.5;
 	spritestab->secondpoint.x = spritestab->center_sprite.x + cos(bs->ws->p_angle + (M_PI / 2));
 	spritestab->secondpoint.y = spritestab->center_sprite.y - sin(bs->ws->p_angle + (M_PI / 2));
-	spritestab->inter_sprite = intersection_sprite(bs, bs->ws->player_pos_x, bs->ws->player_pos_y, spritestab->center_sprite, spritestab->secondpoint);
-	spritestab->raydist_sprite = sqrt(pow(spritestab->center_sprite.x - bs->ws->player_pos_x, 2) + pow(spritestab->center_sprite.y - bs->ws->player_pos_y, 2));
+	spritestab->inter_sprite = intersection_sprite(bs, bs->ws->player_pos, spritestab->center_sprite, spritestab->secondpoint);
+	spritestab->raydist_sprite = sqrt(pow(spritestab->center_sprite.x - bs->ws->player_pos.x, 2) + pow(spritestab->center_sprite.y - bs->ws->player_pos.y, 2));
 	//bs->ss->raydist_sprite *= cos(bs->ws->p_angle - bs->rs->r_angle) / 1.33;
 	spritestab->sprite_onscreen_size = bs->ps->vertic_res / spritestab->raydist_sprite;
 	spritestab->begin_sprite = bs->ps->vertic_res / 2 - spritestab->sprite_onscreen_size / 2;
-	spritestab->mapx_sprite = bs->rs->mapx;
-	spritestab->mapy_sprite = bs->rs->mapy;
+	spritestab->mapx_sprite = bs->rs->map_case.x;
+	spritestab->mapy_sprite = bs->rs->map_case.y;
 }
 
-void	put_sprite(big_struct *bs, int x, int j, sprites_struct sprite)
+void	put_sprite(t_big_struct *bs, int x, int j, t_sprites_struct sprite)
 {
 	int		texture_x;
 	float	ratio;
 	int		i;
-	int 	color;
+	int		color;
 	float	distance;
 
 	i = 0;
 	distance = dist(sprite.center_sprite.x, sprite.inter_sprite.x, sprite.center_sprite.y, sprite.inter_sprite.y);
-	// if ((bs->ws->player_pos_y > bs->ss->center_sprite_y && bs->ss->center_sprite_x > bs->ss->inter_x_sprite) || (bs->ws->player_pos_y < bs->ss->center_sprite_y && bs->ss->center_sprite_x < bs->ss->inter_x_sprite))
 	if ((bs->ws->p_angle <= M_PI && sprite.center_sprite.x >= sprite.inter_sprite.x) || (bs->ws->p_angle > M_PI && sprite.center_sprite.x < sprite.inter_sprite.x))
 		distance *= -1;
 	texture_x = bs->ts->sp.width / 2 + bs->ts->sp.width * distance;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:17:22 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/11/26 01:34:33 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:06:38 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t nbelements, size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
 	ptr = malloc(size * nbelements);
 	if (ptr == 0)

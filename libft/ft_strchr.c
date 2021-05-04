@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:21:29 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/11/26 01:43:33 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:10:27 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strchr(const char *str, int c)
 	while (str[i])
 	{
 		if (str[i] == carac)
-			return ((char*)&str[i]);
+			return ((char *)&str[i]);
 		i++;
 	}
 	if (carac == 0)

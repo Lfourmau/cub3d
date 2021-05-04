@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 13:03:22 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/12/21 13:10:36 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:06:21 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_inbase(char *base, char carac)
+static int	ft_inbase(char *base, char carac)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (base[i])
@@ -26,10 +26,10 @@ static int		ft_inbase(char *base, char carac)
 	return (-1);
 }
 
-static int		ft_error(char *str)
+static int	ft_error(char *str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (ft_strlen(str) == 0 || ft_strlen(str) == 1)
@@ -47,18 +47,18 @@ static int		ft_error(char *str)
 	while (str[i])
 	{
 		if (str[i] == '+' || str[i] == '-' || (str[i] >= 9 && str[i] <= 13)
-				|| str[i] == ' ')
+			|| str[i] == ' ')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int				ft_atoi_base(char *str, char *base)
+int	ft_atoi_base(char *str, char *base)
 {
-	int i;
-	int res;
-	int pos;
+	int	i;
+	int	res;
+	int	pos;
 
 	i = 0;
 	res = 0;

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:06:55 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/17 09:59:29 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:11:47 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_isline_break(const char *s)
+static int	ft_isline_break(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
@@ -28,9 +28,9 @@ static int		ft_isline_break(const char *s)
 	return (0);
 }
 
-static char		*ft_strlcpy_gnl(char *dest, const char *src, size_t size)
+static char	*ft_strlcpy_gnl(char *dest, const char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (src == 0)
@@ -50,7 +50,7 @@ static char		*ft_strlcpy_gnl(char *dest, const char *src, size_t size)
 	return (dest);
 }
 
-static char		*after_lb(char *str)
+static char	*after_lb(char *str)
 {
 	char				*chain;
 	unsigned int		i;
@@ -70,7 +70,7 @@ static char		*after_lb(char *str)
 	return (chain);
 }
 
-static char		*before_lb(char *str)
+static char	*before_lb(char *str)
 {
 	int		i;
 	char	*chain;
@@ -85,7 +85,7 @@ static char		*before_lb(char *str)
 	return (ft_strlcpy_gnl(chain, str, i + 1));
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	char			*tmp;
 	static char		*buffer;

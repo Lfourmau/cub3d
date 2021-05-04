@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/29 15:40:08 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 07:56:57 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_dracaufeu()
 		printf("\033[1;31m                 / ,\"'\"\\,'               `/  `-.|\" \n");
 }
 
-static int		parsing(char *arg, big_struct *bs)
+static int		parsing(char *arg, t_big_struct *bs)
 {
 	if (check_cub(arg))
 			return (printf("Error\nbad map format\n"));
@@ -70,14 +70,14 @@ int     main(int argc, char **argv)
 {
 	int i;
 	int j;
-	big_struct bs;
-	bs.ps = malloc(sizeof(parse_struct));
-	bs.ms = malloc(sizeof(map_struct));
-	bs.ws = malloc(sizeof(window_struct));
-	bs.rs = malloc(sizeof(ray_struct));
-	bs.ts = malloc(sizeof(textures_struct));
-	bs.ks = malloc(sizeof(keys_struct));
-	bs.ss = malloc(sizeof(sprites_struct));
+	t_big_struct bs;
+	bs.ps = malloc(sizeof(t_parse_struct));
+	bs.ms = malloc(sizeof(t_map_struct));
+	bs.ws = malloc(sizeof(t_window_struct));
+	bs.rs = malloc(sizeof(t_ray_struct));
+	bs.ts = malloc(sizeof(t_textures_struct));
+	bs.ks = malloc(sizeof(t_keys_struct));
+	bs.ss = malloc(sizeof(t_sprites_struct));
 	//bs.ts->textures_params = malloc(sizeof(textures_params));
 
 	if (!bs.ps || !bs.ms)

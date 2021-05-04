@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnb_base.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 10:57:29 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/01/04 11:02:55 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:09:27 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_strlen_putnbr(char *str)
 {
-	int a;
+	int	a;
 
 	a = 0;
 	while (str[a])
@@ -26,8 +26,8 @@ static int	ft_strlen_putnbr(char *str)
 
 static int	ft_error(char *str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (ft_strlen(str) == 0 || ft_strlen(str) == 1)
@@ -51,9 +51,9 @@ static int	ft_error(char *str)
 	return (0);
 }
 
-void		ft_putnbr_base(int nbr, char *base)
+void	ft_putnbr_base(int nbr, char *base)
 {
-	long int nb;
+	long int	nb;
 
 	if (!ft_error(base))
 	{

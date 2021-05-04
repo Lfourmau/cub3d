@@ -6,15 +6,15 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/10 08:41:42 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 07:59:49 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		check_full_numbers(char **splitresult, int i)
+int	check_full_numbers(char **splitresult, int i)
 {
-	int j;
+	int	j;
 
 	while (splitresult[i])
 	{
@@ -31,9 +31,9 @@ int		check_full_numbers(char **splitresult, int i)
 	return (0);
 }
 
-int		number_of_split(char **splitresult)
+int	number_of_split(char **splitresult)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!splitresult)
@@ -43,7 +43,7 @@ int		number_of_split(char **splitresult)
 	return (i);
 }
 
-int		check_identifiers_textures(char *line)
+int	check_identifiers_textures(char *line)
 {
 	if (!ft_strncmp(line, "NO", 2) && line[2] == ' ')
 		return (0);
@@ -60,9 +60,9 @@ int		check_identifiers_textures(char *line)
 
 int	limit_colors(char **colors)
 {
-	int i;
+	int	i;
 
-	i  = 0;
+	i = 0;
 	while (colors[i])
 	{
 		if (ft_atoi(colors[i]) > 255)

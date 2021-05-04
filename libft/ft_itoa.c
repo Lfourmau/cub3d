@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:19:57 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/11/26 01:42:35 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:08:04 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_nbdigits_itoa(long int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (n < 0)
@@ -39,7 +39,7 @@ static char	*ft_recursive_itoa(long int nb, char *result, int index)
 	return (result);
 }
 
-char		*ft_itoa(int nb)
+char	*ft_itoa(int nb)
 {
 	char		*result;
 	int			index;

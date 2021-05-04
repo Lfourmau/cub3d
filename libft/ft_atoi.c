@@ -6,13 +6,13 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:16:57 by lfourmau          #+#    #+#             */
-/*   Updated: 2020/12/21 13:12:07 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:06:30 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int				i;
 	int				j;

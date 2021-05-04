@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 01:51:34 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/17 09:58:37 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:17:47 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <string.h>
 # define BUFFER_SIZE 5
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -58,7 +58,7 @@ size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
 int				ft_strncmp(const char *str1, const char *str2, size_t n);
 char			*ft_strrchr(const char *str, int c);
-char			*ft_strnstr(const char *haystack, const char *needle,\
+char			*ft_strnstr(const char *haystack, const char *needle, \
 				size_t size);
 char			**ft_split(char const *str, char sep);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
@@ -98,7 +98,7 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),\
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 				void (*del)(void *));
 
 /*

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:21:51 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/02/17 09:58:20 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:10:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strjoin(char const *prefixe, char const *suffixe)
+char	*ft_strjoin(char const *prefixe, char const *suffixe)
 {
 	char		*concat;
 	int			len;

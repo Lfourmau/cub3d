@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:46:01 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/03/10 08:41:43 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:22:34 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*addspaces(char *str)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	tmp = malloc(ft_strlen(str) + 2);
@@ -30,10 +30,10 @@ char	*addspaces(char *str)
 	return (tmp);
 }
 
-int		max_len_map(char **map)
+int	max_len_map(char **map)
 {
-	size_t maxlen;
-	int i;
+	size_t	maxlen;
+	int		i;
 
 	maxlen = 0;
 	i = 0;
@@ -48,9 +48,9 @@ int		max_len_map(char **map)
 
 void	display_spaces(char **map)
 {
-	int i;
-	int j;
-	int maxlen;
+	int	i;
+	int	j;
+	int	maxlen;
 
 	i = 0;
 	maxlen = max_len_map(map);
@@ -70,7 +70,7 @@ char	**map_nextline(char **map, char *line, int n)
 {
 	char	**tmp;
 
-	tmp = ft_calloc(n + 2, sizeof(char*));
+	tmp = ft_calloc(n + 2, sizeof(char *));
 	tmp[n] = line;
 	while (n--)
 		tmp[n] = map[n];

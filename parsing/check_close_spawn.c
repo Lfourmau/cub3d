@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   check_close_spawn.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/04/11 13:17:39 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:35:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int valid_extrem_lines(big_struct *bs)
+int	valid_extrem_lines(t_big_struct *bs)
 {
-	int i;
-	int nb_splits;
+	int	i;
+	int	nb_splits;
 
 	i = 0;
 	nb_splits = number_of_split(bs->ms->map);
@@ -31,11 +31,11 @@ int valid_extrem_lines(big_struct *bs)
 	return (0);
 }
 
-int valid_middle_lines(big_struct *bs)
+int	valid_middle_lines(t_big_struct *bs)
 {
-	int i;
-	int j;
-	int nb_splits;
+	int	i;
+	int	j;
+	int	nb_splits;
 
 	i = 1;
 	nb_splits = number_of_split(bs->ms->map);
@@ -58,14 +58,14 @@ int valid_middle_lines(big_struct *bs)
 	return (0);
 }
 
-int check_spawns(char c, big_struct *bs, int i, int j)
+int	check_spawns(char c, t_big_struct *bs, int i, int j)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (bs->ms->nb_spawns == 0)
 		{
-			bs->ms->spawn_x = j;
-			bs->ms->spawn_y = i;
+			bs->ms->start_spawn.x = j;
+			bs->ms->start_spawn.y = i;
 			bs->ms->spawn = c;
 			bs->ms->nb_spawns += 1;
 		}
@@ -75,16 +75,16 @@ int check_spawns(char c, big_struct *bs, int i, int j)
 	return (0);
 }
 
-int check_leaks(big_struct *bs)
+int	check_leaks(t_big_struct *bs)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (bs->ms->map[i])
+	i = -1;
+	while (bs->ms->map[++i])
 	{
-		j = 0;
-		while (bs->ms->map[i][j])
+		j = -1;
+		while (bs->ms->map[i][++j])
 		{
 			if (bs->ms->map[i][j] == '0' || bs->ms->map[i][j] == '2' || bs->ms->map[i][j] == '3' || isspawn(bs->ms->map[i][j]))
 			{
@@ -99,20 +99,18 @@ int check_leaks(big_struct *bs)
 			}
 			if (check_spawns(bs->ms->map[i][j], bs, i, j))
 				return (1);
-			j++;
 		}
-		i++;
 	}
 	return (0);
 }
 
-int	check_spawn_close(big_struct *bs)
+int	check_spawn_close(t_big_struct *bs)
 {
 	if (valid_extrem_lines(bs))
 		return (1);
 	if (valid_middle_lines(bs))
 		return (1);
-	if(check_leaks(bs))
+	if (check_leaks(bs))
 		return (1);
 	if (bs->ms->nb_spawns == 0)
 		return (1);

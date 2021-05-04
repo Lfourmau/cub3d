@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
+/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:41:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/01 09:01:21 by loic             ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:30:32 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	xpm_init(big_struct *bs)
+void	xpm_init(t_big_struct *bs)
 {
 	bs->ts->n.img = mlx_xpm_file_to_image(bs->ws->mlx_ptr, bs->ps->NO, &bs->ts->n.width, &bs->ts->n.height);
 	bs->ts->s.img = mlx_xpm_file_to_image(bs->ws->mlx_ptr, bs->ps->SO, &bs->ts->s.width, &bs->ts->s.height);
 	bs->ts->e.img = mlx_xpm_file_to_image(bs->ws->mlx_ptr, bs->ps->EA, &bs->ts->e.width, &bs->ts->e.height);
 	bs->ts->w.img = mlx_xpm_file_to_image(bs->ws->mlx_ptr, bs->ps->WE, &bs->ts->w.width, &bs->ts->w.height);
 	bs->ts->sp.img = mlx_xpm_file_to_image(bs->ws->mlx_ptr, bs->ps->S, &bs->ts->sp.width, &bs->ts->sp.height);
-
 	bs->ts->n.buff = mlx_get_data_addr(bs->ts->n.img, &bs->ts->n.bits_per_pixel, &bs->ts->n.line_length, &bs->ts->n.endian);
 	bs->ts->s.buff = mlx_get_data_addr(bs->ts->s.img, &bs->ts->s.bits_per_pixel, &bs->ts->s.line_length, &bs->ts->s.endian);
 	bs->ts->e.buff = mlx_get_data_addr(bs->ts->e.img, &bs->ts->e.bits_per_pixel, &bs->ts->e.line_length, &bs->ts->e.endian);
@@ -27,15 +26,12 @@ void	xpm_init(big_struct *bs)
 	bs->ts->sp.buff = mlx_get_data_addr(bs->ts->sp.img, &bs->ts->sp.bits_per_pixel, &bs->ts->sp.line_length, &bs->ts->sp.endian);
 }
 
-
-
-
-void	put_wall_north(big_struct *bs, int x, int j)
+void	put_wall_north(t_big_struct *bs, int x, int j)
 {
 	int		texture_x;
 	float	ratio;
 	int		i;
-	int 	color;
+	int		color;
 
 	i = 0;
 	if (bs->rs->begin_wall < 0)
@@ -53,12 +49,12 @@ void	put_wall_north(big_struct *bs, int x, int j)
 	}
 }
 
-void	put_wall_south(big_struct *bs, int x, int j)
+void	put_wall_south(t_big_struct *bs, int x, int j)
 {
 	int		texture_x;
 	float	ratio;
 	int		i;
-	int 	color;
+	int		color;
 
 	i = 0;
 	if (bs->rs->begin_wall < 0)
@@ -74,12 +70,12 @@ void	put_wall_south(big_struct *bs, int x, int j)
 	}
 }
 
-void	put_wall_west(big_struct *bs, int x, int j)
+void	put_wall_west(t_big_struct *bs, int x, int j)
 {
 	int		texture_x;
 	float	ratio;
 	int		i;
-	int 	color;
+	int		color;
 
 	i = 0;
 	if (bs->rs->begin_wall < 0)
@@ -95,12 +91,12 @@ void	put_wall_west(big_struct *bs, int x, int j)
 	}
 }
 
-void	put_wall_east(big_struct *bs, int x, int j)
+void	put_wall_east(t_big_struct *bs, int x, int j)
 {
 	int		texture_x;
 	float	ratio;
 	int		i;
-	int 	color;
+	int		color;
 
 	i = 0;
 	if (bs->rs->begin_wall < 0)
@@ -115,4 +111,3 @@ void	put_wall_east(big_struct *bs, int x, int j)
 		i++;
 	}
 }
-
