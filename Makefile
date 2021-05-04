@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/05/04 07:46:12 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/05/04 08:53:19 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = 	main.c \
 		mathematics.c \
 		moove_funcs.c \
 		raycasting.c \
+		raycasting_utils.c \
 		render_textures.c \
 		render_sprites.c \
 		render_sprites_utils.c \

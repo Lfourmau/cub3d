@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:40:32 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:55:34 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ void			wmoove(t_big_struct *bs);
 void			smoove(t_big_struct *bs);
 void			sidemooves(t_big_struct *bs);
 void			lookmoove(t_big_struct *bs);
+void			moove_ray(t_big_struct *bs);	
 
 //TEXTURES AND SPRITES
 void			render_textures(t_big_struct *bs);
@@ -213,6 +214,7 @@ void			put_wall_west(t_big_struct *bs, int x, int j);
 void			put_wall_east(t_big_struct *bs, int x, int j);
 void			sprite_infos(t_big_struct *bs, t_sprites_struct *spritestab);
 float			dist(float xa, float xb, float ya, float yb);
+void		print_column(t_big_struct *bs, int x, float y);
 void			put_all_sprites(t_big_struct *bs, int i, \
 t_sprites_struct *spritestab);
 void			put_sprite(t_big_struct *bs, int x, int j, \

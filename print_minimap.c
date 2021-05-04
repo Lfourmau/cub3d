@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:45:50 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 08:49:39 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,22 @@ void	print_minisquare(t_big_struct *bs, int posx, int posy, int color)
 	}
 }
 
+void	set_minimap_zero(t_big_struct *bs)
+{
+	bs->ws->minimap_pos.x = 0;
+	bs->ws->minimap_pos.y = 0;
+}
+
 void	print_minimap(t_big_struct *bs)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (bs->ms->map[i])
+	i = -1;
+	while (bs->ms->map[++i])
 	{
-		j = 0;
-		while (bs->ms->map[i][j])
+		j = -1;
+		while (bs->ms->map[i][++j])
 		{
 			if (bs->ms->map[i][j] != '1' && bs->ms->map[i][j] != ' ')
 				print_square(bs, bs->ws->minimap_pos.x, bs->ws->minimap_pos.y, 15327486);
@@ -82,13 +88,10 @@ void	print_minimap(t_big_struct *bs)
 				print_square(bs, bs->ws->minimap_pos.x, bs->ws->minimap_pos.y, 15327486);
 			else if (bs->ms->map[i][j] == '3')
 				print_square(bs, bs->ws->minimap_pos.x, bs->ws->minimap_pos.y, 15327486 /2 );
-			j++;
 			bs->ws->minimap_pos.x += bs->ws->mltp;
 		}
 		bs->ws->minimap_pos.x = 0;
 		bs->ws->minimap_pos.y += bs->ws->mltp;
-		i++;
 	}
-	bs->ws->minimap_pos.x = 0;
-	bs->ws->minimap_pos.y = 0;
+	set_minimap_zero(bs);
 }

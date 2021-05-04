@@ -6,11 +6,17 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:42:20 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/04 09:05:47 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+float	set_x(t_point a1, t_point b1, float	slope_a, float slope_b)
+{
+	return ((slope_a * a1.x - slope_b * b1.x + b1.y - a1.y) \
+		/ (slope_a - slope_b));
+}
 
 double	line_slope(float a1, float a2, float b1, float b2)
 {
@@ -43,8 +49,7 @@ t_point	intersection_sprite(t_big_struct *bs, t_point a1, t_point b1, t_point b2
 	}
 	else
 	{
-		res.x = (slope_a * a1.x - slope_b * b1.x + b1.y - a1.y) \
-		/ (slope_a - slope_b);
+		res.x = set_x(a1, b1, slope_a, slope_b);
 		res.y = slope_b * (res.x - b1.x) + b1.y;
 	}
 	return (res);
