@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:03:19 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 13:40:04 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 10:16:57 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	detect_spawn_dir(t_big_struct *bs)
 	else if (bs->ms.spawn == 'N')
 		bs->ws.p_angle = M_PI / 2;
 	else if (bs->ms.spawn == 'W')
-		bs->ws.p_angle = M_PI;
+		bs->ws.p_angle = M_PI + 0.001;
 	else if (bs->ms.spawn == 'E')
-		bs->ws.p_angle = 0;
+		bs->ws.p_angle = 0.01;
 }
 
 void	rotate_vector(t_big_struct *bs)

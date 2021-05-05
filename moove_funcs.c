@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 13:57:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:16:56 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 10:16:52 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,17 @@ void	lookmoove(t_big_struct *bs)
 	if (bs->ks.left == 1)
 	{
 		bs->ws.p_angle += M_PI / 25;
-		if (bs->ws.p_angle > 2 * M_PI)
+		if (bs->ws.p_angle == M_PI || bs->ws.p_angle == 0)
+			bs->ws.p_angle += 0.001;
+		else if (bs->ws.p_angle > 2 * M_PI)
 			bs->ws.p_angle -= 2 * M_PI;
 	}
 	else if (bs->ks.right == 1)
 	{
 		bs->ws.p_angle -= M_PI / 25;
-		if (bs->ws.p_angle < 0)
+		if (bs->ws.p_angle == M_PI || bs->ws.p_angle == 0)
+			bs->ws.p_angle += 0.001;
+		else if (bs->ws.p_angle < 0)
 			bs->ws.p_angle += 2 * M_PI;
 	}
 }

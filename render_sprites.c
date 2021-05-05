@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 07:47:02 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/05 09:44:02 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 10:14:59 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	put_sprite(t_big_struct *bs, int x, int j, t_sprites_struct sprite)
 	distance = dist(sprite.center_sprite.x, sprite.inter_sprite.x, sprite.center_sprite.y, sprite.inter_sprite.y);
 	if ((bs->ws.p_angle < M_PI && sprite.center_sprite.x > sprite.inter_sprite.x) || (bs->ws.p_angle > M_PI && sprite.center_sprite.x < sprite.inter_sprite.x))
 		distance *= -1;
+	// else if ((bs->ws.p_angle == M_PI || bs->ws.p_angle ==  0) && sprite.center_sprite.y > sprite.inter_sprite.y)
+	// 	distance *= -1;
 	texture_x = bs->ts.sp.width / 2 + bs->ts.sp.width * distance;
 	ratio = (float)bs->ts.sp.height / sprite.sprite_onscreen_size;
 	while (i < sprite.sprite_onscreen_size && j < bs->ps.vertic_res)
