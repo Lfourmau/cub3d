@@ -1,5 +1,5 @@
 --save
 les sprites bug quand p_angle = PI ou 0
-parser le --save : --savejfhfehr fonctionne et ne devrait pas
+parsing du ave fait : strncmp passé a 7
 ratio de largeur des textures
 certains spawns cassent (++i ds check_close_spawn?)

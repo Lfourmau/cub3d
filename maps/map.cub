@@ -3,7 +3,7 @@ NO ./textures/minecraft3.xpm
 SO ./textures/minecraft2.xpm
 WE ./textures/minecraftwood.xpm
 EA ./textures/wood.xpm
-S  ./textures/pikapika.xpm
+S  ./textures/barrel_sprite.xpm
 C  56,206,224
 F  113,67,32
 

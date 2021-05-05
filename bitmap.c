@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:00:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 12:42:00 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/05 08:36:14 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,22 @@
 
 int	check_save(char *str)
 {
-	if (ft_strncmp(str, "--save", 6) != 0)
+	if (ft_strncmp(str, "--save", 7) != 0)
 		return (1);
 	return (0);
 }
 
-void	header_bitmap(t_big_struct *bs, int fd)
+unsigned char	*header_info(t_big_struct *bs)
 {
-	write(fd, "BM", 2);
-	write(fd, "tailletotale", 4);
-	write(fd, "champsreserve", 4);
-	write(fd, "decalage", 4);
-
+    
 }
 
-int	bitmap(t_big_struct *bs)
+unsigned char	*header_file(t_big_struct *bs, int stride)
 {
-	int	fd;
+	
+}
 
-	fd = open("screen.bmp", O_CREAT | O_RDWR, 0777);
-	if (fd < 0)
-		return (1);
+void	bmp_image(t_big_struct *bs)
+{
+	
 }
