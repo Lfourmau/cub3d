@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 13:11:24 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:57:41 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_sprites_struct
 	int		sprite_onscreen_size;
 	int		mapx_sprite;
 	int		mapy_sprite;
+	int		texture_x;
 }			t_sprites_struct;	
 
 typedef struct s_big_struct
@@ -187,6 +188,8 @@ int				check_cub(char *str);
 int				check_struct(t_big_struct *bs);
 int				free_struct(t_big_struct *bs, char *line);
 int				texture_exist(t_big_struct *bs);
+int				free_line(t_big_struct *bs);
+void			free_comma_space_splits(char **comma, char **space);
 
 //PRINT FUNCS
 void			my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color);
@@ -199,6 +202,7 @@ void			put_all_sprites(t_big_struct *bs, int i, \
 t_sprites_struct *spritestab);
 void			put_sprite(t_big_struct *bs, int x, int j, \
 t_sprites_struct sprite);
+void			print_good_square(t_big_struct *bs, int i, int j);
 
 //MLX FUNCS
 int				window_prog(t_big_struct *bs);
@@ -216,7 +220,10 @@ void			wmoove(t_big_struct *bs);
 void			smoove(t_big_struct *bs);
 void			sidemooves(t_big_struct *bs);
 void			lookmoove(t_big_struct *bs);
-void			moove_ray(t_big_struct *bs);	
+void			moove_ray(t_big_struct *bs);
+void			a_moove(t_big_struct *bs);
+void			d_moove(t_big_struct *bs);
+void			moove_ray_check_wall(t_big_struct *bs, int i);
 
 //TEXTURES AND SPRITES
 void			render_textures(t_big_struct *bs);

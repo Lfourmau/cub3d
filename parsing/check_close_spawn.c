@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:13:52 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:13:39 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:18:44 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int	valid_extrem_lines(t_big_struct *bs)
 
 	i = 0;
 	nb_splits = number_of_split(bs->ms.map);
-	while (bs->ms.map[0][i] && (bs->ms.map[0][i] == ' ' || bs->ms.map[0][i] == '1'))
+	while (bs->ms.map[0][i] && (bs->ms.map[0][i] == ' '
+	|| bs->ms.map[0][i] == '1'))
 		i++;
 	if (bs->ms.map[0][i] != 0)
 		return (1);
 	i = 0;
-	while (bs->ms.map[nb_splits - 1][i] && (bs->ms.map[nb_splits - 1][i] == ' ' || bs->ms.map[nb_splits - 1][i] == '1'))
+	while (bs->ms.map[nb_splits - 1][i] && (bs->ms.map[nb_splits - 1][i] == ' '
+	|| bs->ms.map[nb_splits - 1][i] == '1'))
 		i++;
 	if (bs->ms.map[nb_splits - 1][i] != 0)
 		return (1);
@@ -75,18 +77,17 @@ int	check_spawns(char c, t_big_struct *bs, int i, int j)
 	return (0);
 }
 
-int	check_leaks(t_big_struct *bs)
+int	check_leaks(t_big_struct *bs, int i)
 {
-	int	i;
 	int	j;
 
-	i = -1;
 	while (bs->ms.map[++i])
 	{
 		j = -1;
 		while (bs->ms.map[i][++j])
 		{
-			if (bs->ms.map[i][j] == '0' || bs->ms.map[i][j] == '2' || bs->ms.map[i][j] == '3' || isspawn(bs->ms.map[i][j]))
+			if (bs->ms.map[i][j] == '0' || bs->ms.map[i][j] == '2'
+			|| bs->ms.map[i][j] == '3' || isspawn(bs->ms.map[i][j]))
 			{
 				if (check_around(bs->ms.map[i - 1][j]))
 					return (1);
@@ -110,7 +111,7 @@ int	check_spawn_close(t_big_struct *bs)
 		return (1);
 	if (valid_middle_lines(bs))
 		return (1);
-	if (check_leaks(bs))
+	if (check_leaks(bs, -1))
 		return (1);
 	if (bs->ms.nb_spawns == 0)
 		return (1);

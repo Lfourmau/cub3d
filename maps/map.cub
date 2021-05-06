@@ -1,11 +1,12 @@
-R 1400 1080
+R 1080 1080
 NO ./textures/manon.xpm
 SO ./textures/adam.xpm
 WE ./textures/simon.xpm
 EA ./textures/philou.xpm
-S ./textures/barrel_sprite.xpm
+S ./textures/pikapika.xpm
 C  56,206,224
 F  113,67,32
+
 111
 1S111111111111111111111111111
 13100000000000010000011110111111111111111111111

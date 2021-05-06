@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 13:57:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/05 10:16:52 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:33:36 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ void	wmoove(t_big_struct *bs)
 {
 	if (bs->ks.w == 1)
 	{
-		if (bs->ms.map[(int)(bs->ws.player_pos.y - sin(bs->ws.p_angle))][(int)bs->ws.player_pos.x] != '1')
-			if (bs->ms.map[(int)(bs->ws.player_pos.y - sin(bs->ws.p_angle))][(int)bs->ws.player_pos.x] != '2')
+		if (bs->ms.map[(int)(bs->ws.player_pos.y - sin(bs->ws.p_angle))]
+		[(int)bs->ws.player_pos.x] != '1')
+			if (bs->ms.map[(int)(bs->ws.player_pos.y - sin(bs->ws.p_angle))]
+			[(int)bs->ws.player_pos.x] != '2')
 				bs->ws.player_pos.y -= sin(bs->ws.p_angle) / 4;
-		if (bs->ms.map[(int)bs->ws.player_pos.y][(int)(bs->ws.player_pos.x + cos(bs->ws.p_angle))] != '1')
-			if (bs->ms.map[(int)bs->ws.player_pos.y][(int)(bs->ws.player_pos.x + cos(bs->ws.p_angle))] != '2')
+		if (bs->ms.map[(int)bs->ws.player_pos.y]
+			[(int)(bs->ws.player_pos.x + cos(bs->ws.p_angle))] != '1')
+			if (bs->ms.map[(int)bs->ws.player_pos.y]
+				[(int)(bs->ws.player_pos.x + cos(bs->ws.p_angle))] != '2')
 				bs->ws.player_pos.x += cos(bs->ws.p_angle) / 4;
 	}
 }
@@ -29,11 +33,15 @@ void	smoove(t_big_struct *bs)
 {
 	if (bs->ks.s == 1)
 	{
-		if (bs->ms.map[(int)(bs->ws.player_pos.y + sin(bs->ws.p_angle))][(int)bs->ws.player_pos.x] != '1')
-			if (bs->ms.map[(int)(bs->ws.player_pos.y + sin(bs->ws.p_angle))][(int)bs->ws.player_pos.x] != '2')
+		if (bs->ms.map[(int)(bs->ws.player_pos.y + sin(bs->ws.p_angle))]
+		[(int)bs->ws.player_pos.x] != '1')
+			if (bs->ms.map[(int)(bs->ws.player_pos.y + sin(bs->ws.p_angle))]
+			[(int)bs->ws.player_pos.x] != '2')
 				bs->ws.player_pos.y += sin(bs->ws.p_angle) / 4;
-		if (bs->ms.map[(int)bs->ws.player_pos.y][(int)(bs->ws.player_pos.x - cos(bs->ws.p_angle))] != '1')
-			if (bs->ms.map[(int)bs->ws.player_pos.y][(int)(bs->ws.player_pos.x - cos(bs->ws.p_angle))] != '2')
+		if (bs->ms.map[(int)bs->ws.player_pos.y]
+			[(int)(bs->ws.player_pos.x - cos(bs->ws.p_angle))] != '1')
+			if (bs->ms.map[(int)bs->ws.player_pos.y]
+				[(int)(bs->ws.player_pos.x - cos(bs->ws.p_angle))] != '2')
 				bs->ws.player_pos.x -= cos(bs->ws.p_angle) / 4;
 	}
 }
@@ -41,23 +49,9 @@ void	smoove(t_big_struct *bs)
 void 	sidemooves(t_big_struct *bs)
 {
 	if (bs->ks.a == 1)
-	{
-		if (bs->ms.map[(int)(bs->ws.player_pos.y - sin(bs->ws.p_angle + (M_PI / 2)))][(int)(bs->ws.player_pos.x)] != '1')
-			if (bs->ms.map[(int)(bs->ws.player_pos.y - sin(bs->ws.p_angle + (M_PI / 2)))][(int)(bs->ws.player_pos.x)] != '2')
-				bs->ws.player_pos.y -= sin(bs->ws.p_angle + (M_PI / 2)) / 4;
-		if (bs->ms.map[(int)(bs->ws.player_pos.y)][(int)(bs->ws.player_pos.x + cos(bs->ws.p_angle + (M_PI / 2)))] != '1')
-			if (bs->ms.map[(int)(bs->ws.player_pos.y)][(int)(bs->ws.player_pos.x + cos(bs->ws.p_angle + (M_PI / 2)))] != '2')
-				bs->ws.player_pos.x += cos(bs->ws.p_angle + (M_PI / 2)) / 4;
-	}
+		a_moove(bs);
 	else if (bs->ks.d == 1)
-	{
-		if (bs->ms.map[(int)(bs->ws.player_pos.y + sin(bs->ws.p_angle + (M_PI / 2)))][(int)(bs->ws.player_pos.x)] != '1')
-			if (bs->ms.map[(int)(bs->ws.player_pos.y + sin(bs->ws.p_angle + (M_PI / 2)))][(int)(bs->ws.player_pos.x)] != '2')
-				bs->ws.player_pos.y += sin(bs->ws.p_angle + (M_PI / 2)) / 4;
-		if (bs->ms.map[(int)bs->ws.player_pos.y][(int)(bs->ws.player_pos.x - cos(bs->ws.p_angle + (M_PI / 2)))] != '1')
-			if (bs->ms.map[(int)bs->ws.player_pos.y][(int)(bs->ws.player_pos.x - cos(bs->ws.p_angle + (M_PI / 2)))] != '2')
-				bs->ws.player_pos.x -= cos(bs->ws.p_angle + (M_PI / 2)) / 4;
-	}
+		d_moove(bs);
 }
 
 void	lookmoove(t_big_struct *bs)

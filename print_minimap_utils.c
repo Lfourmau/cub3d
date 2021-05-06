@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 08:58:30 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:17:24 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:39:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color)
 
 	if (x < bs->ps.horiz_res && x > 0 && y < bs->ps.vertic_res && y > 0)
 	{
-		dst = bs->ws.img_ptr + (y * bs->ws.line_length + x * (bs->ws.bits_per_pixel / 8));
+		dst = bs->ws.img_ptr + (y * bs->ws.line_length + x * \
+		(bs->ws.bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
 }
@@ -78,16 +79,7 @@ void	print_minimap(t_big_struct *bs)
 		j = -1;
 		while (bs->ms.map[i][++j])
 		{
-			if (bs->ms.map[i][j] != '1' && bs->ms.map[i][j] != ' ')
-				print_square(bs, bs->ws.minimap_pos.x, bs->ws.minimap_pos.y, 15327486);
-			if (bs->ms.map[i][j] == '1')
-				print_square(bs, bs->ws.minimap_pos.x, bs->ws.minimap_pos.y, 5405748);
-			else if (bs->ms.map[i][j] == '2')
-				print_square(bs, bs->ws.minimap_pos.x, bs->ws.minimap_pos.y, 10446148);
-			else if (bs->ms.map[i][j] == '0')
-				print_square(bs, bs->ws.minimap_pos.x, bs->ws.minimap_pos.y, 15327486);
-			else if (bs->ms.map[i][j] == '3')
-				print_square(bs, bs->ws.minimap_pos.x, bs->ws.minimap_pos.y, 15327486 /2 );
+			print_good_square(bs, i, j);
 			bs->ws.minimap_pos.x += bs->ws.mltp;
 		}
 		bs->ws.minimap_pos.x = 0;

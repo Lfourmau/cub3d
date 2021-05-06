@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 08:51:07 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:17:45 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:46:41 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,25 @@ void	moove_ray(t_big_struct *bs)
 	}
 }
 
+void	moove_ray_check_wall(t_big_struct *bs, int i)
+{
+	if (bs->ms.map[bs->rs.map_case.y][bs->rs.map_case.x] &&
+		(bs->ms.map[bs->rs.map_case.y][bs->rs.map_case.x] == '1' ||
+		bs->ms.map[bs->rs.map_case.y][bs->rs.map_case.x] == '3'))
+	{
+		bs->rs.hit = 1;
+		bs->rs.inter_wall.x = bs->ws.player_pos.y + \
+		bs->rs.base_x * bs->rs.raydist;
+		bs->rs.inter_wall.y = bs->ws.player_pos.x + \
+		bs->rs.base_y * bs->rs.raydist;
+		bs->rs.raydist *= cos(bs->ws.p_angle - bs->rs.r_angle);
+		if (bs->rs.raydist <= 0.002)
+			bs->rs.raydist = 0.002;
+		bs->rs.wall_height = bs->ps.vertic_res / bs->rs.raydist;
+		print_column(bs, i, bs->rs.wall_height);
+	}
+}
+
 void	print_column(t_big_struct *bs, int x, float y)
 {
 	int	j;
@@ -42,9 +61,11 @@ void	print_column(t_big_struct *bs, int x, float y)
 		my_mlx_pixel_put(bs, x, j, bs->ps.color_c);
 	if (bs->rs.side == 1 && bs->rs.r_angle > 0 && bs->rs.r_angle < M_PI)
 		put_wall_south(bs, x, j);
-	else if (bs->rs.side == 1 && bs->rs.r_angle > M_PI && bs->rs.r_angle < 2 * M_PI)
+	else if (bs->rs.side == 1 && bs->rs.r_angle > \
+	M_PI && bs->rs.r_angle < 2 * M_PI)
 		put_wall_north(bs, x, j);
-	else if (bs->rs.side == 0 && bs->rs.r_angle > M_PI / 2 && bs->rs.r_angle < 3 * M_PI / 2)
+	else if (bs->rs.side == 0 && bs->rs.r_angle > M_PI / \
+	2 && bs->rs.r_angle < 3 * M_PI / 2)
 		put_wall_east(bs, x, j);
 	else
 		put_wall_west(bs, x, j);

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 13:16:40 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 15:27:49 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,32 @@ static int	parsing(char *arg, t_big_struct *bs)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_big_struct	bs;
+// int	main(int argc, char **argv)
+// {
+// 	t_big_struct	bs;
 
-	bs.bmp = 0;
-	if (argc == 2)
-	{
-		if (parsing(argv[1], &bs))
-			return (1);
-		window_prog(&bs);
-	}
-	else if (argc == 3)
-	{
-		if (check_save(argv[2]))
-			return (printf("Wrong save arg\n"));
-		bs.bmp = 1;
-		if (parsing(argv[1], &bs))
-			return (1);
-		window_prog(&bs);
-	}
-	else
-		printf("Error\nWrong arguments\n");
-	// while (1)
-	// 	;
+// 	bs.bmp = 0;
+// 	if (argc == 2)
+// 	{
+// 		if (parsing(argv[1], &bs))
+// 			return (1);
+// 		window_prog(&bs);
+// 	}
+// 	else if (argc == 3)
+// 	{
+// 		if (check_save(argv[2]))
+// 			return (printf("Wrong save arg\n"));
+// 		bs.bmp = 1;
+// 		if (parsing(argv[1], &bs))
+// 			return (1);
+// 		window_prog(&bs);
+// 	}
+// 	else
+// 		printf("Error\nWrong arguments\n");
+// }
+
+int main(void)
+{
+	ft_strjoin("oui", "non");
+	return (0);
 }

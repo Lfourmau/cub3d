@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/05/06 11:06:44 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 14:45:25 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ static void	check_step(t_big_struct *bs, float angle)
 	if (angle > M_PI / 2 && angle < 3 * M_PI / 2)
 	{
 		bs->rs.xstep = -1;
-		bs->rs.xnear = (bs->ws.player_pos.x - bs->rs.map_case.x) * bs->rs.deltax;
+		bs->rs.xnear = (bs->ws.player_pos.x - bs->rs.map_case.x) * \
+		bs->rs.deltax;
 	}
 	else
 	{
 		bs->rs.xstep = 1;
-		bs->rs.xnear = (bs->rs.map_case.x + 1.0 - bs->ws.player_pos.x) * bs->rs.deltax;
+		bs->rs.xnear = (bs->rs.map_case.x + 1.0 - bs->ws.player_pos.x) * \
+		 bs->rs.deltax;
 	}
 	if (angle > 0 && angle < M_PI)
 	{
 		bs->rs.ystep = -1;
-		bs->rs.ynear = (bs->ws.player_pos.y - bs->rs.map_case.y) * bs->rs.deltay;
+		bs->rs.ynear = (bs->ws.player_pos.y - bs->rs.map_case.y) * \
+		bs->rs.deltay;
 	}
 	else
 	{
 		bs->rs.ystep = 1;
-		bs->rs.ynear = (bs->rs.map_case.y + 1.0 - bs->ws.player_pos.y) * bs->rs.deltay;
+		bs->rs.ynear = (bs->rs.map_case.y + 1.0 - bs->ws.player_pos.y) * \
+		bs->rs.deltay;
 	}
 }
 
@@ -49,17 +53,7 @@ static void	check_hit(t_big_struct *bs, int i)
 			bs->ss.spritenum++;
 			sprite_infos(bs, &spritestab[bs->ss.spritenum]);
 		}
-		else if (bs->ms.map[bs->rs.map_case.y][bs->rs.map_case.x] && (bs->ms.map[bs->rs.map_case.y][bs->rs.map_case.x] == '1' || bs->ms.map[bs->rs.map_case.y][bs->rs.map_case.x] == '3'))
-		{
-			bs->rs.hit = 1;
-			bs->rs.inter_wall.x = bs->ws.player_pos.y + bs->rs.base_x * bs->rs.raydist;
-			bs->rs.inter_wall.y = bs->ws.player_pos.x + bs->rs.base_y * bs->rs.raydist;
-			bs->rs.raydist *= cos(bs->ws.p_angle - bs->rs.r_angle);
-			if (bs->rs.raydist <= 0.002)
-				bs->rs.raydist = 0.002;
-			bs->rs.wall_height = bs->ps.vertic_res / bs->rs.raydist;
-			print_column(bs, i, bs->rs.wall_height);
-		}
+		moove_ray_check_wall(bs, i);
 	}
 	if (bs->ss.spritenum > 0)
 		put_all_sprites(bs, i, spritestab);
@@ -70,8 +64,10 @@ static void	raycasting(t_big_struct *bs, float angle, int i)
 {
 	bs->rs.map_case.x = (int)bs->ws.player_pos.x;
 	bs->rs.map_case.y = (int)bs->ws.player_pos.y;
-	bs->rs.deltax = sqrt(1 + (sin(angle) * sin(angle)) / (cos(angle) * cos(angle)));
-	bs->rs.deltay = sqrt(1 + (cos(angle) * cos(angle)) / (sin(angle) * sin(angle)));
+	bs->rs.deltax = sqrt(1 + (sin(angle) * \
+	sin(angle)) / (cos(angle) * cos(angle)));
+	bs->rs.deltay = sqrt(1 + (cos(angle) * \
+	cos(angle)) / (sin(angle) * sin(angle)));
 	check_step(bs, angle);
 	check_hit(bs, i);
 }

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 09:06:55 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 13:18:31 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 15:09:01 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ static char	*before_lb(char *str)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	if (!(chain = malloc(sizeof(char) * (i + 1))))
+	chain = malloc(sizeof(char) * (i + 1));
+	if (!chain)
 		return (NULL);
 	return (ft_strlcpy_gnl(chain, str, i + 1));
 }

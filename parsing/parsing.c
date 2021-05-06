@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 13:46:10 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 15:17:12 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,21 @@ int	parse_colors(t_big_struct *bs)
 	space_split = ft_split(bs->ps.line, ' ');
 	c = &space_split[0][0];
 	comma_split = ft_split(space_split[1], ',');
-	if (number_of_split(space_split) != 2 || number_of_split(comma_split) != 3 || check_full_numbers(comma_split, 0) == 1 || limit_colors(comma_split))
+	if (number_of_split(space_split) != 2 || number_of_split(comma_split) != 3
+		|| check_full_numbers(comma_split, 0) == 1 || limit_colors(comma_split))
 	{
-		 //free_textures(bs);
-		 free_splits(comma_split, number_of_split(comma_split));
-		 free_splits(space_split, number_of_split(space_split));
+		 free_comma_space_splits(comma_split, space_split);
 		return (printf("Error\nWrong colors\n"));
 	}
 	if (*c == 'F' && bs->ps.color_f == -1)
-		bs->ps.color_f = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
+		bs->ps.color_f = 65536 * ft_atoi(comma_split[0]) \
+		+ 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
 	else if (*c == 'C' && bs->ps.color_c == -1)
-		bs->ps.color_c = 65536 * ft_atoi(comma_split[0]) + 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
+		bs->ps.color_c = 65536 * ft_atoi(comma_split[0]) \
+		+ 256 * ft_atoi(comma_split[1]) + ft_atoi(comma_split[2]);
 	else
 		return (printf("Error\nToo much informations\n"));
-	free_splits(comma_split, number_of_split(comma_split));
-	free_splits(space_split, number_of_split(space_split));
+	free_comma_space_splits(comma_split, space_split);
 	free(bs->ps.line);
 	return (0);
 }
@@ -93,7 +93,8 @@ int	full_parsing_body(t_big_struct *bs, int *j)
 		return (parse_r(bs));
 	else if (check_identifiers_textures(bs) == 0)
 		return (parse_textures(bs));
-	else if ((bs->ps.line[0] == 'C' || bs->ps.line[0] == 'F') && bs->ps.line[1] == ' ')
+	else if ((bs->ps.line[0] == 'C' || bs->ps.line[0] == 'F')
+		&& bs->ps.line[1] == ' ')
 		return (parse_colors(bs));
 	else if (bs->ps.line[0] == ' ' || bs->ps.line[0] == '1')
 	{
@@ -127,16 +128,10 @@ int	full_parsing(char *map, t_big_struct *bs)
 	while (get_next_line(fd, &bs->ps.line) != 0)
 	{
 		if (full_parsing_body(bs, &j))
-		{
-			free(bs->ps.line);
-			return (1);
-		}
+			return (free_line(bs));
 	}
 	if (full_parsing_body(bs, &j))
-	{
-		free(bs->ps.line);
-		return (1);
-	}
+		return (free_line(bs));
 	if (texture_exist(bs))
 		return (printf("Texture file missing\n"));
 	if (check_struct(bs))

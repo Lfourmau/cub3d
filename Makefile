@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/05/04 11:06:23 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/05/06 14:33:45 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS = 	main.c \
 		render_sprites.c \
 		render_sprites_utils.c \
 		bitmap.c \
+		sides.c \
 
 OBJS = $(SRCS:.c=.o)
 
