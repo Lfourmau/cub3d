@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 08:22:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:14:18 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 13:07:51 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ int	number_of_split(char **splitresult)
 	return (i);
 }
 
-int	check_identifiers_textures(char *line)
+int	check_identifiers_textures(t_big_struct *bs)
 {
-	if (!ft_strncmp(line, "NO", 2) && line[2] == ' ')
+	if (!ft_strncmp(bs->ps.line, "NO", 2) && bs->ps.line[2] == ' ')
 		return (0);
-	if (!ft_strncmp(line, "SO", 2) && line[2] == ' ')
+	if (!ft_strncmp(bs->ps.line, "SO", 2) && bs->ps.line[2] == ' ')
 		return (0);
-	if (!ft_strncmp(line, "WE", 2) && line[2] == ' ')
+	if (!ft_strncmp(bs->ps.line, "WE", 2) && bs->ps.line[2] == ' ')
 		return (0);
-	if (!ft_strncmp(line, "EA", 2) && line[2] == ' ')
+	if (!ft_strncmp(bs->ps.line, "EA", 2) && bs->ps.line[2] == ' ')
 		return (0);
-	if (line[0] == 'S' && line[1] == ' ')
+	if (bs->ps.line[0] == 'S' && bs->ps.line[1] == ' ')
 		return (0);
 	return (1);
 }

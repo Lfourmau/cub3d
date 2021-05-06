@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 11:56:13 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 13:11:24 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_parsing_struct
 	int			vertic_res;	
 	int			color_f;
 	int			color_c;
+	char		*line;
 	char		*NO;
 	char		*SO;
 	char		*WE;
@@ -171,10 +172,10 @@ int				full_parsing(char *map, t_big_struct *bs);
 int				check_full_numbers(char **splitresult, int i);
 void			parsing_struct_init(t_big_struct *bs);
 int				number_of_split(char **splitresult);
-int				check_identifiers_textures(char *line);
-char			**map_nextline(char **map, char *line, int n);
+int				check_identifiers_textures(t_big_struct *bs);
+char			**map_nextline(char **map, t_big_struct *bs, int n);
 int				max_len_map(char **map);
-void			parse_map(char *line, t_big_struct *bs, int j);
+void			parse_map(t_big_struct *bs, int j);
 void			free_splits(char **chain, int i);
 void			free_textures(t_big_struct *bs);
 void			display_spaces(char **map);
@@ -229,6 +230,6 @@ float			dist(float xa, float xb, float ya, float yb);
 
 //BITMAP
 int				check_save(char *str);
-int			bmp_image(t_big_struct *bs);
+int				bmp_image(t_big_struct *bs);
 
 #endif

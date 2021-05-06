@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:46:01 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:22:34 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 13:08:45 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void	display_spaces(char **map)
 	}
 }
 
-char	**map_nextline(char **map, char *line, int n)
+char	**map_nextline(char **map, t_big_struct *bs, int n)
 {
 	char	**tmp;
 
 	tmp = ft_calloc(n + 2, sizeof(char *));
-	tmp[n] = line;
+	tmp[n] = bs->ps.line;
 	while (n--)
 		tmp[n] = map[n];
 	free(map);
