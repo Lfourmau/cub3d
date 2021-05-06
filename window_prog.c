@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 08:57:25 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 10:11:51 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int	render_next_frame(t_big_struct *bs)
 	raycasting_loop(bs);
 	if (bs->ps.vertic_res >= 850 && bs->ps.horiz_res >= 850)
 		print_full_minimap(bs);
+	mlx_put_image_to_window(bs->ws.mlx_ptr, bs->ws.win_ptr, bs->ws.mlx_img, 0, 0);
 	if (bs->bmp == 1)
 	{
 		bmp_image(bs);
 		exit(1);
 	}
-	mlx_put_image_to_window(bs->ws.mlx_ptr, bs->ws.win_ptr, bs->ws.mlx_img, 0, 0);
 	mlx_destroy_image(bs->ws.mlx_ptr, bs->ws.mlx_img);
 	return (0);
 }

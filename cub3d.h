@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/05 09:41:53 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 09:54:00 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_window_struct
 	void		*mlx_ptr;
 	void		*mlx_img;
 	void		*win_ptr;
-	void		*img_ptr;
+	char		*img_ptr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -228,6 +228,6 @@ float			dist(float xa, float xb, float ya, float yb);
 
 //BITMAP
 int				check_save(char *str);
-void			bmp_image(t_big_struct *bs);
+int			bmp_image(t_big_struct *bs);
 
 #endif
