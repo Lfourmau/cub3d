@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 11:15:34 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 13:01:03 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parse_r(char *line, t_big_struct *bs)
 	split = ft_split(line, ' ');
 	if (number_of_split(split) != 3 || (check_full_numbers(split, 1) == 1))
 	{
-		free(split);
+		free_splits(split, number_of_split(split));
 		return (printf("Error\nWrong resolution\n"));
 	}
 	bs->ps.horiz_res = ft_atoi(split[1]);
@@ -38,8 +38,9 @@ int	parse_textures(char *line, t_big_struct *bs)
 	split = ft_split(line, ' ');
 	if (number_of_split(split) != 2 || split[1][0] != '.')
 	{
+		free_splits(split, number_of_split(split));
+		free(line);
 		return (printf("Error\nWrong textures\n"));
-		free(split);
 	}
 	if (!ft_strncmp(split[0], "NO", 2) && bs->ps.NO == 0)
 		bs->ps.NO = ft_strdup(split[1]);
@@ -69,8 +70,9 @@ int	parse_colors(char *line, t_big_struct *bs)
 	comma_split = ft_split(space_split[1], ',');
 	if (number_of_split(space_split) != 2 || number_of_split(comma_split) != 3 || check_full_numbers(comma_split, 0) == 1 || limit_colors(comma_split))
 	{
-		free(space_split);
-		free(comma_split);
+		free_textures(bs);
+		free_splits(comma_split, number_of_split(comma_split));
+		free_splits(space_split, number_of_split(space_split));
 		return (printf("Error\nWrong colors\n"));
 	}
 	if (*c == 'F' && bs->ps.color_f == -1)
@@ -102,7 +104,6 @@ int	full_parsing_body(char *line, t_big_struct *bs, int *j)
 	}
 	else if (line[0] == 0)
 	{
-		free(line);
 		if (bs->ms.map != 0)
 			return (printf("Empty line in the map\n"));
 		return (0);
@@ -126,7 +127,10 @@ int	full_parsing(char *map, t_big_struct *bs)
 	while (get_next_line(fd, &line) != 0)
 	{
 		if (full_parsing_body(line, bs, &j))
+		{
+			free(line);
 			return (1);
+		}
 	}
 	if (full_parsing_body(line, bs, &j))
 		return (1);
@@ -134,7 +138,6 @@ int	full_parsing(char *map, t_big_struct *bs)
 		return (printf("Texture file missing\n"));
 	if (check_struct(bs))
 		return (free_struct(bs, line));
-	//free(line);
 	display_spaces(bs->ms.map);
 	return (0);
 }

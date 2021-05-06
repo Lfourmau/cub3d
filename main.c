@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 09:30:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/05 08:06:26 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 13:00:53 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,17 @@ static int	parsing(char *arg, t_big_struct *bs)
 		return (printf("Error\nbad map format\n"));
 	parsing_struct_init(bs);
 	if (full_parsing(arg, bs) > 0)
+	{
+		free_textures(bs);
+		free_splits(bs->ms.map, number_of_split(bs->ms.map));
 		return (1);
+	}
 	if (check_spawn_close(bs))
+	{
+		free_textures(bs);
+		free_splits(bs->ms.map, number_of_split(bs->ms.map));
 		return (printf("Error\nInvalid map\n"));
+	}
 	return (0);
 }
 
