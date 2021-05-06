@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:00:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 10:19:49 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 11:01:56 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	bmp_image(t_big_struct *bs)
 	int	y;
 
 	fd = open("img.bmp", O_CREAT | O_RDWR, 0777);
+	render_next_frame(bs);
 	if (fd == -1)
 	{
 		printf("Error\nCan't create save file\n");

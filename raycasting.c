@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 13:01:43 by loic              #+#    #+#             */
-/*   Updated: 2021/05/04 12:32:08 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/06 11:06:44 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static void	check_hit(t_big_struct *bs, int i)
 			bs->rs.inter_wall.x = bs->ws.player_pos.y + bs->rs.base_x * bs->rs.raydist;
 			bs->rs.inter_wall.y = bs->ws.player_pos.x + bs->rs.base_y * bs->rs.raydist;
 			bs->rs.raydist *= cos(bs->ws.p_angle - bs->rs.r_angle);
-			//TODO : mettre le raydist a 0.01 si il vaut 0 pour ne pas segfault dans certains cas
+			if (bs->rs.raydist <= 0.002)
+				bs->rs.raydist = 0.002;
 			bs->rs.wall_height = bs->ps.vertic_res / bs->rs.raydist;
 			print_column(bs, i, bs->rs.wall_height);
 		}

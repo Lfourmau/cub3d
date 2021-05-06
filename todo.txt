@@ -1,5 +1,3 @@
---save
-ratio de largeur des textures
-certains spawns cassent (++i ds check_close_spawn?)
+collisions a revoir, c'est dégueulasse !
 remettre flage Werror
-event pour quitter avec la croix rouge
+norme
