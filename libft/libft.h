@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 01:51:34 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/04 08:17:47 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 07:30:15 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), \
 **  get_next_line
 */
 int				get_next_line(int fd, char **line);
+char 			*gnl_loop(char *buffer, char *tmp, int *read_return, int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 11:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 15:22:45 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 07:06:36 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**ft_free_chains(char **chains, int i)
 	return (NULL);
 }
 
-char	*split_loop(char **chains, char *str, char *start, char sep)
+char	**split_loop(char **chains, const char *str, char *start, char sep)
 {
 	int	i;
 
@@ -60,6 +60,7 @@ char	*split_loop(char **chains, char *str, char *start, char sep)
 		}
 	}
 	chains[i] = 0;
+	return (chains);
 }
 
 char	**ft_split(char const *str, char sep)
@@ -69,6 +70,7 @@ char	**ft_split(char const *str, char sep)
 	int		i;
 
 	i = 0;
+	start = NULL;
 	chains = malloc(sizeof(char *) * (ft_ctw(str, sep) + 1));
 	if (!str || !chains)
 		return (NULL);

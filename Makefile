@@ -6,7 +6,7 @@
 #    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/05/06 14:33:45 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/05/07 08:01:42 by lfourmau         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJS = $(SRCS:.c=.o)
 
 LIBS = libft.a libmlx.dylib
 
-CFLAGS = -Wall -Wextra# -O3
+CFLAGS = -Wall -Wextra -Werror # -O3
 
 all : $(NAME)
 

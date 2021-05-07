@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 15:17:12 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 07:59:37 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	parse_textures(t_big_struct *bs)
 	if (number_of_split(split) != 2 || split[1][0] != '.')
 	{
 		free_splits(split, number_of_split(split));
-		free(bs->ps.line);
+		//free(bs->ps.line);
 		return (printf("Error\nWrong textures\n"));
 	}
 	if (!ft_strncmp(split[0], "NO", 2) && bs->ps.NO == 0)

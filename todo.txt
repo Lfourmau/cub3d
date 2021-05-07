@@ -1,3 +1,0 @@
-collisions a revoir, c'est dégueulasse !
-remettre flage Werror
-norme
