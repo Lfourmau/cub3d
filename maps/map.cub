@@ -6,9 +6,9 @@ SO ./textures/adam.xpm
 WE ./textures/simon.xpm
 EA ./textures/philou.xpm
 S ./textures/pikapika.xpm
-C  56,206,224
+C 56,206,224
 
-F  113,67,  32
+F 113,67,32
 
 1111
 1S111111111111111111111111111
