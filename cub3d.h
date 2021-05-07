@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/07 10:27:53 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 11:05:06 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ int				free_struct(t_big_struct *bs, char *line);
 int				texture_exist(t_big_struct *bs);
 int				free_line(t_big_struct *bs);
 void			free_comma_space_splits(char **comma, char **space);
+int				valid_extrem_lines(t_big_struct *bs);
 
 //PRINT FUNCS
 void			my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color);

@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 09:54:24 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/07 10:39:27 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 11:05:13 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	full_parsing_body(t_big_struct *bs, int *j)
 	}
 	else if (bs->ps.line[0] == 0)
 	{
-		if (bs->ms.map != 0)
+		if (bs->ms.map != 0 && valid_extrem_lines(bs))
 			return (printf("Empty line in the map\n"));
 		free(bs->ps.line);
 		return (0);
