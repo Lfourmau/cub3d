@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 15:04:17 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 10:39:35 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int	window_prog(t_big_struct *bs)
 	bs->ws.mlx_ptr = mlx_init();
 	mlx_get_screen_size(bs->ws.mlx_ptr, &bs->ps.screensize.x, \
 	&bs->ps.screensize.y);
-	if (bs->ps.horiz_res > bs->ps.screensize.x)
+	if (bs->ps.horiz_res > bs->ps.screensize.x || bs->ps.horiz_res < 0)
 		bs->ps.horiz_res = bs->ps.screensize.x;
-	if (bs->ps.vertic_res > bs->ps.screensize.y)
+	if (bs->ps.vertic_res > bs->ps.screensize.y || bs->ps.vertic_res < 0)
 		bs->ps.vertic_res = bs->ps.screensize.y;
 	multiplicator(bs);
 	if (bs->bmp == 1)
