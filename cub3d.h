@@ -6,7 +6,7 @@
 /*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 14:57:41 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/07 10:27:53 by lfourmau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_intpoint
 	int			x;
 	int			y;
 }				t_intpoint;
-
 
 //PARSING
 typedef struct s_parsing_struct
@@ -195,7 +194,8 @@ void			free_comma_space_splits(char **comma, char **space);
 void			my_mlx_pixel_put(t_big_struct *bs, int x, int y, int color);
 void			print_square(t_big_struct *bs, int posx, int posy, int color);
 void			print_minimap(t_big_struct *bs);
-void			print_minisquare(t_big_struct *bs, int posx, int posy, int color);
+void			print_minisquare(t_big_struct *bs, \
+int posx, int posy, int color);
 void			print_full_minimap(t_big_struct *bs);
 void			print_column(t_big_struct *bs, int x, float y);
 void			put_all_sprites(t_big_struct *bs, int i, \
