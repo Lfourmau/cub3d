@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:46:01 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/07 11:24:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:13:56 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 char	*addspaces(char *str)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sides.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 14:30:16 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 15:03:48 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:14:39 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	a_moove(t_big_struct *bs)
 {

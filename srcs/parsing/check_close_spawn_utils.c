@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pcub.c                                       :+:      :+:    :+:   */
+/*   check_close_spawn_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/03 17:10:56 by loic              #+#    #+#             */
-/*   Updated: 2021/05/04 09:59:33 by lfourmau         ###   ########lyon.fr   */
+/*   Created: 2021/03/01 15:17:14 by loic              #+#    #+#             */
+/*   Updated: 2021/05/09 17:13:31 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
-int	check_cub(char *str)
+int	isspawn(char c)
 {
-	int	i;
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	while (str[i])
-		i++;
-	i--;
-	if (str[i] == 'b')
-		i--;
-	else
+int	check_around(char c)
+{
+	if (c == ' ')
 		return (1);
-	if (str[i] == 'u')
-		i--;
-	else
-		return (1);
-	if (str[i] == 'c')
-		i--;
-	else
-		return (1);
-	if (str[i] == '.')
-		i--;
-	else
+	if (c != '0' && c != '2' && c != '1' && !isspawn(c) && c != '3')
 		return (1);
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   window_prog.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 09:00:44 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/07 11:00:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:14:44 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	close_window(t_big_struct *bs)
 {

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 08:21:18 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/07 11:24:51 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:17:14 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "libft/libft.h"
-# include "mlx/mlx.h"
+# include "../../libft/libft.h"
+# include "../../mlx/mlx.h"
 # include <stdlib.h>
 # include <math.h>
 # include <stdio.h>

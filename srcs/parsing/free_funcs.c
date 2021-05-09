@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 12:33:54 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 14:23:55 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:13:51 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 void	free_splits(char **chain, int i)
 {

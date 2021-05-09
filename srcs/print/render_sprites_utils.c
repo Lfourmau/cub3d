@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_sprites_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 09:24:29 by loic              #+#    #+#             */
-/*   Updated: 2021/05/06 14:59:07 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:14:18 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 float	dist(float xa, float xb, float ya, float yb)
 {

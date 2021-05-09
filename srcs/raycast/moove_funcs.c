@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moove_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 13:57:31 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 14:33:36 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:14:30 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	wmoove(t_big_struct *bs)
 {

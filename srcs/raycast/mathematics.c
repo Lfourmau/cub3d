@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mathematics.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 09:03:19 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/05 10:16:57 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:18:45 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	multiplicator(t_big_struct *bs)
 {

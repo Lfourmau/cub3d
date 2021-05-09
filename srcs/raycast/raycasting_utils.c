@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 08:51:07 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/06 14:46:41 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:14:32 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	moove_ray(t_big_struct *bs)
 {

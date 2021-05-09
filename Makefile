@@ -3,36 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 10:11:37 by lfourmau          #+#    #+#              #
-#    Updated: 2021/05/07 08:01:42 by lfourmau         ###   ########lyon.fr    #
+#    Updated: 2021/05/09 17:12:37 by loic             ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS = 	main.c \
-		parsing/parsing.c \
-		parsing/parsing_utils.c \
-		parsing/struct_manip.c \
-		parsing/free_funcs.c \
-		parsing/map_parsing_utils.c \
-		parsing/check_close_spawn.c \
-		parsing/check_close_spawn_utils.c \
-		parsing/check_pcub.c \
-		window_prog.c \
-		print_minimap.c \
-		print_minimap_utils.c \
-		mathematics.c \
-		moove_funcs.c \
-		raycasting.c \
-		raycasting_utils.c \
-		render_textures.c \
-		render_sprites.c \
-		render_sprites_utils.c \
-		bitmap.c \
-		sides.c \
+SRCS = 	srcs/main.c \
+		srcs/parsing/parsing.c \
+		srcs/parsing/parsing_utils.c \
+		srcs/parsing/struct_manip.c \
+		srcs/parsing/free_funcs.c \
+		srcs/parsing/map_parsing_utils.c \
+		srcs/parsing/check_close_spawn.c \
+		srcs/parsing/check_close_spawn_utils.c \
+		srcs/parsing/check_pcub.c \
+		srcs/raycast/window_prog.c \
+		srcs/print/print_minimap.c \
+		srcs/print/print_minimap_utils.c \
+		srcs/raycast/mathematics.c \
+		srcs/raycast/moove_funcs.c \
+		srcs/raycast/raycasting.c \
+		srcs/raycast/raycasting_utils.c \
+		srcs/print/render_textures.c \
+		srcs/print/render_sprites.c \
+		srcs/print/render_sprites_utils.c \
+		srcs/bitmap/bitmap.c \
+		srcs/raycast/sides.c \
 
 OBJS = $(SRCS:.c=.o)
 

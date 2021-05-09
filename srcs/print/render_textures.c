@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfourmau <lfourmau@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: loic <loic@student.42lyon.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 08:41:37 by lfourmau          #+#    #+#             */
-/*   Updated: 2021/05/07 08:02:19 by lfourmau         ###   ########lyon.fr   */
+/*   Updated: 2021/05/09 17:14:23 by loic             ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	xpm_init(t_big_struct *bs)
 {
